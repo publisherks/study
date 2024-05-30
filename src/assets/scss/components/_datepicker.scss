@@ -1,0 +1,359 @@
+@charset "utf-8";
+
+.picker-wrap {
+    &.invalid {
+        .dp__input {
+            color: var(--delete-color) !important;
+            border-color: var(--delete-color) !important;
+
+            &::placeholder {
+                color: var(--delete-color) !important;
+            }
+
+            &:hover + .dp__input_icon,
+            &:hover + .dp__clear_icon {
+                color: rgba(var(--RGB-delete-color), .8) !important;
+            }
+
+            &:active + .dp__input_icon,
+            &:active + .dp__clear_icon {
+                color: var(--delete-color-active) !important;
+            }
+        }
+
+        .dp__input_icon,
+        .dp__clear_icon {
+            color: var(--delete-color) !important;
+        }
+    }
+
+    &.pull {
+        .picker-box {
+            min-width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    &.xl {
+        .picker-box {
+            min-width: rem(260px);
+            max-width: rem(260px);
+        }
+    }
+
+    &.xxl {
+        .picker-box {
+            min-width: rem(340px);
+            max-width: rem(340px);
+        }
+    }
+
+    &.top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &.left {
+        display: grid;
+        grid-template-columns: min-content auto;
+
+        .label {
+            grid-column: 1;
+            grid-row: 1;
+            display: flex;
+            align-items: center;
+            height: rem(34px);
+            margin-bottom: 0;
+            margin-right: rem(10px);
+            white-space: nowrap;
+        }
+
+        .picker-box {
+            grid-column: 2;
+            grid-row: 1;
+            width: auto;
+        }
+
+        .info-text,
+        .valid-text {
+            grid-column: 2;
+            grid-row: 2;
+        }
+    }
+
+    .label {
+        margin-bottom: rem(4px);
+        font-size: rem(13px);
+        font-weight: 700;
+        color: var(--text-color4);
+        line-height: 1;
+
+        i {
+            color: var(--delete-color);
+        }
+    }
+
+    .info-text {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: rem(12px);
+        color: var(--text-color3);
+        line-height: 1;
+        margin-top: rem(4px);
+    }
+
+    .valid-text {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: rem(12px);
+        font-weight: 700;
+        color: var(--delete-color);
+        line-height: 1;
+        margin-top: rem(4px);
+    }
+}
+
+.picker-box {
+    width: 100%;
+    min-width: rem(200px);
+    max-width: rem(200px);
+    border-radius: rem(8px);
+    position: relative;
+    transition: all .25s;
+
+    .dp__input {
+        font-family: "Roboto", "Noto Sans KR", Sans-serif;
+        font-size: rem(13px);
+        font-weight: 500;
+        color: var(--text-color1);
+        width: 100%;
+        height: rem(36px);
+        border-radius: rem(8px);
+        background-color: rgba(var(--RGB-form-bg), .08);
+        border: 1px solid transparent;
+        outline: none;
+        padding-right: rem(34px);
+        padding-left: rem(38px);
+        transition: all .25s ease;
+
+        &:focus {
+            border-color: rgba(var(--RGB-sub-color1), .5);
+        }
+
+        &:hover {
+            border-color: transparent;
+
+            & + .dp__input_icon {
+                color: var(--sub-color1);
+            }
+        }
+
+
+        &:active {
+            & + .dp__input_icon {
+                color: var(--sub-color1-active);
+            }
+        }
+
+        &::placeholder {
+            font-weight: 400;
+            opacity: 1;
+            color: var(--text-color3);
+        }
+
+        &:disabled {
+            color: rgba(var(--RGB-text-color1), .4);
+            background-color: rgba(var(--RGB-form-bg), .05);
+            cursor: not-allowed;
+
+            &::placeholder {
+                color: rgba(var(--RGB-text-color1), .4);
+            }
+
+            & + .dp__input_icon {
+                color: rgba(var(--RGB-text-color1), 0.4);
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    .dp__input_icon {
+        left: 0;
+        right: auto;
+        padding: 0 rem(10px) 0 rem(14px);
+        font-size: rem(16px);
+        color: var(--main-color2);
+        transition: all .25s ease;
+    }
+
+    .dp__clear_icon {
+        right: 0;
+        padding: 0 rem(14px);
+        font-size: rem(19.2px);
+        color: var(--cancel-color);
+    }
+}
+
+.custom-picker {
+    font-family: "Roboto", "Noto Sans KR", Sans-serif !important;
+    font-size: rem(14px) !important;
+    box-shadow: 1.3px 1.5px 4px 0 rgba(var(--RGB-shodow-color), 0.3);
+    border: 1px solid var(--table-border) !important;
+    background-color: var(--calendar-bg) !important;
+    animation-duration: .4s;
+    animation-fill-mode: both;
+    animation-name: fadeInUp;
+
+    div[class*=dp__arrow_] {
+        display: none;
+    }
+
+    .dp__month_year_row {
+        .dp__month_year_select {
+            font-weight: 700;
+            color: var(--text-color1);
+
+            &:hover {
+                color: var(--sub-color1);
+                background: transparent;
+            }
+
+            &:active {
+                color: var(--sub-color1-active);
+                background: transparent;
+            }
+        }
+    }
+
+    .dp__inner_nav {
+        color: var(--main-color2);
+
+        &:hover,
+        &:focus {
+            color: var(--sub-color1);
+            background: transparent;
+        }
+
+        &:active {
+            color: var(--sub-color1-active);
+        }
+    }
+
+    .dp__overlay {
+        font-family: "Roboto", "Noto Sans KR", Sans-serif !important;
+        font-size: rem(14px) !important;
+        color: var(--text-color1);
+        background-color: var(--calendar-bg) !important;
+
+        .dp__overlay_cell_active,
+        .dp__overlay_cell:hover {
+            font-weight: 700;
+            color: var(--text-color2);
+            background-color: var(--sub-color1);
+        }
+    }
+
+    .dp__button_bottom {
+        color: var(--text-color2);
+        background: var(--sub-color1) !important;
+
+        &:hover {
+            color: var(--text-color2);
+            background: var(--sub-color1-active) !important;
+        }
+    }
+
+    .dp__inc_dec_button {
+        color : var(--text-color1);
+
+        &:hover {
+            color: var(--text-color2);
+            background: transparent !important;
+        }
+    }
+
+    .dp__time_input {
+        color: var(--text-color1);
+
+        .dp__time_display {
+            color: var(--text-color1);
+
+            &:hover {
+                color: var(--text-color1);
+                background: var(--sub-color1) !important;
+            }
+        }
+    }
+
+    .time-picker {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 rem(7px) rem(7px);
+
+        .select-wrap {
+            width: calc(50% - rem(5px));
+
+            .select-box {
+                min-width: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.custom-calendar {
+    font-family: "Roboto", "Noto Sans KR", Sans-serif !important;
+
+    .dp__calendar_header {
+        color: var(--text-color1);
+        font-weight: 700;
+    }
+
+    .dp__calendar_header_separator {
+        background-color: var(--table-border);
+    }
+
+    .dp__calendar_item {
+        color: var(--text-color1);
+
+        .dp__cell_inner {
+            border-radius: rem(8px);
+        }
+
+        .dp__date_hover_end:hover,
+        .dp__date_hover_start:hover,
+        .dp__date_hover:hover,
+        .dp__range_end,
+        .dp__range_start,
+        .dp__active_date {
+            font-weight: 700;
+            color: var(--text-color2);
+            background-color: var(--sub-color1);
+        }
+
+        .dp__range_start {
+            border-radius: rem(8px) 0 0 rem(8px);
+        }
+
+        .dp__range_end {
+            border-radius: 0 rem(8px) rem(8px) 0;
+        }
+
+        .dp__range_between {
+            color: var(--text-color1);
+            background-color: rgba(var(--RGB-shodow-color), .08);
+            border-radius: 0;
+            border: none;
+        }
+
+        .dp__cell_offset {
+            color: var(--text-color3);
+        }
+
+        .dp__today {
+            border: 1px solid var(--sub-color1);
+        }
+    }
+}

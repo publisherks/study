@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+.paging-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .paging-box {
+        display: flex;
+        width: auto;
+        transition: all .25s;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: rem(13px);
+            font-weight: 500;
+            color: var(--text-color1);
+            width: rem(24px);
+            height: rem(24px);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all .25s;
+
+            &:not(:last-child) {
+                @include mar(mr 1);
+            }
+
+            &.prev,
+            &.next,
+            &.first,
+            &.last {
+                width: rem(24px);
+                font-size: rem(12px);
+
+                &:after {
+                    @extend %fa-icon;
+                    @extend .fa-solid;
+                    color: var(--main-color1);
+                    transition: color .25s;
+                }
+
+                &:hover {
+                    background-color: transparent;
+                    &:after {
+                        color: rgba(var(--RGB-main-color1), .8);
+                    }
+                }
+
+                &:active {
+                    background-color: transparent;
+                    &:after {
+                        color: var(--main-color1-active);
+                    }
+                }
+            }
+
+            &.prev:after {
+                content: unquote("\"#{ $fa-var-angle-left }\"");
+            }
+
+            &.next:after {
+                content: unquote("\"#{ $fa-var-angle-right }\"");
+            }
+
+            &.first:after {
+                content: unquote("\"#{ $fa-var-angles-left }\"");
+            }
+
+            &.last:after {
+                content: unquote("\"#{ $fa-var-angles-right }\"");
+            }
+
+            &:hover {
+                font-weight: 700;
+                color: var(--text-color2);
+                background-color: rgba(var(--RGB-main-color1), .8);
+
+                &:after {
+                    color: var(--white);
+                }
+            }
+
+            &:active {
+                font-weight: 700;
+                color: var(--text-color2);
+                background-color: var(--main-color1-active);
+
+                &:after {
+                    color: var(--white);
+                }
+            }
+
+            &.on {
+                font-weight: 700;
+                color: var(--text-color2);
+                background-color: var(--main-color1);
+            }
+        }
+    }
+}

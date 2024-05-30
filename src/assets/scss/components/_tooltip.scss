@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+
+    i {
+        color: var(--main-color2) !important;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .tooltip-box {
+        @include position(absolute, $top: calc(100% + rem(2px)), $left: rem(-12px));
+        padding-top: rem(8px);
+        opacity: 0;
+        z-index: map-get($z-index, tooltip);
+        @include arrow-create(14px, 9px, "top", var(--table-border), var(--content-bg), $left: rem(12px));
+        transition: opacity .25s ease;
+        pointer-events: none;
+
+        &.show {
+            opacity: 1;
+            pointer-events: inherit;
+        }
+
+        .tooltip-con {
+            min-width: rem(200px);
+            padding: rem(10px) rem(12px);
+            font-size: rem(12px);
+            line-height: normal;
+            color: var(--text-color1);
+            border: 1px solid var(--table-border);
+            background-color: var(--content-bg);
+            border-radius: rem(8px);
+        }
+    }
+}

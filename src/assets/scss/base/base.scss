@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+// Base
+@import
+    '/src/assets/scss/utils/functions',
+    '/src/assets/scss/utils/mixins',
+    '/src/assets/scss/utils/variables';
+
+// FontAwesome
+@import '/src/assets/fontawesome/scss/fontawesome.scss';

@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+.upload-wrap {
+
+    &.invalid {
+        input {
+            color: var(--delete-color);
+            border-color: var(--delete-color);
+
+            &::placeholder {
+                color: var(--delete-color) !important;
+            }
+        }
+    }
+
+    &.pull {
+        .upload-file {
+            grid-template-columns: min-content auto;
+            
+            .input-box {
+                min-width: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+
+
+    &.sm {
+        .input-box {
+            min-width: rem(140px);
+            max-width: rem(140px);
+        }
+    }
+
+    &.xl {
+        .input-box {
+            min-width: rem(220px);
+            max-width: rem(220px);
+        }
+    }
+
+    &.top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &.left {
+        display: grid;
+        grid-template-columns: min-content auto;
+
+        .label {
+            grid-column: 1;
+            grid-row: 1;
+            display: flex;
+            align-items: center;
+            height: rem(34px);
+            margin-bottom: 0;
+            margin-right: rem(10px);
+            white-space: nowrap;
+        }
+
+        .upload-file {
+            grid-column: 2;
+            grid-row: 1;
+            width: auto;
+        }
+    }
+
+    .label {
+        margin-bottom: rem(4px);
+        font-size: rem(13px);
+        font-weight: 700;
+        color: var(--text-color4);
+        line-height: 1;
+
+        i {
+            color: var(--delete-color);
+        }
+    }
+}
+
+.upload-file {
+    display: grid;
+    grid-template-columns: min-content min-content;
+    grid-template-rows: min-content auto;
+    position: relative;
+    width: 100%;
+
+    [class^="btn-"]  {
+        white-space: nowrap;
+    }
+
+    input[type=file] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .info-text {
+        grid-column: 1 / span 2;
+        margin-top: rem(5px);
+        margin-left: auto;
+        font-size: rem(12px);
+        color: var(--cool-grey);
+        line-height: 1;
+
+        strong {
+            font-weight: 700;
+            color: var(--soft-blue);
+        }
+    }
+}

@@ -1,0 +1,64 @@
+@charset "UTF-8";
+@use "sass:math";
+
+/**
+    col-{i} class 생성 mixin.
+    col-1 ~ col-12 까지 자동 생성
+*/
+@mixin make-col() {
+    $columns: 12;
+
+    @for $i from 1 through $columns {
+        .col-#{$i} {
+            flex: 0 0 percentage(math.div($i, $columns));
+            max-width: percentage(math.div($i, $columns));
+        }
+    }
+}
+
+@mixin make-col-auto() {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+}
+
+/**
+    row-cols-{i} class 생성 mixin.
+    row-cols-1 ~ row-cols-12 까지 자동 생성.
+    row-cols-1 의 child 요소의 크기 자동 계산.
+*/
+@mixin row-cols() {
+    $columns: 12;
+
+    @for $i from 1 through $columns {
+        .row-cols-#{$i} {
+            >.col {
+                flex: 0 0 math.div(100%, $i);
+                max-width: math.div(100%, $i);
+            }
+        }
+    }
+}
+
+@include row-cols();
+@include make-col();
+
+.flex-container {
+    width: 100%;
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+
+        >.col {
+            flex-basis: 0;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+    }
+
+    [class^=row-] {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

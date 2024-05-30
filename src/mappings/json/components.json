@@ -1,0 +1,1025 @@
+[
+    {
+        "value": "VBtn",
+        "label": "Button",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            }
+        },
+        "props": {
+            "type": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "button",
+                            "value": "button"
+                        },
+                        {
+                            "label": "submit",
+                            "value": "submit"
+                        },
+                        {
+                            "label": "reset",
+                            "value": "reset"
+                        }
+                    ],
+                    "placeholder": "유형"
+                }
+            },
+            "kind": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "main",
+                            "value": "main"
+                        },
+                        {
+                            "label": "main2",
+                            "value": "main2"
+                        },
+                        {
+                            "label": "sub1",
+                            "value": "sub1"
+                        },
+                        {
+                            "label": "sub2",
+                            "value": "sub2"
+                        },
+                        {
+                            "label": "cancel",
+                            "value": "cancel"
+                        },
+                        {
+                            "label": "delete",
+                            "value": "delete"
+                        }
+                    ],
+                    "placeholder": "구분"
+                }
+            },
+            "large": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "table": {
+                "type": "checkbox",
+                "props": {}
+            }
+        },
+        "events": ["click"],
+        "slots": ["default"]
+    },
+    {
+        "value": "VCheck",
+        "label": "Checkbox",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "id": {
+                "type": "input",
+                "props": { "placeholder": "아이디" }
+            },
+            "checked": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            }
+        },
+        "events": ["update:checked"],
+        "slots": ["default"]
+    },
+    {
+        "value": "VDatePicker",
+        "label": "DatePicker",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "value": {
+                "type": "input",
+                "props": { "placeholder": "현재 날짜" }
+            },
+            "range": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "monthPicker": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "clearable": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "autoApply": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "placeholder": {
+                "type": "input",
+                "props": { "placeholder": "힌트" }
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "required": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "yearFirst": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "minDate": {
+                "type": "datePicker",
+                "props": { "placeholder": "선택 가능한 시작 날짜" }
+            },
+            "maxDate": {
+                "type": "datePicker",
+                "props": { "placeholder": "선택 가능한 끝 날짜" }
+            },
+            "weekStart": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "0 (일요일)",
+                            "value": 0
+                        },
+                        {
+                            "label": "1 (월요일)",
+                            "value": 1
+                        },
+                        {
+                            "label": "2 (화요일)",
+                            "value": 2
+                        },
+                        {
+                            "label": "3 (수요일)",
+                            "value": 3
+                        },
+                        {
+                            "label": "4 (목요일)",
+                            "value": 4
+                        },
+                        {
+                            "label": "5 (금요일)",
+                            "value": 5
+                        },
+                        {
+                            "label": "6 (토요일)",
+                            "value": 6
+                        }
+                    ],
+                    "placeholder": "시작 요일"
+                }
+            },
+            "enableTimePicker": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "locale": {
+                "type": "input",
+                "props": { "placeholder": "언어" }
+            },
+            "position": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "left",
+                            "value": "left"
+                        },
+                        {
+                            "label": "center",
+                            "value": "center"
+                        },
+                        {
+                            "label": "right",
+                            "value": "right"
+                        }
+                    ],
+                    "placeholder": "달력 위치"
+                }
+            },
+            "transitions": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "format": {
+                "type": "input",
+                "props": { "placeholder": "형식" }
+            },
+            "valueFormat": {
+                "type": "input",
+                "props": { "placeholder": "value(현재 날짜) 형식" }
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftLabel": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalidMessage": {
+                "type": "input",
+                "props": { "placeholder": "유효하지 않는 경우 메시지" }
+            }
+        },
+        "events": ["update:value"],
+        "slots": ["label", "info"]
+    },
+    {
+        "value": "VInput",
+        "label": "Input",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "id": {
+                "type": "input",
+                "props": { "placeholder": "아이디" }
+            },
+            "value": {
+                "type": "input",
+                "props": { "placeholder": "현재 입력 값" }
+            },
+            "type": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "text",
+                            "value": "text"
+                        },
+                        {
+                            "label": "email",
+                            "value": "email"
+                        },
+                        {
+                            "label": "password",
+                            "value": "password"
+                        },
+                        {
+                            "label": "search",
+                            "value": "search"
+                        },
+                        {
+                            "label": "tel",
+                            "value": "tel"
+                        },
+                        {
+                            "label": "url",
+                            "value": "url"
+                        }
+                    ],
+                    "placeholder": "유형"
+                }
+            },
+            "maxlength": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최대 입력 수"
+                }
+            },
+            "placeholder": {
+                "type": "input",
+                "props": { "placeholder": "힌트" }
+            },
+            "autocomplete": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "off",
+                            "value": "off"
+                        },
+                        {
+                            "label": "on",
+                            "value": "on"
+                        }
+                    ],
+                    "placeholder": "자동 완성"
+                }
+            },
+            "autofocus": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftLabel": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftUnit": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "readonly": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "required": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "search": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalidMessage": {
+                "type": "input",
+                "props": { "placeholder": "유효하지 않는 경우 메시지" }
+            }
+        },
+        "events": [
+            "update:value",
+            "remove",
+            "search"
+        ],
+        "slots": [
+            "label",
+            "unit",
+            "info"
+        ]
+    },
+    {
+        "value": "VInputNumber",
+        "label": "InputNumber",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "id": {
+                "type": "input",
+                "props": { "placeholder": "아이디" }
+            },
+            "value": {
+                "type": "input",
+                "props": { "placeholder": "현재 입력 값" }
+            },
+            "min": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최소 값"
+                }
+            },
+            "max": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최대 값"
+                }
+            },
+            "maximumFractionDigits": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최대 소수점 자리 수"
+                }
+            },
+            "placeholder": {
+                "type": "input",
+                "props": { "placeholder": "힌트" }
+            },
+            "autocomplete": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "off",
+                            "value": "off"
+                        },
+                        {
+                            "label": "on",
+                            "value": "on"
+                        }
+                    ],
+                    "placeholder": "자동 완성"
+                }
+            },
+            "autofocus": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "format": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftLabel": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftUnit": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "readonly": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "required": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "search": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalidMessage": {
+                "type": "input",
+                "props": { "placeholder": "유효하지 않는 경우 메시지" }
+            }
+        },
+        "events": [
+            "update:value",
+            "remove",
+            "search"
+        ],
+        "slots": [
+            "label",
+            "unit",
+            "info"
+        ]
+    },
+    {
+        "value": "VRadio",
+        "label": "Radio",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "id": {
+                "type": "input",
+                "props": { "placeholder": "아이디" }
+            },
+            "value": {
+                "type": "input",
+                "props": { "placeholder": "값" }
+            },
+            "checkValue": {
+                "type": "input",
+                "props": { "placeholder": "체크할 값" }
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            }
+        },
+        "events": ["update:value"],
+        "slots": ["default"]
+    },
+    {
+        "value": "VRadioGroup",
+        "label": "RadioGroup",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "value": {
+                "type": "input",
+                "props": { "placeholder": "값" }
+            },
+            "radios": {
+                "type": "text",
+                "props": {}
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            }
+        },
+        "events": ["update:value"]
+    },
+    {
+        "value": "VSelect",
+        "label": "Select",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "value": {
+                "type": "input",
+                "props": { "placeholder": "현재 값" }
+            },
+            "options": {
+                "type": "text",
+                "props": { "placeholder": "목록" }
+            },
+            "placeholder": {
+                "type": "input",
+                "props": { "placeholder": "힌트" }
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftLabel": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "moveToBody": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "required": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "search": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalidMessage": {
+                "type": "input",
+                "props": { "placeholder": "유효하지 않는 경우 메시지" }
+            }
+        },
+        "events": ["update:value", "scroll:bottom"],
+        "slots": ["label", "info"]
+    },
+    {
+        "value": "VTextarea",
+        "label": "Textarea",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "id": {
+                "type": "input",
+                "props": { "placeholder": "아이디" }
+            },
+            "value": {
+                "type": "textarea",
+                "props": { "placeholder": "현재 입력 값" }
+            },
+            "height": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "높이"
+                }
+            },
+            "minHeight": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최소 높이"
+                }
+            },
+            "maxHeight": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최대 높이"
+                }
+            },
+            "maxlength": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최대 입력 수"
+                }
+            },
+            "placeholder": {
+                "type": "input",
+                "props": { "placeholder": "힌트" }
+            },
+            "autocomplete": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "off",
+                            "value": "off"
+                        },
+                        {
+                            "label": "on",
+                            "value": "on"
+                        }
+                    ],
+                    "placeholder": "자동 완성"
+                }
+            },
+            "autofocus": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftLabel": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "required": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalidMessage": {
+                "type": "input",
+                "props": { "placeholder": "유효하지 않는 경우 메시지" }
+            }
+        },
+        "events": ["update:value"],
+        "slots": ["label", "info"]
+    },
+    {
+        "value": "VUploadFile",
+        "label": "UploadFile",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "placeholder": {
+                "type": "input",
+                "props": { "placeholder": "힌트" }
+            },
+            "accept": {
+                "type": "input",
+                "props": { "placeholder": "허용하는 파일 유형" }
+            },
+            "directory": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "invalid": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "leftLabel": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "multiple": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "required": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "buttonType": {
+                "type": "select",
+                "props": {
+                    "options": [
+                        {
+                            "label": "main",
+                            "value": "main"
+                        },
+                        {
+                            "label": "main2",
+                            "value": "main2"
+                        },
+                        {
+                            "label": "sub1",
+                            "value": "sub1"
+                        },
+                        {
+                            "label": "sub2",
+                            "value": "sub2"
+                        },
+                        {
+                            "label": "cancel",
+                            "value": "cancel"
+                        },
+                        {
+                            "label": "delete",
+                            "value": "delete"
+                        }
+                    ],
+                    "placeholder": "버튼 구분"
+                }
+            },
+            "invalidMessage": {
+                "type": "input",
+                "props": { "placeholder": "유효하지 않는 경우 메시지" }
+            }
+        },
+        "events": ["upload"],
+        "slots": ["label", "default"]
+    },
+    {
+        "value": "VBarChart",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "datasets": {
+                "type": "text",
+                "props": {}
+            },
+            "labels": {
+                "type": "text",
+                "props": {}
+            },
+            "gridColor": {
+                "type": "input",
+                "props": { "placeholder": "그리드 색" }
+            },
+            "tickColor": {
+                "type": "input",
+                "props": { "placeholder": "라벨 색" }
+            },
+            "width": {
+                "type": "input",
+                "props": { "placeholder": "너비" }
+            },
+            "height": {
+                "type": "input",
+                "props": { "placeholder": "높이" }
+            },
+            "legend": {
+                "type": "checkbox",
+                "props": {}
+            }
+        }
+    },
+    {
+        "value": "VLineChart",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "datasets": {
+                "type": "text",
+                "props": {}
+            },
+            "labels": {
+                "type": "text",
+                "props": {}
+            },
+            "gridColor": {
+                "type": "input",
+                "props": { "placeholder": "그리드 색" }
+            },
+            "tickColor": {
+                "type": "input",
+                "props": { "placeholder": "라벨 색" }
+            },
+            "width": {
+                "type": "input",
+                "props": { "placeholder": "너비" }
+            },
+            "height": {
+                "type": "input",
+                "props": { "placeholder": "높이" }
+            },
+            "legend": {
+                "type": "checkbox",
+                "props": {}
+            }
+        }
+    },
+    {
+        "value": "InfiniteScroll",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "distance": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "스크롤과 최하단 사이의 최소 거리"
+                }
+            },
+            "maxHeight": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "최대 높이"
+                }
+            }
+        },
+        "events": ["scroll:bottom"]
+    },
+    {
+        "value": "VPagination",
+        "label": "Pagination",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "page": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "현재 페이지 번호"
+                }
+            },
+            "limit": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "페이지당 표시할 항목 수"
+                }
+            },
+            "total": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "총 항목 수"
+                }
+            },
+            "block": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "표시할 페이지 수"
+                }
+            }
+        },
+        "events": ["update:page"]
+    },
+    {
+        "value": "VTab",
+        "label": "Tab",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "props": {
+            "value": {
+                "type": "input",
+                "props": {
+                    "type": "number",
+                    "placeholder": "현재 탭"
+                }
+            },
+            "tabs": {
+                "type": "text",
+                "props": {}
+            }
+        },
+        "events": ["update:value"]
+    },
+    {
+        "value": "VTooltip",
+        "label": "Tooltip",
+        "attrs": {
+            "class": {
+                "type": "input",
+                "props": {}
+            },
+            "style": {
+                "type": "input",
+                "props": {}
+            }
+        },
+        "slots": ["title", "default"]
+    }
+]

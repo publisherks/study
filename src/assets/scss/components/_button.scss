@@ -1,0 +1,119 @@
+@charset "utf-8";
+@use "sass:map";
+@use "sass:list";
+
+[class^="btn-"] {
+    height: rem(36px);
+    padding: 0 rem(24px);
+    font-size: rem(14px);
+    font-weight: 700;
+    border: none;
+    border-radius: rem(8px);
+    outline: none;
+    white-space: nowrap;
+    transition: all .25s ease;
+
+    &[class*="tb"] {
+        font-size: rem(13px);
+        height: rem(32px);
+        padding: 0 rem(20px);
+        border-radius: rem(6px);
+    }
+
+    &[class*="lg"] {
+        font-size: rem(16px);
+        height: rem(48px);
+        padding: 0 rem(36px);
+        border-radius: rem(10px);
+    }
+
+    &[class*="icon"]  {
+        padding: 0 rem(9px);
+        line-height: 1;
+
+        i {
+            margin-right: 0;
+        }
+    }
+
+    i {
+        font-size: rem(16px);
+        margin-right: rem(6px);
+    }
+}
+
+
+/* btn 클래스 리스트 */
+$btns: (
+    main : 'main-color1',
+    main2 : 'main-color2',
+    sub1 : 'sub-color1',
+    sub2 : 'sub-color2',
+    cancel : 'cancel-color',
+    delete : 'delete-color'
+);
+
+/*s
+    btn 생성 mixin.
+    ex)
+    btn-main {
+        color : var(--text-color1);
+        bacground-color: var(--main-color);
+        &:active {
+            background-color: var(--main-color-active);
+        }
+    }
+*/
+@mixin btnsGenerate($btns : ()) {
+    @each $key, $value in $btns {
+        $i: index($btns, $key $value);
+
+        [class^="btn-"] {
+            &[class*="#{$key}"] {
+                color: if($i == 4, var(--text-color1), var(--text-color2));
+                background-color: var(--#{$value});
+
+                &:hover {
+                    background-color: rgba(var(--RGB-#{$value}), .8);
+                }
+
+                &:active {
+                    background-color: var(--#{$value}-active);
+                }
+
+                &:disabled {
+                    color: if($i == 4, rgba(var(--RGB-text-color1), .6), rgba(var(--RGB-text-color2), .6));
+                    background-color: rgba(var(--RGB-#{$value}), .5);
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+        @if( $i > 2) {
+            $tb-cls: if($key == sub1, 'main', if($key == sub2, 'sub1', $key));
+            $text-color: var(--RGB-text-color5), var(--RGB-text-color7), var(--RGB-text-color1), var(--RGB-text-color6);
+            [class^="btn-"] {
+                &[class*="#{$tb-cls}-tb"] {
+                    color: rgb(nth($text-color, $i - 2));
+                    background-color: rgba(var(--RGB-#{$value}), if($i == 4 and $i == 5, .4, .2));
+        
+                    &:hover {
+                        background-color: rgba(var(--RGB-#{$value}), if($i == 4 and $i == 5, .6, .3));
+                    }
+        
+                    &:active {
+                        background-color: rgba(var(--RGB-#{$value}), if($i == 4 and $i == 5, .8, .5));;
+                    }
+        
+                    &:disabled {
+                        color: rgba(nth($text-color, $i - 2), .5);
+                        background-color: rgba(var(--RGB-#{$value}), if($i == 4 and $i == 5, .2, .1));
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include btnsGenerate($btns);

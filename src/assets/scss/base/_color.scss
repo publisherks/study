@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+$color: (
+    main-color1: #452b90,
+    main-color2: #222b40,
+    sub-color1: #007a95,
+    sub-color2: #f8b940,
+    cancel-color: #8f8d8e,
+    delete-color: #fc3c2a,
+    main-color1-active: #301e65,
+    main-color2-active: #181e2d,
+    sub-color1-active: #005568,
+    sub-color2-active: #ad812d,
+    cancel-color-active: #646263,
+    delete-color-active: #b02a1d,
+    content-bg: #ffffff,
+    table-header: #f9f8f6,
+    disable-color: #f6f6f6,
+    bg-color: #f3f0ec,
+    form-bg: #0a0000,
+    table-border: #dedcdb,
+    top-color: #d8d6d6,
+    gnb-text-color: #f3f0ec,
+    text-color1: #222b40,
+    text-color2: #ffffff,
+    text-color3: #727782,
+    text-color4: #8a8d96,
+    text-color5: #1f788c,
+    text-color6: #da1300,
+    text-color7: #924f00,
+    shodow-color: #000000,
+    calendar-bg: #ecebeb,
+);
+
+@function hexToRGB($hex) {
+    @return red($hex),green($hex),blue($hex);
+}
+
+@mixin generate_colors($colors) {
+
+    // Colors
+    @each $color, $value in $colors {
+        @if str-slice(#{$value}, 1, 1)=="#" {
+            #{'--' + $color}: #{$value};
+        }
+
+        @else if str-slice(#{$value}, 1, 4)=="rgba" {
+            #{'--' + $color}: #{$value};
+        }
+
+        @else {
+            #{'--' + $color}: var(#{'--' + $value});
+        }
+    }
+
+    // RGB Colors
+    @each $color, $value in $colors {
+        @if str-slice(#{$value}, 1, 1)=="#" {
+            #{'--RGB-' + $color}: #{hexToRGB($value)};
+        }
+
+        @else if str-slice(#{$value}, 1, 4)=="rgba" {
+            #{'--RGB-' + $color}: #{$value};
+        }
+
+        @else {
+            #{'--RGB-' + $color}: var(#{'--RGB-' + $value});
+        }
+    }
+}
+
+:root {
+    @include generate_colors($color);
+}

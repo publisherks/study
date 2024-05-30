@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+.title-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: rem(36px);
+    margin-bottom: rem(10px);
+
+    &.center {
+        justify-content: center;
+    }
+
+    .sub-text {
+        align-self: center;
+        margin-left: rem(12px);
+        font-size: rem(12px);
+        font-weight: 700;
+        color: var(--sub-color1);
+    }
+}
+
+.main-title {
+    font-size: rem(20px);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--main-color2);
+}
+
+.sub-title {
+    font-size: rem(16px);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--main-color2);
+}

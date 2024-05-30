@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+$baseFontSize : 16px;
+
+/**
+    px 값, min(0) ~ max(100px) 정의.
+*/
+$size : size(0, 100);
+
+/**
+    margin과 padding의 각 위치를 지정해주는 map.
+    key는 class이름 생성, value는 상세 속성 정의.
+*/
+$position : ('l':'left', 'r':'right', 't':'top', 'b':'bottom');
+
+/**
+    margin과 padding 생성을 위한 map.
+    key는 class이름 생성, value는 상세 속성 정의.
+*/
+$nameMap : ('m':'margin', 'p':'padding');
+
+/**
+    font-size px 값, min(0) ~ max(100px) 정의.
+*/
+$fontSize : fontSize(12, 50);
+
+/**
+    z-index 생성을 위한 map.
+*/
+$z-index: (
+    modal       : 1000,
+    tooltip     : 999,
+    usermenu    : 101,
+    select      : 90,
+    datepicker  : 100,
+    sticky-th   : 1,
+);
+
+/**
+    Breakpoints
+*/
+$breakpoint-1024: 1024px;
+$breakpoint-1280: 1280px;

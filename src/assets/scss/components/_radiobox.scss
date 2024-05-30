@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+.radio-box {
+    display: inline-block;
+
+    label {
+        display: flex;
+        align-items: center;
+        font-size: rem(14px);
+        font-weight: 500;
+        color: var(--text-color1);
+        line-height: 1;
+        cursor: pointer;
+        transition: all .25s;
+
+        input[type=radio] {
+            display: none;
+        }
+
+        i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(12px);
+            height: rem(12px);
+            margin-right: rem(10px);
+            border: 1px solid var(--main-color2);
+            background-color: transparent;
+            border-radius: 50%;
+            transition: all .25s;
+
+            &:after {
+                content: '';
+                display: block;
+                width: rem(8px);
+                height: rem(8px);
+                border-radius: 50%;
+                background-color: transparent;
+                transition: background-color .25s;
+            }
+        }
+
+        &:hover i {
+            background-color: rgba(var(--RGB-main-color2), .2);
+        }
+
+        input[type=radio]:checked+i:after {
+            background-color: var(--main-color2);
+
+            &:after {
+                background-color: var(--text-color2);
+            }
+        }
+    }
+
+    &.disabled>label {
+        color: rgba(var(--RGB-main-color2), .6);
+        cursor: not-allowed;
+
+        i {
+            border-color: rgba(var(--RGB-main-color2), .2);
+            background-color: rgba(var(--RGB-main-color2), .2);
+
+            &:after {
+                background-color: transparent;
+            }
+        }
+    }
+
+    &.invalid>label {
+        color: var(--delete-color);
+
+        i {
+            border-color: var(--delete-color);
+        }
+
+        input[type=radio]:checked+i {
+            background-color: transparent;
+
+            &:after {
+                background-color: var(--delete-color);
+            }
+        }
+    }
+}

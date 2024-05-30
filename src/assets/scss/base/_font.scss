@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+// eot : iE8 이하브라우저 웹폰트 사용시
+// otf : 마이크로소프트 컴퓨터 글꼴 형식
+// woff : W3C에서 추천하는 글꼴 형식
+// woff2 : WOFF에서 향상된 글꼴
+// svg : 벡터방식의 글꼴형식 (IE ,FF 지원안함)
+// svg : TTF에 2배 , WOFF 3배 용량
+// ttf : 애플에서 개발한 글꼴 형식
+
+// Noto Sans KR (korean) http://www.google.com/fonts/earlyaccess
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 100;
+    src: url(@/assets/fonts/NotoSansKR-Thin.woff2) format('woff2'),
+        url(@/assets/fonts/NotoSansKR-Thin.woff) format('woff'),
+        url(@/assets/fonts/NotoSansKR-Thin.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 300;
+    src: url(@/assets/fonts/NotoSansKR-Light.woff2) format('woff2'),
+        url(@/assets/fonts/NotoSansKR-Light.woff) format('woff'),
+        url(@/assets/fonts/NotoSansKR-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    src: url(@/assets/fonts/NotoSansKR-Regular.woff2) format('woff2'),
+        url(@/assets/fonts/NotoSansKR-Regular.woff) format('woff'),
+        url(@/assets/fonts/NotoSansKR-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    src: url(@/assets/fonts/NotoSansKR-Medium.woff2) format('woff2'),
+        url(@/assets/fonts/NotoSansKR-Medium.woff) format('woff'),
+        url(@/assets/fonts/NotoSansKR-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    src: url(@/assets/fonts/NotoSansKR-Bold.woff2) format('woff2'),
+        url(@/assets/fonts/NotoSansKR-Bold.woff) format('woff'),
+        url(@/assets/fonts/NotoSansKR-Bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 900;
+    src: url(@/assets/fonts/NotoSansKR-Black.woff2) format('woff2'),
+        url(@/assets/fonts/NotoSansKR-Black.woff) format('woff'),
+        url(@/assets/fonts/NotoSansKR-Black.otf) format('opentype');
+}

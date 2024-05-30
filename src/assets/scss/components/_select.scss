@@ -1,0 +1,305 @@
+@charset "utf-8";
+
+.select-wrap {
+    &.invalid {
+        input {
+            color: var(--delete-color);
+            border-color: var(--delete-color);
+
+            &::placeholder {
+                color: var(--delete-color) !important;
+            }
+        }
+
+        .icon {
+            color: var(--delete-color);
+
+            &:hover {
+                color: rgba(var(--RGB-delete-color), .8);
+            }
+
+            &:active {
+                color: var(--delete-color-active);
+            }
+        }
+    }
+
+    &.disabled {
+        input {
+            color: rgba(var(--RGB-text-color1), .4);
+            background-color: rgba(var(--RGB-form-bg), .05);
+
+            &::placeholder {
+                color: rgba(var(--RGB-text-color1), .4);
+            }
+        }
+
+        .icon {
+            color: rgba(var(--RGB-text-color1), .4);
+            cursor: not-allowed;
+        }
+    }
+
+    &.pull {
+        .select-box {
+            min-width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    &.xs {
+        .select-box {
+            min-width: rem(100px);
+            max-width: rem(100px);
+        }
+    }
+
+    &.sm {
+        .select-box {
+            min-width: rem(120px);
+            max-width: rem(120px);
+        }
+    }
+
+    &.lg {
+        .select-box {
+            min-width: rem(180px);
+            max-width: rem(180px);
+        }
+    }
+
+    &.xl {
+        .select-box {
+            min-width: rem(290px);
+            max-width: rem(290px);
+        }
+    }
+
+    &.top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &.left {
+        display: grid;
+        grid-template-columns: min-content auto;
+
+        .label {
+            grid-column: 1;
+            grid-row: 1;
+            display: flex;
+            align-items: center;
+            height: rem(34px);
+            margin-bottom: 0;
+            margin-right: rem(10px);
+            white-space: nowrap;
+        }
+
+        .select-box {
+            grid-column: 2;
+            grid-row: 1;
+            width: auto;
+        }
+
+        .info-text,
+        .valid-text {
+            grid-column: 2;
+            grid-row: 2;
+        }
+    }
+
+    .label {
+        margin-bottom: rem(4px);
+        font-size: rem(13px);
+        font-weight: 700;
+        color: var(--text-color4);
+        line-height: 1;
+
+        i {
+            color: var(--delete-color);
+        }
+    }
+
+    .info-text {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: rem(12px);
+        color: var(--text-color3);
+        line-height: 1;
+        margin-top: rem(4px);
+    }
+
+    .valid-text {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: rem(12px);
+        font-weight: 700;
+        color: var(--delete-color);
+        line-height: 1;
+        margin-top: rem(4px);
+    }
+
+}
+
+.select-box {
+    position: relative;
+    width: 100%;
+    min-width: rem(150px);
+    max-width: rem(150px);
+    border-radius: rem(8px);
+    transition: all .25s;
+
+    input {
+        font-size: rem(13px);
+        font-weight: 500;
+        color: var(--text-color1);
+        width: 100%;
+        height: rem(36px);
+        padding-right: rem(34px);
+        padding-left: rem(10px);
+        border-radius: rem(8px);
+        background-color: rgba(var(--RGB-form-bg), .08);
+        border: 1px solid transparent;
+        outline: none;
+        cursor: pointer;
+        transition: all .25s ease;
+
+        &:focus {
+            border-color: rgba(var(--RGB-sub-color1), .5);
+        }
+
+        &:hover {
+            background-color: rgba(var(--RGB-shodow-color), .12);
+        }
+
+        &::placeholder {
+            font-weight: 400;
+            color: var(--text-color3);
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            transition: background-color 9999s ease-in-out 0s;
+            -webkit-box-shadow: 0 0 0px 1000px rgba(var(--RGB-form-bg), .08) inset !important;
+            -webkit-text-fill-color: var(--text-color1);
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }                
+
+    .icon {
+        display: flex;
+        align-items: center;
+        @include position(absolute, $top: 0, $right: 0, $bottom: 0);
+        padding-left: rem(14px);
+        padding-right: rem(14px);
+        color: var(--text-color1);
+        outline: none;
+        cursor: pointer;
+        transition: all .25s ease;
+
+        &:after {
+            @extend %fa-icon;
+            @extend .fa-solid;
+            content: unquote("\"#{ $fa-var-caret-down }\"");
+            font-size: rem(16px);
+            transition: transform .25s;
+        }
+    }
+
+    &.open {
+        .icon::after {
+            content: unquote("\"#{ $fa-var-caret-up }\"");
+            transform: rotate(360deg);
+        }
+
+        .select-items {
+            height: auto;
+            animation-name: fadeInUp;
+            pointer-events: auto;
+            overflow: visible;
+
+            &.top {
+                animation-name: fadeInDown;
+            }
+        }
+    }
+
+}
+
+
+.select-items {
+    @include position(absolute, $top: calc(100% + 4px), $right: 0, $left: 0);
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    z-index: map-get($z-index, select);
+    pointer-events: none;
+    animation-duration: .4s;
+    animation-fill-mode: both;
+
+    &.open {
+        height: auto;
+        animation-name: fadeInUp;
+        pointer-events: auto;
+        overflow: visible;
+
+        &.top {
+            animation-name: fadeInDown;
+        }
+    }
+
+    &.top {
+        top: auto;
+        bottom: 100%;
+    }
+
+    &.fixed {
+        position: fixed;
+    }
+
+    >ul {
+        max-height: rem(188px);
+        padding: rem(4px) 0;
+        background-color:  var(--content-bg);
+        border: 1px solid var(--table-border);
+        border-radius: rem(8px);
+        @include overflow(auto, y);
+        box-shadow: 1.3px 1.5px 4px 0 rgba(0, 0, 0, 0.3);
+        transition: all .25s;
+
+
+        li>a {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: rem(36px);
+            padding: 0 rem(14px);
+            font-size: rem(13px);
+            font-weight: 500;
+            color: var(--text-color1);
+            text-align: left;
+            word-break: break-all;
+            outline: none;
+            cursor: pointer;
+            transition: all .25s;
+
+            &:hover,
+            &:active {
+                background-color: rgba(var(--RGB-shodow-color), .08);
+            }
+        }
+    }
+}
+
+.tb-container .select-box input {
+    height: rem(32px);
+}

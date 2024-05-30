@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+:deep(.bg) {
+    > [class^="row"] > [class^="col"],
+    > [class^="cell"] {
+        font-size: rem(12px);
+        color: var(--main-color2);
+        padding: 10px;
+        border: 1px solid var(--table-border);
+        background-color: var(--table-header);
+    }
+}

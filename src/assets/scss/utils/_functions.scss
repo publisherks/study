@@ -1,0 +1,53 @@
+@charset "UTF-8";
+@use "sass:math";
+
+/**
+    px값(size map) List를 대입해서 5의 배수로 만들어 주는 함수.
+*/
+@function size($start, $end) {
+    $size: ();
+
+    @for $i from $start through $end {
+        // @if $i % 5 == 0
+        // {
+        $value: $i + 0;
+        $size: append($size, $value);
+        // }
+    }
+
+    @return $size;
+}
+
+/**
+    값이 0일때는 0으로, 그 외에는 'px'을 붙여줌.
+    ex) 0 => 0, 10 => 10px
+*/
+@function getPx($value) {
+    @if $value==0 {
+        @return $value;
+    } @else {
+        @return $value + 0px;
+    }
+}
+
+/**
+    rem 계산.
+
+*/
+@function rem($px, $calc: $baseFontSize) {
+    @return #{math.div($px, $calc) * 1}rem;
+}
+
+/**
+    px값(fontSize map) List를 대입해서 min부터 max까지 만들어주는 함수.
+*/
+@function fontSize($min, $max) {
+    $size: ();
+
+    @for $i from $min through $max {
+        $value: $i + 0;
+        $size: append($size, $value);
+    }
+
+    @return $size;
+}

@@ -1,0 +1,112 @@
+.top-container {
+    display: flex;
+    align-items: center;
+    height: rem(60px);
+    padding: 0 rem(12px) 0 rem(24px);
+    background-color: var(--top-color);
+
+    p.cate-nav {
+        font-size: rem(13px);
+        color: var(--text-color3);
+        line-height: 1;
+
+        i {
+            @include mar(ml 8, mr 8);
+            color: var(--text-color3);
+        }
+    }
+
+    .user {
+        position: relative;
+        margin-left: auto;
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(30px);
+            height: rem(30px);
+            cursor: pointer;
+            transition: all .25s;
+
+            i {
+                font-size: rem(20.5px);
+                color: var(--main-color2);
+                transition: color .25s;
+            }
+
+            &:hover {
+                i {
+                    color: rgba(var(--RGB-main-color2), .8);
+                }
+            }
+
+            &:active {
+                i {
+                    color: rgbvar(--RGB-main-color2-active);
+                }
+            }
+        }
+
+        &.open {
+            .user-menu {
+                height: auto;
+                animation-name: fadeInUp;
+                pointer-events: auto;
+                overflow: visible;
+            }
+        }
+
+        .user-menu {
+            @include position(absolute, $top: calc(100% + rem(19px)), $right: rem(-6px));
+            width: rem(120px);
+            height: 0;
+            border-radius: rem(8px);
+            @include border("", 1px solid var(--table-border));
+            background-color: var(--content-bg);
+            box-shadow: 1.3px 1.5px 4px 0 rgba(var(--RGB-shodow-color), 0.3);
+            opacity: 0;
+            overflow: hidden;
+            z-index: map-get($z-index, usermenu);
+            pointer-events: none;
+            animation-duration: .4s;
+            animation-fill-mode: both;
+            transition: all .25s;
+
+            >ul {
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    min-height: rem(40px);
+                    padding: 0 rem(13px);
+                    font-size: rem(13px);
+                    font-weight: 500;
+                    color: var(--text-color1);
+                    white-space: nowrap;
+                    cursor: pointer;
+                    transition: all .3s;
+
+                    &:first-child {
+                        border-radius: rem(8px) rem(8px) 0 0;
+                    }
+
+                    &:last-child {
+                        border-radius: 0 0 rem(8px) rem(8px);
+                    }
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        background-color: rgba(var(--RGB-shodow-color), .08);
+                    }
+                    &.on {
+                        outline: none;
+                        background-color: rgba(var(--RGB-shodow-color), .08);
+                    }
+                }
+            }
+        }
+    }
+}

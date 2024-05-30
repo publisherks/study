@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+.modal {
+    transition: all 0.25s;
+
+    &.overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include position(fixed, $top: 0, $left: 0);
+        width: 100%;
+        height: 100%;
+        background-color: rgba(var(--RGB-shodow-color), 0.6);
+        z-index: map-get($z-index, modal);
+    }
+
+    &-container {
+        width: auto;
+        min-width: rem(520px);
+        height: auto;
+        padding: rem(44px) rem(48px);
+        border-radius: rem(20px);
+        background-color: var(--content-bg);
+        box-shadow: 0px 4px 18px 0 var(--shodow-color);
+
+        .text {
+            font-size: rem(14px);
+            line-height: 1.43;
+            text-align: center;
+            color: var(--text-color1);
+            word-break: keep-all;
+
+            .required {
+                color: var(--delete-color);
+            }
+        }
+
+        .message-text {
+            min-height: rem(100px);
+            font-size: rem(14px);
+            line-height: 1.43;
+            text-align: center;
+            color: var(--text-color1);
+            word-break: keep-all;
+        }
+    }
+
+    &-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: rem(36px);
+    }
+
+    &-title {
+        font-size: rem(20px);
+        font-weight: 700;
+        color: var(--text-color1);
+        line-height: 1;
+    }
+
+    &-contents {
+        margin: 0 0 rem(44px);
+    }
+
+    &-foot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// 오버레이 트랜지션
+.modal-enter-active,
+.modal-leave-active {
+    transition: opacity .3s;
+
+    // 오버레이에 포함되어 있는 모달 윈도의 트랜지션
+    .modal-container {
+        transition: opacity .3s, transform .3s;
+    }
+}
+
+// 딜레이가 적용된 모달 윈도가 제거된 후에 오버레이가 사라짐
+.modal-leave-active {
+    transition: opacity .3s ease .2s;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+    opacity: 0;
+
+    .modal-container {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
