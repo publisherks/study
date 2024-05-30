@@ -1,0 +1,34 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+.DS_Store
+dist
+dist-ssr
+coverage
+
+# https://ko.vitejs.dev/guide/env-and-mode.html#env-files
+*.local
+
+/cypress/videos/
+/cypress/screenshots/
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
