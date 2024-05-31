@@ -1,11 +1,11 @@
 <!-- Select 컴포넌트 -->
 <template>
     <Form
-        :disabled
-        :invalid
-        :leftLabel
-        :required
-        :invalidMessage
+        :disabled="disabled"
+        :invalid="invalid"
+        :leftLabel="isLeftLabel"
+        :required="required"
+        :invalidMessage="invalidMessage"
         class="select-wrap"
     >
         <template
@@ -23,15 +23,15 @@
                 type="text"
                 :value="label"
                 :class="{ 'cursor-not': disabled }"
-                :placeholder
+                :placeholder="placeholder"
                 :readonly="(!isInput && !isSearch) || !isShow"
-                @click="onClickLabel"
-                @input="onInputText"
+                @click="onClick"
+                @input="onInput"
             />
             <i
                 v-if="!disabled"
                 class="icon"
-                @click="onClickLabel"
+                @click="onClick"
             />
             <Teleport
                 v-if="isMoveToBody"
@@ -41,19 +41,19 @@
                     :show="isShow"
                     :options="datas"
                     moveToBody
-                    :inputElement
+                    :inputElement="inputElement"
                     :class="{ open: isShow }"
                     @scroll:bottom="emit('scroll:bottom')"
-                    @select="onSelectValue"
+                    @select="onSelect"
                 />
             </Teleport>
             <Option
                 v-else
                 :show="isShow"
                 :options="datas"
-                :inputElement
+                :inputElement="inputElement"
                 @scroll:bottom="emit('scroll:bottom')"
-                @select="onSelectValue"
+                @select="onSelect"
             />
         </div>
         <template
@@ -74,12 +74,17 @@ import type { Props as InputProps } from '@/components/form/input/Default.vue';
 import Option from '@/components/form/SelectOption.vue';
 import type { Props as OptionProps } from '@/components/form/SelectOption.vue';
 
+import { convertPrimitive } from '@/functions/convert';
+
 import useSlots from '@/global/useSlots';
 
-import type { Primitive, NullableHTMLElement } from '@/mappings/types/common';
+import type { Primitive } from '@/mappings/types/common';
 
 // type
 type Props = Pick<OptionProps, 'options' | 'moveToBody'> & Pick<InputProps, 'placeholder' | 'disabled' | 'invalid' | 'leftLabel' | 'required' | 'invalidMessage'> & {
+    /** 입력 값도 현재 값으로 설정 여부 */
+    input?: boolean;
+
     /** `options`(목록) 검색 여부 */
     search?: boolean;
 };
@@ -90,15 +95,16 @@ type Emits = {
 
 // model
 /** 현재 값 */
-const [value, { input: isInput }] = defineModel<Primitive, 'input'>('value');
+const value = defineModel<Primitive>('value');
 
 // props
 const {
     options,
     placeholder = '선택해주세요.',
     disabled,
+    input: isInput,
     invalid,
-    leftLabel,
+    leftLabel: isLeftLabel,
     moveToBody: isMoveToBody,
     required,
     search: isSearch,
@@ -110,10 +116,10 @@ const emit = defineEmits<Emits>();
 
 // refs
 const inputElement = ref<Exclude<OptionProps['inputElement'], undefined>>(null);
-const selectElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const selectElement = ref<HTMLDivElement | null>(null);
 
 // global
-const [isShow, setIsShow] = useToggle();
+const [isShow, toggle] = useToggle();
 const { hasSlots } = useSlots();
 
 // state
@@ -125,8 +131,10 @@ const inputText = ref<string>('');
 const datas = computed(
     () => (isSearch && inputText.value)
         ? options.filter(
-            ({ label }) => label.toLowerCase()
-                .includes(inputText.value.toLowerCase()),
+            ({ label, exp }) => label.toLowerCase()
+                .includes(inputText.value.toLowerCase())
+                || exp?.toLowerCase()
+                    .includes(inputText.value.toLowerCase()),
         )
         : options,
 );
@@ -154,7 +162,8 @@ const label = computed(() => {
     // 입력 값도 현재 값으로 설정 시
     if (isInput) {
         // 현재 값 표시
-        return value.value;
+        // REVIEW: 배포(빌드) 버전에서 현재 값이 true로 전달되는 이슈가 있어서 문자열인 경우만 현재 값 표시
+        return convertPrimitive(value.value, 'string');
     }
 });
 
@@ -162,9 +171,9 @@ const label = computed(() => {
 /**
  * 라벨(입력 값) 클릭 시
  */
-const onClickLabel = () => {
+const onClick = () => {
     if (!disabled) {
-        setIsShow();
+        toggle();
     }
 };
 
@@ -172,7 +181,7 @@ const onClickLabel = () => {
  * 값 입력 시
  * @param event 이벤트 정보
  */
-const onInputText = (event: Event) => {
+const onInput = (event: Event) => {
     inputText.value = (event.target as HTMLInputElement).value.trim();
 };
 
@@ -180,8 +189,8 @@ const onInputText = (event: Event) => {
  * 값 선택 시
  * @param newValue 선택한 값
  */
-const onSelectValue = (newValue: typeof value.value) => {
-    setIsShow(false);
+const onSelect = (newValue: typeof value.value) => {
+    toggle(false);
 
     value.value = newValue;
 };
@@ -189,7 +198,7 @@ const onSelectValue = (newValue: typeof value.value) => {
 /**
  * 외부 클릭 시
  */
-onClickOutside(selectElement, () => setIsShow(false));
+onClickOutside(selectElement, () => toggle(false));
 
 // watch
 watch(isShow, (isShow) => {
@@ -200,9 +209,10 @@ watch(isShow, (isShow) => {
     // 입력 값도 현재 값으로 설정 시 또는 options(목록) 검색 사용 시 Select Option 컴포넌트가 표시된 경우
     if (isShow) {
         // 입력 값도 현재 값으로 설정 시 현재 값이 있는 경우
-        if (isInput && value.value && typeof value.value !== 'boolean') {
+        if (isInput && value.value) {
             // 입력 값을 현재 값으로 설정
-            inputText.value = String(value.value);
+            // REVIEW: 배포(빌드) 버전에서 현재 값이 true로 전달되는 이슈가 있어서 문자열인 경우만 입력 값을 현재 값으로 설정
+            inputText.value = convertPrimitive(value.value, 'string') as string;
         }
 
         // 라벨(입력 값) 요소에 포커스 설정

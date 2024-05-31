@@ -1,7 +1,3 @@
-import type { Numeric } from '@/mappings/types/common';
-
-import numberFrom from '@/utils/number/from';
-
 /**
  * 숫자 형식화
  * @param v 형식화할 숫자
@@ -15,10 +11,6 @@ import numberFrom from '@/utils/number/from';
  * number(123456.789, { maximumFractionDigits: 4 }); // '123,456.789' => 쉼표, 숫자, 최대 소수점 이하 4자리까지 표시
  * number(123456.789, { minimumFractionDigits: 2, maximumFractionDigits: 4 }); // '123,456.789' => 숫자만 표시하고 소수점 이하 2자리, 최대 4자리까지 표시
  */
-const number = (v: Numeric, options?: Intl.NumberFormatOptions) => {
-    v = numberFrom(v, NaN);
-
-    return isNaN(v) ? '' : v.toLocaleString('ko', options);
-};
+const number = (v: number, options?: Intl.NumberFormatOptions) => isNaN(v) ? '' : v.toLocaleString('ko', options);
 
 export default number;

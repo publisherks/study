@@ -2,7 +2,7 @@
 <template>
     <button
         :class="className"
-        :type
+        :type="type"
     >
         <slot />
     </button>
@@ -23,18 +23,18 @@ export type Props = {
     /** 구분 */
     kind?: ButtonType;
 
-    /** 큰 버튼 여부 */
-    large?: boolean;
+    /** 작은 버튼 여부 */
+    sm?: boolean;
 
-    /** 테이블 버튼 여부 */
-    table?: boolean;
+    /** 큰 버튼 여부 */
+    lg?: boolean;
 };
 </script>
 <script setup lang="ts">
 import { computed } from 'vue';
 
 // props
-const { type = 'button', kind = ButtonType.Main, large: isLarge, table: isTable } = defineProps<Props>();
+const { type = 'button', kind = ButtonType.Main, sm: isSmall, lg: isLarge } = defineProps<Props>();
 
 // computed
 /** 클래스명 */
@@ -43,8 +43,8 @@ const className = computed(() => {
 
     if (isLarge) {
         className += '-lg';
-    } else if (isTable) {
-        className += '-tb';
+    } else if (isSmall) {
+        className += '-sm';
     }
 
     return className;

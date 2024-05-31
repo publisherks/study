@@ -4,9 +4,9 @@
     > [class^="row"] > [class^="col"],
     > [class^="cell"] {
         font-size: rem(12px);
-        color: var(--main-color2);
+        color: var(--text-dafault);
         padding: 10px;
-        border: 1px solid var(--table-border);
-        background-color: var(--table-header);
+        border: 1px solid var(--bg-table-head);
+        background-color: var(--bg-back);
     }
 }

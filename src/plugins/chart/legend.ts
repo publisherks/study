@@ -1,5 +1,7 @@
 import type { ChartConfiguration, Plugin } from 'chart.js';
 
+import type { KeyValuePair } from '@/mappings/types/common';
+
 import children from '@/utils/element/children';
 
 // type
@@ -10,16 +12,16 @@ type Options = {
     /** 스타일 */
     style?: {
         /** `<ul>` 요소 */
-        ul?: Partial<CSSStyleDeclaration>;
+        ul?: KeyValuePair<string>;
 
         /** `<li>` 요소 */
-        li?: Partial<CSSStyleDeclaration>;
+        li?: KeyValuePair<string>;
 
         /** `<span>`(라인) 요소 */
-        line?: Partial<CSSStyleDeclaration>;
+        line?: KeyValuePair<string>;
 
         /** `<p>`(텍스트) 요소 */
-        text?: Partial<CSSStyleDeclaration>;
+        text?: KeyValuePair<string>;
     };
 };
 
@@ -38,7 +40,7 @@ type Options = {
 const legend = (element: HTMLElement, { hideIndexes, style = {} }: Options = {}): Plugin => ({
     id: 'legend',
     afterUpdate(chart) {
-        const ul = children('ul', element, true, {
+        const ul = children('ul', element, {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-end',
@@ -56,9 +58,9 @@ const legend = (element: HTMLElement, { hideIndexes, style = {} }: Options = {})
         const isPie = ['doughnut', 'pie'].includes(type);
 
         if (isPie) {
-            labels = labels.map((label) => ({
-                ...label,
-                datasetIndex: label.index,
+            labels = labels.map((value) => ({
+                ...value,
+                datasetIndex: value.index,
             }));
         }
 
@@ -68,7 +70,7 @@ const legend = (element: HTMLElement, { hideIndexes, style = {} }: Options = {})
                     return;
                 }
 
-                const { type: chartType } = (chart.data.datasets.at(datasetIndex) ?? {});
+                const { type: chartType } = chart.data.datasets[datasetIndex];
 
                 if (!isPie && chartType) {
                     type = chartType;
@@ -86,7 +88,7 @@ const legend = (element: HTMLElement, { hideIndexes, style = {} }: Options = {})
                 });
 
                 if (datasetIndex) {
-                    li.style.marginLeft = (style.li?.marginLeft || '10px');
+                    li.style.marginLeft = (style.li?.marginLeft || style.li?.['margin-left'] || '10px');
                 }
 
                 // 범례 목록 클릭 시

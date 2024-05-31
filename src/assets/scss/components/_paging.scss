@@ -14,88 +14,83 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: rem(13px);
-            font-weight: 500;
-            color: var(--text-color1);
-            width: rem(24px);
-            height: rem(24px);
-            border-radius: 50%;
+            font-size: rem(14px);
+            font-weight: 400;
+            color: var(--text-default);
+            width: rem(30px);
+            height: rem(30px);
+            border-bottom: 2px solid transparent;
+            background-color: transparent;
             cursor: pointer;
-            transition: all .25s;
+            transition: background-color .25s ease;
 
             &:not(:last-child) {
-                @include mar(mr 1);
+                margin-right: rem(1px);
             }
 
             &.prev,
             &.next,
             &.first,
             &.last {
-                width: rem(24px);
-                font-size: rem(12px);
+                width: rem(30px);
+                font-size: rem(14px);
+                border: none;
 
                 &:after {
                     @extend %fa-icon;
                     @extend .fa-solid;
-                    color: var(--main-color1);
-                    transition: color .25s;
+                    color: var(--main);
+                    transition: color .25s ease;
                 }
 
                 &:hover {
-                    background-color: transparent;
-                    &:after {
-                        color: rgba(var(--RGB-main-color1), .8);
-                    }
+                    background-color: var(--main-disabled);
                 }
 
                 &:active {
-                    background-color: transparent;
+                    background-color: var(--main);
+
                     &:after {
-                        color: var(--main-color1-active);
+                        color: var(--text-btn);
                     }
                 }
             }
 
-            &.prev:after {
-                content: unquote("\"#{ $fa-var-angle-left }\"");
+            &.prev {
+                margin-right: rem(16px);
+                &:after {
+                    content: unquote("\"#{ $fa-var-chevron-left }\"");
+                }
             }
 
-            &.next:after {
-                content: unquote("\"#{ $fa-var-angle-right }\"");
+            &.next {
+                margin-left: rem(15px);
+                &:after {
+                    content: unquote("\"#{ $fa-var-chevron-right }\"");
+                }
             }
 
             &.first:after {
-                content: unquote("\"#{ $fa-var-angles-left }\"");
+                content: unquote("\"#{ $fa-var-chevrons-left }\"");
             }
 
             &.last:after {
-                content: unquote("\"#{ $fa-var-angles-right }\"");
+                content: unquote("\"#{ $fa-var-chevrons-right }\"");
             }
 
             &:hover {
-                font-weight: 700;
-                color: var(--text-color2);
-                background-color: rgba(var(--RGB-main-color1), .8);
-
-                &:after {
-                    color: var(--white);
-                }
+                border-bottom-color: var(--main);
             }
 
             &:active {
-                font-weight: 700;
-                color: var(--text-color2);
-                background-color: var(--main-color1-active);
-
-                &:after {
-                    color: var(--white);
-                }
+                border-bottom-color: var(--main);
+                background-color: var(--main-disabled);
             }
 
             &.on {
                 font-weight: 700;
-                color: var(--text-color2);
-                background-color: var(--main-color1);
+                color: var(--main);
+                border-bottom-color: var(--main);
             }
         }
     }

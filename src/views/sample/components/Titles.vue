@@ -28,7 +28,7 @@
                 기본 버튼
             </VBtn>
             <VBtn
-                :kind="ButtonType.Sub1"
+                :kind="ButtonType.Sub"
                 @click="onClickButton"
             >
                 서브 버튼
@@ -45,7 +45,7 @@
                 기본 버튼
             </VBtn>
             <VBtn
-                :kind="ButtonType.Sub1"
+                :kind="ButtonType.Sub"
                 @click="onClickButton"
             >
                 서브 버튼

@@ -3,25 +3,25 @@
     <div
         v-if="isShow"
         :class="['select-items', { top: isShowTop }]"
-        :style
+        :style="style"
     >
         <ul ref="ulElement">
             <li v-show="!options.length">
                 <a>검색 결과가 없습니다.</a>
             </li>
             <li
-                v-for="({ label, value }) in options"
+                v-for="({ label, exp, value }) in options"
                 :key="`options.${value}`"
                 @click="emit('select', value)"
             >
-                <a>{{ label }}</a>
+                <a>{{ label }}<span v-if="exp">{{ exp }}</span></a>
             </li>
         </ul>
     </div>
 </template>
 
 <script lang="ts">
-import type { Primitive, NullableHTMLElement, Option } from '@/mappings/types/common';
+import type { Primitive, Option } from '@/mappings/types/common';
 
 // type
 export type Props = {
@@ -38,7 +38,7 @@ export type Props = {
     moveToBody?: boolean;
 
     /** 라벨(입력 값) 요소 */
-    inputElement?: NullableHTMLElement<HTMLInputElement>;
+    inputElement?: HTMLInputElement | null;
 };
 </script>
 <script setup lang="ts">
@@ -61,7 +61,7 @@ const { show: isShow, options, moveToBody: isMoveToBody, inputElement } = define
 const emit = defineEmits<Emits>();
 
 // refs
-const ulElement = ref<NullableHTMLElement<HTMLUListElement>>(null);
+const ulElement = ref<HTMLUListElement | null>(null);
 
 // global
 const {

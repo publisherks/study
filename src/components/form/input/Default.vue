@@ -2,15 +2,15 @@
 <template>
     <Form
         v-model:value="value"
-        :id
-        :disabled
-        :invalid
-        :leftLabel
-        :leftUnit
-        :readonly
-        :required
-        :search
-        :invalidMessage
+        :id="id"
+        :disabled="disabled"
+        :invalid="invalid"
+        :leftLabel="isLeftLabel"
+        :leftUnit="isLeftUnit"
+        :readonly="readonly"
+        :required="required"
+        :search="isSearch"
+        :invalidMessage="invalidMessage"
         @search="emit('search', $event)"
     >
         <template
@@ -21,21 +21,21 @@
         </template>
         <template #default="slotProps">
             <input
-                :id
+                :id="id"
                 ref="inputElement"
                 :class="{ 'align-r': (hasUnit && !isLeftUnit) }"
                 :style="slotProps?.style"
-                :type
-                :value
-                :maxlength
-                :placeholder
-                :autocomplete
-                :autofocus
-                :disabled
-                :readonly
-                :required
+                :type="type"
+                :value="convertValue(value)"
+                :maxlength="maxlength"
+                :placeholder="placeholder"
+                :autocomplete="autocomplete"
+                :autofocus="autofocus"
+                :disabled="disabled"
+                :readonly="readonly"
+                :required="required"
                 :tabindex="(disabled || readonly) ? -1 : 0"
-                @input="onInputValue"
+                @input="onInput"
                 @keyup.enter="onSearch"
             />
         </template>
@@ -56,8 +56,7 @@
 
 <script lang="ts">
 import type { Props as FormProps, Emits } from '@/components/form/input/Container.vue';
-
-import type { InputValue, NullableHTMLElement, Numeric } from '@/mappings/types/common';
+import type { InputValue, Numeric } from '@/mappings/types/common';
 
 // type
 export type Props = FormProps & {
@@ -75,6 +74,12 @@ export type Props = FormProps & {
 
     /** 자동 포커스 여부 */
     autofocus?: boolean;
+
+    /** 소문자 변환 여부 */
+    lowerCase?: boolean;
+
+    /** 대문자 변환 여부 */
+    upperCase?: boolean;
 };
 </script>
 <script setup lang="ts">
@@ -87,25 +92,11 @@ import { convertInputValue } from '@/functions/convert';
 
 import useSlots from '@/global/useSlots';
 
+import isEmpty from '@/utils/isEmpty';
+
 // model
 /** 현재 입력 값 */
-const [value, { lowerCase: isLowerCase, upperCase: isUpperCase, onlyNumber: isOnlyNumber }] = defineModel<InputValue, 'lowerCase' | 'upperCase' | 'onlyNumber'>('value', {
-    set(value) {
-        if (typeof value === 'string') {
-            // 소문자 변환
-            if (isLowerCase) {
-                return value.toLowerCase();
-            }
-
-            // 대문자 변환
-            if (isUpperCase) {
-                return value.toUpperCase();
-            }
-        }
-
-        return value;
-    },
-});
+const value = defineModel<InputValue>('value');
 
 // props
 const {
@@ -117,8 +108,10 @@ const {
     autofocus,
     disabled,
     invalid,
-    leftLabel,
+    leftLabel: isLeftLabel,
     leftUnit: isLeftUnit,
+    lowerCase: isLowerCase,
+    upperCase: isUpperCase,
     readonly,
     required,
     search: isSearch,
@@ -129,7 +122,7 @@ const {
 const emit = defineEmits<Emits>();
 
 // refs
-const inputElement = ref<NullableHTMLElement<HTMLInputElement>>(null);
+const inputElement = ref<HTMLInputElement | null>(null);
 
 // global
 const { hasSlots } = useSlots();
@@ -142,20 +135,37 @@ const hasLabel = useArrayIncludes(hasSlots, 'label');
 /** 단위 존재 여부 */
 const hasUnit = useArrayIncludes(hasSlots, 'unit');
 
+// methods
+/**
+ * 값 변환
+ * @param value 변환 전 값
+ * @return 변환 후 값
+ */
+const convertValue = (value: InputValue) => {
+    if (!isEmpty(value)) {
+        const string = String(value);
+
+        // 소문자 변환
+        if (isLowerCase) {
+            return string.toLowerCase();
+        }
+
+        // 대문자 변환
+        if (isUpperCase) {
+            return string.toUpperCase();
+        }
+    }
+
+    return value;
+};
+
 // event
 /**
  * 값 입력 시
  * @param event 이벤트 정보
  */
-const onInputValue = (event: Event) => {
-    const input = event.target as HTMLInputElement;
-
-    // 숫자만 허용
-    if (isOnlyNumber) {
-        input.value = input.value.replace(/\D/g, '');
-    }
-
-    value.value = convertInputValue(input.value);
+const onInput = (event: Event) => {
+    value.value = convertInputValue(convertValue((event.target as HTMLInputElement).value));
 };
 
 /**

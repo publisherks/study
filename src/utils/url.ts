@@ -33,7 +33,7 @@ const url = ({ host, port }: Params) => {
     host ||= hostname;
 
     // port 값이 빈 값인 경우 브라우저의 port 값으로 설정
-    port = numberFrom(port ?? NaN, numberFrom(currentPort, 80));
+    port = numberFrom(port, Number(currentPort || 80));
 
     // port 값이 443인 경우 protocol 값을 'https'로 설정
     if (port === 443) {

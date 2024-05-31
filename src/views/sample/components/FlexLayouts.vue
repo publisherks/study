@@ -70,7 +70,7 @@
         <VRow
             v-for="(cols) in 12"
             :key="`row${cols}`"
-            :cols
+            :cols="cols"
         >
             <VCol
                 v-for="(col) in cols"

@@ -2,10 +2,10 @@
 <template>
     <Form
         v-model:checked="checked"
-        :id
+        :id="id"
         type="checkbox"
-        :disabled
-        :invalid
+        :disabled="disabled"
+        :invalid="invalid"
         class="check-box"
     >
         <slot />

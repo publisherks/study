@@ -1,14 +1,15 @@
 @charset "utf-8";
 
-.upload-wrap {
+$height : rem(34px);
 
+.upload-wrap {
     &.invalid {
         input {
-            color: var(--delete-color);
-            border-color: var(--delete-color);
+            color: var(--negative);
+            border-color: var(--negative);
 
             &::placeholder {
-                color: var(--delete-color) !important;
+                color: var(--negative) !important;
             }
         }
     }
@@ -53,9 +54,9 @@
             grid-row: 1;
             display: flex;
             align-items: center;
-            height: rem(34px);
+            height: $height;
             margin-bottom: 0;
-            margin-right: rem(10px);
+            margin-right: rem(12px);
             white-space: nowrap;
         }
 
@@ -67,14 +68,14 @@
     }
 
     .label {
-        margin-bottom: rem(4px);
+        margin-bottom: rem(6px);
         font-size: rem(13px);
-        font-weight: 700;
-        color: var(--text-color4);
+        font-weight: 500;
+        color: var(--text-default);
         line-height: 1;
 
         i {
-            color: var(--delete-color);
+            color: var(--negative);
         }
     }
 }
@@ -103,12 +104,12 @@
         margin-top: rem(5px);
         margin-left: auto;
         font-size: rem(12px);
-        color: var(--cool-grey);
+        color: var(--text-default);
         line-height: 1;
 
         strong {
             font-weight: 700;
-            color: var(--soft-blue);
+            color: var(--main);
         }
     }
 }

@@ -8,23 +8,23 @@
 
     &.invalid {
         textarea {
-            color: var(--delete-color);
-            border-color: var(--delete-color);
+            color: var(--negative);
+            border-color: var(--negative);
 
             &::placeholder {
-                color: var(--delete-color) !important;
+                color: var(--negative) !important;
             }
         }
     }
 
     &.disabled {
         textarea {
-            color: rgba(var(--RGB-text-color1), .4);
-            background-color: rgba(var(--RGB-form-bg), .05);
+            color: var(--text-guide);
+            border: 1px solid var(--main-disabled) !important;
             cursor: not-allowed;
 
             &::placeholder {
-                color: rgba(var(--RGB-text-color1), .4);
+                color: var(--text-guide);
             }
         }
     }
@@ -50,7 +50,7 @@
             align-items: center;
             height: rem(34px);
             margin-bottom: 0;
-            margin-right: rem(10px);
+            margin-right: rem(12px);
             white-space: nowrap;
         }
 
@@ -68,14 +68,14 @@
     }
 
     .label {
-        margin-bottom: rem(4px);
+        margin-bottom: rem(6px);
         font-size: rem(13px);
-        font-weight: 700;
-        color: var(--text-color4);
+        font-weight: 500;
+        color: var(--text-default);
         line-height: 1;
 
         i {
-            color: var(--delete-color);
+            color: var(--negative);
         }
     }
 
@@ -84,7 +84,7 @@
         align-items: center;
         justify-content: flex-start;
         font-size: rem(12px);
-        color: var(--text-color3);
+        color: var(--text-guide);
         line-height: 1;
         margin-top: rem(4px);
     }
@@ -95,7 +95,7 @@
         justify-content: flex-start;
         font-size: rem(12px);
         font-weight: 700;
-        color: var(--delete-color);
+        color: var(--negative);
         line-height: 1;
         margin-top: rem(4px);
     }
@@ -103,31 +103,25 @@
 
 .text-area {
     width: 100%;
-    height: rem(80px);
     border-radius: 4px;
     position: relative;
     transition: all .25s;
 
     textarea {
-        font-size: rem(13px);
-        font-weight: 500;
-        color: var(--text-color1);
+        font-size: rem(14px);
+        font-weight: 700;
+        color: var(--text-default);
         width: 100%;
         height: 100%;
         padding: rem(10px);
-        border-radius: rem(8px);
-        background-color: rgba(var(--RGB-form-bg), .08);
-        border: 1px solid transparent;
+        border-radius: rem(3px);
+        border: 1px solid var(--main);
         outline: none;
         resize: none;
 
-        &:focus {
-            border-color: rgba(var(--RGB-sub-color1), .5);
-        }
-
         &::placeholder {
             font-weight: 400;
-            color: var(--text-color3);
+            color: var(--text-guide);
         }
     }
 }

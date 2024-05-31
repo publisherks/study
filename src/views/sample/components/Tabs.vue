@@ -10,7 +10,7 @@
 <template>
     <VTab
         v-model:value="value"
-        :tabs
+        :tabs="tabs"
     />
 </template>
 

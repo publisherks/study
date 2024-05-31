@@ -1,12 +1,13 @@
 <!-- Textarea 컴포넌트 -->
 <template>
     <Form
-        :id
-        :disabled
-        :invalid
-        :leftLabel
-        :required
-        :invalidMessage
+        ref="form"
+        :id="id"
+        :disabled="disabled"
+        :invalid="invalid"
+        :leftLabel="isLeftLabel"
+        :required="required"
+        :invalidMessage="invalidMessage"
         class="area-wrap"
     >
         <template
@@ -17,19 +18,19 @@
         </template>
         <div
             class="text-area"
-            :style
+            :style="style"
         >
             <textarea
-                :id
+                :id="id"
                 ref="textarea"
                 v-model="value"
-                :style
-                :maxlength
-                :placeholder
-                :autocomplete
-                :autofocus
-                :disabled
-                :required
+                :style="style"
+                :maxlength="maxlength"
+                :placeholder="placeholder"
+                :autocomplete="autocomplete"
+                :autofocus="autofocus"
+                :disabled="disabled"
+                :required="required"
             />
         </div>
         <template
@@ -42,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import type { CSSProperties } from 'vue';
 import { useElementBounding, useParentElement, useTextareaAutosize, useArrayIncludes } from '@vueuse/core';
 
@@ -58,7 +59,7 @@ import valueFrom from '@/utils/valueFrom';
 import px from '@/utils/css/px';
 
 // type
-type Props = Omit<InputProps, 'type' | 'leftUnit' | 'readonly' | 'search'> & {
+type Props = Omit<InputProps, 'type' | 'leftUnit' | 'lowerCase' | 'upperCase' | 'readonly' | 'search'> & {
     /** 높이 */
     height?: Numeric;
 
@@ -77,7 +78,7 @@ const value = defineModel<Numeric>('value');
 const {
     id,
     height,
-    minHeight = 42,
+    minHeight = 46,
     maxHeight,
     maxlength,
     placeholder = '입력해주세요.',
@@ -85,10 +86,13 @@ const {
     autofocus,
     disabled,
     invalid,
-    leftLabel,
+    leftLabel: isLeftLabel,
     required,
     invalidMessage,
 } = defineProps<Props>();
+
+// refs
+const form = ref<InstanceType<typeof Form> | null>(null);
 
 // global
 const { textarea } = useTextareaAutosize({ watch: value });
@@ -105,10 +109,7 @@ const hasLabel = useArrayIncludes(hasSlots, 'label');
 const style = computed(() => {
     const style: CSSProperties = {};
     const { value: parentHeight } = wrapperHeight;
-    const maxHeightPixel = valueFrom(
-        height,
-        valueFrom(maxHeight, (isNumeric(minHeight) && parentHeight > Number(minHeight)) ? parentHeight : 0),
-    );
+    const maxHeightPixel = valueFrom(height, valueFrom(maxHeight, (isNumeric(minHeight) && parentHeight > Number(minHeight)) ? parentHeight : 0));
 
     style.minHeight = px(valueFrom(height, minHeight));
 

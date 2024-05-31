@@ -19,5 +19,5 @@ import Navi from '@/layouts/Navi.vue';
 
 // variable
 /** 타이틀 */
-const { VITE_TITLE: title } = import.meta.env;
+const title = import.meta.env.VITE_TITLE;
 </script>

@@ -28,7 +28,7 @@ const setup = () => {
      * @param isPadStartZero `end`(끝 숫자) 자리 수만큼 시작(좌측)부터 0으로 채워넣기 여부
      * @return 숫자 목록
      */
-    const getNumberOptions = (start: number, end: number, isPadStartZero = true) => Array<number>(end + 1)
+    const getNumberOptions = (start: number, end: number, isPadStartZero = true) => new Array<number>(end + 1)
         .fill(start)
         .map((start, index) => {
             const value = (start + index);

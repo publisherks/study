@@ -15,7 +15,7 @@
 <script setup lang="ts">
 // variable
 /** 타이틀 */
-const { VITE_TITLE: title } = import.meta.env;
+const title = import.meta.env.VITE_TITLE;
 </script>
 
 <style lang="scss" scoped>

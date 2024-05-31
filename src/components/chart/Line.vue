@@ -8,7 +8,7 @@
             pointHoverRadius: 0,
             pointRadius: 0,
         }))"
-        :labels
+        :labels="labels"
         :options="{
             interaction: {
                 intersect: false,
@@ -47,25 +47,22 @@
                 },
             },
         }"
-        :width
-        :height
-        :legend
-        :legendOptions
+        :width="width"
+        :height="height"
+        :legend="legend"
+        :legendOptions="legendOptions"
     />
 </template>
 
 <script setup lang="ts">
 import type { GridLineOptions, TickOptions } from 'chart.js';
-
 import type { Props as ChartProps } from '@/components/Chart.vue';
-
-import type { Nullable } from '@/mappings/types/common';
 
 // type
 type Props = {
     /** 데이터 목록 */
     datasets: (Pick<ChartProps['datasets'][number], 'label'> & {
-        data: Nullable<number>[];
+        data: (number | null)[];
         borderColor: string;
     })[];
 

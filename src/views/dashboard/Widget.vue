@@ -11,7 +11,7 @@
             :gs-h="h"
         >
             <div class="grid-stack-item-content">
-                <VSuspense :is="getWidget(type)" />
+                <component :is="getWidget(type)" />
             </div>
         </div>
     </div>
@@ -23,8 +23,10 @@ import type { Component } from 'vue';
 import { GridStack } from 'gridstack';
 import type { GridStackWidget } from 'gridstack';
 
+import type { KeyValuePair } from '@/mappings/types/common';
+
 // type
-type Widget = { type: string } & GridStackWidget;
+type Widget = GridStackWidget & { type: string };
 
 // components
 const WidgetMap = defineAsyncComponent(() => import('@/components/widget/Map.vue'));
@@ -75,8 +77,8 @@ const widgets = ref<Widget[]>([
  * 위젯 컴포넌트 반환
  * @param type 구분
  */
-const getWidget = (type: Widget['type']) => {
-    const widget: Record<typeof type, Component> = {
+const getWidget = (type: string) => {
+    const widget: KeyValuePair<Component> = {
         map: WidgetMap,
         sample: WidgetSample,
     };
@@ -97,8 +99,8 @@ const init = () => GridStack.init({
 onMounted(init);
 </script>
 
-<style src="gridstack/dist/gridstack.min.css" />
-<style src="leaflet/dist/leaflet.css" />
+<style src="gridstack/dist/gridstack.min.css"></style>
+<style src="leaflet/dist/leaflet.css"></style>
 <style lang="scss" scoped>
 @import "@/assets/scss/components/widget.scss";
 </style>

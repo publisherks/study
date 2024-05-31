@@ -1,9 +1,10 @@
 .top-container {
     display: flex;
     align-items: center;
-    height: rem(60px);
-    padding: 0 rem(12px) 0 rem(24px);
-    background-color: var(--top-color);
+    height: $layoutTop;
+    padding: 0 rem(30px);
+    border-bottom: 1px solid var(--bg-table-head);
+    background-color: var(--bg-default);
 
     p.cate-nav {
         font-size: rem(13px);
@@ -24,26 +25,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: rem(30px);
-            height: rem(30px);
+            width: rem(26px);
+            height: rem(26px);
+            border: rem(2px) solid var(--primary);
+            background-color: transparent;
+            border-radius: 50%;
             cursor: pointer;
             transition: all .25s;
 
             i {
-                font-size: rem(20.5px);
-                color: var(--main-color2);
+                font-size: rem(13px);
+                color: var(--primary);
                 transition: color .25s;
             }
 
             &:hover {
+                background-color: var(--primary);
                 i {
-                    color: rgba(var(--RGB-main-color2), .8);
+                    color: var(--text-btn);
                 }
             }
 
             &:active {
+                border-color: var(--primary-pressed);
+                background-color: var(--primary-pressed);
                 i {
-                    color: rgbvar(--RGB-main-color2-active);
+                    color: var(--text-btn);
                 }
             }
         }
@@ -58,13 +65,11 @@
         }
 
         .user-menu {
-            @include position(absolute, $top: calc(100% + rem(19px)), $right: rem(-6px));
+            @include position(absolute, $top: calc(100% + rem(16px)), $right: rem(-6px));
+            @include arrow-create(14px, 9px, "top", var(--primary), var(--bg-default), $right: rem(12px));
             width: rem(120px);
             height: 0;
-            border-radius: rem(8px);
-            @include border("", 1px solid var(--table-border));
-            background-color: var(--content-bg);
-            box-shadow: 1.3px 1.5px 4px 0 rgba(var(--RGB-shodow-color), 0.3);
+            padding-top: rem(8px);
             opacity: 0;
             overflow: hidden;
             z-index: map-get($z-index, usermenu);
@@ -74,36 +79,36 @@
             transition: all .25s;
 
             >ul {
+                padding: rem(9px) 0;
+                border-radius: rem(4px);
+                @include border("", 1px solid var(--primary));
+                background-color: var(--bg-default);
+                box-shadow: rem(1.3px) rem(1.5px) rem(7px) 0 rgba(0, 0, 0, .3);
 
                 li {
                     display: flex;
                     align-items: center;
                     width: 100%;
-                    min-height: rem(40px);
-                    padding: 0 rem(13px);
-                    font-size: rem(13px);
+                    min-height: rem(48px);
+                    padding: 0 rem(20px);
+                    font-size: rem(14px);
                     font-weight: 500;
-                    color: var(--text-color1);
+                    color: var(--primary);
                     white-space: nowrap;
                     cursor: pointer;
+                    outline: none;
                     transition: all .3s;
-
-                    &:first-child {
-                        border-radius: rem(8px) rem(8px) 0 0;
-                    }
-
-                    &:last-child {
-                        border-radius: 0 0 rem(8px) rem(8px);
-                    }
 
                     &:hover,
                     &:focus,
-                    &:active {
-                        background-color: rgba(var(--RGB-shodow-color), .08);
-                    }
                     &.on {
-                        outline: none;
-                        background-color: rgba(var(--RGB-shodow-color), .08);
+                        color: var(--text-btn);
+                        background-color: var(--primary);
+                    }
+
+                    &:active {
+                        color: var(--text-btn);
+                        background-color: var(--primary-pressed);
                     }
                 }
             }

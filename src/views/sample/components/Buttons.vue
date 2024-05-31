@@ -22,89 +22,58 @@
             <VCol>
                 <VBtn
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     메인 버튼
                 </VBtn>
                 <VBtn
-                    :kind="ButtonType.Main2"
+                    :kind="ButtonType.Sub"
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
-                    메인2 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub1"
-                    class="mr-10"
-                    @click="onClickButton"
-                >
-                    서브1 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub2"
-                    class="mr-10"
-                    @click="onClickButton"
-                >
-                    서브2 버튼
+                    서브 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Cancel"
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     취소 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Delete"
                     class="mr-30"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     삭제 버튼
                 </VBtn>
-
                 <VBtn
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     메인 버튼
                 </VBtn>
                 <VBtn
-                    :kind="ButtonType.Main2"
+                    :kind="ButtonType.Sub"
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
-                    메인2 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub1"
-                    class="mr-10"
-                    disabled
-                    @click="onClickButton"
-                >
-                    서브1 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub2"
-                    class="mr-10"
-                    disabled
-                    @click="onClickButton"
-                >
-                    서브2 버튼
+                    서브 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Cancel"
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     취소 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Delete"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     삭제 버튼
                 </VBtn>
@@ -113,108 +82,73 @@
     </VFlex>
 
     <VTitle sub>
-        - Table Buttons
+        - Small Buttons
     </VTitle>
     <VFlex class="mb-30">
         <VRow cols="1">
             <VCol>
                 <VBtn
-                    table
+                    sm
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     메인 버튼
                 </VBtn>
                 <VBtn
-                    :kind="ButtonType.Main2"
-                    table
+                    :kind="ButtonType.Sub"
+                    sm
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
-                    메인2 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub1"
-                    table
-                    class="mr-10"
-                    @click="onClickButton"
-                >
-                    서브1 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub2"
-                    table
-                    class="mr-10"
-                    @click="onClickButton"
-                >
-                    서브2 버튼
+                    서브 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Cancel"
-                    table
+                    sm
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     취소 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Delete"
-                    table
+                    sm
                     class="mr-30"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     삭제 버튼
                 </VBtn>
-
                 <VBtn
-                    table
+                    sm
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     메인 버튼
                 </VBtn>
                 <VBtn
-                    :kind="ButtonType.Main2"
-                    table
+                    :kind="ButtonType.Sub"
+                    sm
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
-                    메인2 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub1"
-                    table
-                    class="mr-10"
-                    disabled
-                    @click="onClickButton"
-                >
-                    서브1 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub2"
-                    table
-                    class="mr-10"
-                    disabled
-                    @click="onClickButton"
-                >
-                    서브2 버튼
+                    서브 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Cancel"
-                    table
+                    sm
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     취소 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Delete"
-                    table
+                    sm
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     삭제 버튼
                 </VBtn>
@@ -222,102 +156,69 @@
         </VRow>
     </VFlex>
 
+    <!--
     <VTitle sub>
         - Large Buttons
     </VTitle>
+
     <VFlex class="mb-30">
-        <VRow cols="1">
+        <VRow :cols="1">
             <VCol class="mb-10">
                 <VBtn
                     large
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     메인 버튼
                 </VBtn>
                 <VBtn
-                    :kind="ButtonType.Main2"
+                    :kind="ButtonType.Sub"
                     large
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
-                    메인2 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub1"
-                    large
-                    class="mr-10"
-                    @click="onClickButton"
-                >
-                    서브1 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub2"
-                    large
-                    class="mr-10"
-                    @click="onClickButton"
-                >
-                    서브2 버튼
+                    서브 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Cancel"
                     large
                     class="mr-10"
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     취소 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Delete"
                     large
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     삭제 버튼
                 </VBtn>
             </VCol>
-
             <VCol>
                 <VBtn
                     large
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     메인 버튼
                 </VBtn>
                 <VBtn
-                    :kind="ButtonType.Main2"
+                    :kind="ButtonType.Sub"
                     large
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
-                    메인2 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub1"
-                    large
-                    class="mr-10"
-                    disabled
-                    @click="onClickButton"
-                >
-                    서브1 버튼
-                </VBtn>
-                <VBtn
-                    :kind="ButtonType.Sub2"
-                    large
-                    class="mr-10"
-                    disabled
-                    @click="onClickButton"
-                >
-                    서브2 버튼
+                    서브 버튼
                 </VBtn>
                 <VBtn
                     :kind="ButtonType.Cancel"
                     large
                     class="mr-10"
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     취소 버튼
                 </VBtn>
@@ -325,13 +226,14 @@
                     :kind="ButtonType.Delete"
                     large
                     disabled
-                    @click="onClickButton"
+                    @click="onClick"
                 >
                     삭제 버튼
                 </VBtn>
             </VCol>
         </VRow>
     </VFlex>
+    -->
 </template>
 
 <script setup lang="ts">
@@ -342,5 +244,5 @@ import { ButtonType } from '@/mappings/enum';
  * 버튼 클릭 시
  * @param event 이벤트 정보
  */
-const onClickButton = (event: MouseEvent) => console.log(event); // eslint-disable-line no-console
+const onClick = (event: MouseEvent) => console.log(event); // eslint-disable-line no-console
 </script>

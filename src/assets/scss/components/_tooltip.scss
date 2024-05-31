@@ -6,7 +6,7 @@
     line-height: 1;
 
     i {
-        color: var(--main-color2) !important;
+        color: var(--main) !important;
         line-height: 1;
         cursor: pointer;
     }
@@ -16,7 +16,7 @@
         padding-top: rem(8px);
         opacity: 0;
         z-index: map-get($z-index, tooltip);
-        @include arrow-create(14px, 9px, "top", var(--table-border), var(--content-bg), $left: rem(12px));
+        @include arrow-create(14px, 9px, "top", var(--main), var(--bg-default), $left: rem(12px));
         transition: opacity .25s ease;
         pointer-events: none;
 
@@ -30,10 +30,10 @@
             padding: rem(10px) rem(12px);
             font-size: rem(12px);
             line-height: normal;
-            color: var(--text-color1);
-            border: 1px solid var(--table-border);
-            background-color: var(--content-bg);
-            border-radius: rem(8px);
+            color: var(--text-default);
+            border: 1px solid var(--main);
+            background-color: var(--bg-default);
+            border-radius: rem(3px);
         }
     }
 }

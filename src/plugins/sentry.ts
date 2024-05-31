@@ -1,8 +1,6 @@
 import type { App } from 'vue';
 import type { Router } from 'vue-router';
-import { browserTracingIntegration, init, replayCanvasIntegration, replayIntegration, vueIntegration } from '@sentry/vue';
-
-const { VITE_SENTRY_DSN: dsn, VITE_SENTRY_ENABLED: enabled } = import.meta.env;
+import { BrowserTracing, init, Replay, vueRouterInstrumentation } from '@sentry/vue';
 
 /**
  * Sentry 초기 설정
@@ -10,34 +8,17 @@ const { VITE_SENTRY_DSN: dsn, VITE_SENTRY_ENABLED: enabled } = import.meta.env;
  * @param router 라우터
  * @see {@link https://ulalalab.sentry.io/projects/vue-standard}
  */
-const initSentry = (app: App, router: Router) => init({
-    enabled: (enabled === 'true'),
-    dsn,
-    integrations: [
-        browserTracingIntegration({ router }),
-        replayCanvasIntegration(),
-        replayIntegration({
-            maskAllText: false,
-            maskAllInputs: false,
-            blockAllMedia: false,
-        }),
-        vueIntegration({
-            app,
-            trackComponents: true,
-            hooks: [
-                'activate',
-                'create',
-                'mount',
-                'update',
-                'unmount',
-            ],
-        }),
-    ],
+const initSentry = (app: App<Element>, router: Router) => init({
+    app,
+    enabled: (import.meta.env.VITE_SENTRY_ENABLED === 'true'),
+    dsn: import.meta.env.VITE_SENTRY_DSN,
+    integrations: [new BrowserTracing({ routingInstrumentation: vueRouterInstrumentation(router) }), new Replay()],
 
     // Performance Monitoring
     enableTracing: true,
 
     // Session Replay
+    replaysSessionSampleRate: 0,
     replaysOnErrorSampleRate: 1,
 });
 

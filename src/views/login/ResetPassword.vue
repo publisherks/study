@@ -6,7 +6,7 @@
     >
         <h2>비밀번호 재설정</h2>
         <VInput
-            :value="id"
+            :value="(route.query.id as string)"
             disabled
             class="pull mb-15"
         />
@@ -27,7 +27,7 @@
         />
         <VBtn
             type="submit"
-            :disabled="isLoadingModifyPassword || isSubmitting"
+            :disabled="isSubmitting"
         >
             비밀번호 재설정
         </VBtn>
@@ -35,7 +35,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useAsyncState } from '@vueuse/core';
 import { useForm } from 'vee-validate';
@@ -56,23 +55,17 @@ const router = useRouter();
 
 // global
 const { onResponse } = useEvent();
-const { execute: requestModifyPassword, isLoading: isLoadingModifyPassword } = useAsyncState(requestModifyUserPassword, {}, {
+const { execute } = useAsyncState(async (data) => await requestModifyUserPassword({
+    ...data,
+    id: route.query.id,
+}), {}, {
     immediate: false,
-    onSuccess: (response) => onResponse(response, {
-        success() {
-            // 로그인 화면 표시
-            router.push({ name: RouterName.Login });
-        },
-    }),
+    onSuccess: (response) => onResponse(response, { success: () => router.push({ name: RouterName.Login }) }),
 });
 
 // store
 /** 메시지 */
 const messageStore = useMessageStore();
-
-// computed
-/** 아이디 */
-const id = computed(() => Array.isArray(route.query.id) ? route.query.id[0] : route.query.id);
 
 // validate
 const validationSchema = yup.object({
@@ -91,7 +84,7 @@ const [passwordConfirm, passwordConfirmProps] = defineField('passwordConfirm', {
  * 초기 실행
  */
 const init = () => {
-    if (id.value) {
+    if (route.query.id) {
         return;
     }
 
@@ -109,10 +102,7 @@ const init = () => {
 /**
  * 설정
  */
-const onSubmit = handleSubmit(({ password }) => requestModifyPassword(0, {
-    id: id.value!,
-    password,
-}));
+const onSubmit = handleSubmit(async ({ password }) => await execute(0, { password }));
 
 // lifecycle
 init();

@@ -28,7 +28,7 @@ const useMessageStore = defineStore({
          */
         onClickButton(type: keyof Message['callback'] = 'ok') {
             // 콜백 함수가 있는 경우 콜백 함수 실행
-            this.callback[type]();
+            this.callback[type]?.();
 
             // 상태 초기화
             this.$reset();

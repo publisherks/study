@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, loadEnv } from 'vite';
 import type { UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import vueDevTools from 'vite-plugin-vue-devtools';
 // @ts-expect-error: `vite-plugin-eslint`에서 `types` 파일을 `export`하지 않아서 발생하는 오류 (https://github.com/gxmari007/vite-plugin-eslint/issues/74)
 import eslint from 'vite-plugin-eslint';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
@@ -18,7 +17,6 @@ const config = defineConfig(({ mode }) => {
     const defaultConfig = {
         plugins: [
             vue({ script: { propsDestructure: true } }),
-            vueDevTools(),
             eslint({ fix: (env.VITE_ESLINT_AUTO_FIX === 'true') }),
             sentryVitePlugin({
                 org: 'ulalalab',
@@ -27,7 +25,14 @@ const config = defineConfig(({ mode }) => {
                 disable: !isEnableSentry,
             }),
         ],
-        resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
+        resolve: {
+            alias: {
+                '@': fileURLToPath(new URL('./src', import.meta.url)),
+
+                // NOTE: scss import 시 경로 오류 임시 해결
+                '@vuepic/vue-datepicker': fileURLToPath(new URL('./node_modules/@vuepic/vue-datepicker', import.meta.url)),
+            },
+        },
         css: {
             preprocessorOptions: {
                 scss: {
@@ -46,7 +51,7 @@ const config = defineConfig(({ mode }) => {
             port: env.VITE_PREVIEW_PORT ? Number(env.VITE_PREVIEW_PORT) : 4173,
         },
     };
-    const config: UserConfig & typeof defaultConfig = defaultConfig;
+    const config = defaultConfig as UserConfig & typeof defaultConfig;
 
     if (env.VITE_API_PROXY && env.VITE_API_URL) {
         config.server.proxy = {

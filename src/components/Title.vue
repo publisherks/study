@@ -1,7 +1,7 @@
 <!-- 제목 컴포넌트 -->
 <template>
-    <div class="title-box">
-        <h2 :class="`${isSub ? 'sub' : 'main'}-title`">
+    <div :class="`title-box${isSub ? '-sub' : '-main'}`">
+        <h2 :class="`title${isSm ? '-sm' : ''}`">
             <slot />
         </h2>
         <div
@@ -29,10 +29,13 @@ type Props = {
 
     /** 좌측 버튼 여부 */
     leftButton?: boolean;
+
+    /** 서브 제목 작은 사이즈 여부 */
+    sm?: boolean;
 };
 
 // props
-const { sub: isSub, leftButton: isLeftButton } = defineProps<Props>();
+const { sub: isSub, leftButton: isLeftButton, sm: isSm } = defineProps<Props>();
 
 // global
 const { hasSlots } = useSlots();

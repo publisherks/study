@@ -1,4 +1,4 @@
-@charset "utf-8";
+ @charset "utf-8";
 
 .check-box {
     display: inline-block;
@@ -8,7 +8,7 @@
         align-items: center;
         font-size: rem(14px);
         font-weight: 500;
-        color: var(--text-color1);
+        color: var(--text-default);
         line-height: 1;
         cursor: pointer;
         transition: all .25s;
@@ -21,12 +21,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: rem(12px);
-            height: rem(12px);
-            margin-right: rem(10px);
-            border: 1px solid var(--main-color2);
+            width: rem(14px);
+            height: rem(14px);
+            margin-right: rem(8px);
+            border: 1px solid var(--main);
             background-color: transparent;
-            border-radius: rem(3px);
+            border-radius: rem(2px);
             transition: all .25s;
 
             &:after {
@@ -39,26 +39,22 @@
             }
         }
 
-        &:hover i {
-            background-color: rgba(var(--RGB-main-color2), .2);
-        }
-
         input[type=checkbox]:checked+i {
-            background-color: var(--main-color2);
+            background-color: var(--main);
 
             &:after {
-                color: var(--text-color2);
+                color: var(--text-btn);
             }
         }
     }
 
     &.disabled>label {
-        color: rgba(var(--RGB-main-color2), .6);
+        color: var(--text-guide);
         cursor: not-allowed;
 
         i {
-            border-color: rgba(var(--RGB-main-color2), .2);
-            background-color: rgba(var(--RGB-main-color2), .2);
+            border-color: var(--cancel-disabled);
+            background-color: var(--cancel-disabled);
 
             &:after {
                 color: transparent;
@@ -67,17 +63,17 @@
     }
 
     &.invalid>label {
-        color: var(--delete-color);
+        color: var(--negative);
 
         i {
-            border-color: var(--delete-color);
+            border-color: var(--negative);
         }
 
         input[type=checkbox]:checked+i {
-            background-color: var(--delete-color);
+            background-color: var(--negative);
 
             &:after {
-                color: var(--text-color2);
+                color: var(--text-btn);
             }
         }
     }

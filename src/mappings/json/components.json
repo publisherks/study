@@ -137,10 +137,6 @@
                 "type": "checkbox",
                 "props": {}
             },
-            "monthPicker": {
-                "type": "checkbox",
-                "props": {}
-            },
             "clearable": {
                 "type": "checkbox",
                 "props": {}
@@ -244,10 +240,6 @@
             "format": {
                 "type": "input",
                 "props": { "placeholder": "형식" }
-            },
-            "valueFormat": {
-                "type": "input",
-                "props": { "placeholder": "value(현재 날짜) 형식" }
             },
             "invalid": {
                 "type": "checkbox",
@@ -363,6 +355,14 @@
                 "props": {}
             },
             "leftUnit": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "lowerCase": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "upperCase": {
                 "type": "checkbox",
                 "props": {}
             },
@@ -607,6 +607,10 @@
                 "props": { "placeholder": "힌트" }
             },
             "disabled": {
+                "type": "checkbox",
+                "props": {}
+            },
+            "input": {
                 "type": "checkbox",
                 "props": {}
             },

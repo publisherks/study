@@ -44,7 +44,7 @@
             <col width="14%" />
             <col width="12%" />
             <col width="80px" />
-            <col width="180px" />
+            <col width="200px" />
         </template>
         <template #head>
             <th>
@@ -55,7 +55,7 @@
             </th>
             <th>No.</th>
             <th>이름</th>
-            <th>직급</th>
+            <th>직책</th>
             <th>부서명</th>
             <th>팀명</th>
             <th>이메일</th>
@@ -63,26 +63,21 @@
             <th>사용 여부</th>
             <th>관리</th>
         </template>
-        <tr v-show="!totalUsers">
-            <td colspan="8">
-                {{ isLoadingUsers ? '데이터를 불러오는 중입니다.' : (responseUsers.message || '검색 결과가 없습니다.') }}
-            </td>
-        </tr>
         <tr
-            v-for="(value) in users"
-            :key="`users${value.idx}`"
+            v-for="(value, index) in datas"
+            :key="`datas.${value.email}`"
             :class="{
-                select: checks.includes(value.idx),
+                select: checks.includes(index),
                 unuse: !value.isUsed,
             }"
         >
             <td>
                 <VCheck
-                    :checked="checks.includes(value.idx)"
-                    @update:checked="onChangeCheck(value.idx, $event)"
+                    :checked="checks.includes(index)"
+                    @update:checked="onChangeCheck(index, $event)"
                 />
             </td>
-            <td>{{ value.idx }}</td>
+            <td>{{ users.length - index }}</td>
             <td>{{ value.name || 'ㅡ' }}</td>
             <td>{{ value.position || 'ㅡ' }}</td>
             <td>{{ value.partname || 'ㅡ' }}</td>
@@ -109,9 +104,9 @@
         </tr>
     </VTable>
     <VPagination
-        v-model:page="searchUsers.page"
-        :limit="searchUsers.size"
-        :total="totalUsers"
+        v-model:page="page"
+        :limit="limit"
+        :total="users.length"
         class="mb-30"
     />
 
@@ -145,7 +140,7 @@
                     </VBtn>
                 </div>
             </td>
-            <th>직급</th>
+            <th>직책</th>
             <td>
                 <p>{{ info?.position || 'ㅡ' }}</p>
             </td>
@@ -177,59 +172,40 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from 'vue';
-import { useAsyncState } from '@vueuse/core';
+import { ref, computed } from 'vue';
 
-import { requestUserList } from '@/api/user';
-import type { RequestUserList } from '@/api/user/interface';
-
-import useEvent from '@/global/useEvent';
 import useSelectOption from '@/global/useSelectOption';
 
 import { ButtonType } from '@/mappings/enum';
+import users from '@/mappings/json/users.json';
 import { uses } from '@/mappings/option';
-import type { InputValue, SearchList } from '@/mappings/types/common';
+import type { InputValue } from '@/mappings/types/common';
 
 // global
-const { onResponse } = useEvent();
-const { execute: requestUsers, isLoading: isLoadingUsers, state: responseUsers } = useAsyncState(requestUserList, {}, {
-    immediate: false,
-    onSuccess: (response) => onResponse(response, { isShowMessage: false }),
-});
 const { getLabelByValue } = useSelectOption();
 
 // state
 /** 체크 목록 */
 const checks = ref<number[]>([]);
 /** 정보 */
-const info = ref<typeof users.value[number]>();
+const info = ref<typeof users[0]>(users[0]);
 /** 입력 값 목록 */
-const inputs = ref<InputValue[]>([]);
-/** 계정 목록 검색 조건 */
-const searchUsers: SearchList<RequestUserList> = reactive({
-    /** 현재 페이지 번호 */
-    page: 1,
-
-    /** 페이지당 표시할 항목 수 */
-    size: 10,
-});
+const inputs = ref<InputValue[]>([users[0].name, users[0].partname]);
+/** 페이지당 표시할 항목 수 */
+const limit = ref<number>(4);
+/** 현재 페이지 번호 */
+const page = ref<number>(1);
 
 // computed
-/** 전체 체크 여부 */
-const isAllCheck = computed(() => Boolean(users.value.length && users.value.length === checks.value.length));
-/** 계정 목록 총 항목 수 */
-const totalUsers = computed(() => (responseUsers.value.data?.totalCount ?? 0));
-/** 계정 목록 */
-const users = computed(() => (responseUsers.value.data?.results ?? []));
+/** 목록 */
+const datas = computed(() => {
+    const start = ((page.value - 1) * limit.value);
+    const end = (start + limit.value);
 
-// methods
-/**
- * 목록 검색 요청
- */
-const requestList = () => requestUsers(0, {
-    ...searchUsers,
-    page: (searchUsers.page - 1),
+    return users.slice(start, end);
 });
+/** 전체 체크 여부 */
+const isAllCheck = computed(() => Boolean(users.length && users.length === checks.value.length));
 
 // event
 /**
@@ -237,7 +213,7 @@ const requestList = () => requestUsers(0, {
  * @param checked 전체 체크 여부
  */
 const onChangeAllCheck = (checked: boolean) => {
-    checks.value = checked ? users.value.map(({ idx }) => idx) : [];
+    checks.value = checked ? users.map((value, index) => index) : [];
 };
 
 /**
@@ -245,7 +221,7 @@ const onChangeAllCheck = (checked: boolean) => {
  * @param value 값
  * @param checked 체크 여부
  */
-const onChangeCheck = (value: typeof users.value[number]['idx'], checked: boolean) => {
+const onChangeCheck = (value: number, checked: boolean) => {
     if (checked) {
         checks.value.push(value);
 
@@ -259,15 +235,8 @@ const onChangeCheck = (value: typeof users.value[number]['idx'], checked: boolea
  * 수정 클릭 시
  * @param value 값
  */
-const onClickModify = (value: typeof users.value[number]) => {
+const onClickModify = (value: typeof users[0]) => {
     info.value = value;
     inputs.value = [value.name, value.partname];
 };
-
-// watch
-watch(() => searchUsers.page, requestList, { immediate: true });
-watch(users, () => {
-    // 계정 목록 변경 시 체크 목록 초기화
-    checks.value = [];
-}, { deep: true });
 </script>

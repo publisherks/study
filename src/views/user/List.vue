@@ -1,347 +1,290 @@
-<!-- 계정 목록 -->
+<!-- 회원 관리 -->
 <template>
-    <VTitle class="mb-20">
-        계정 목록
+    <VTitle>
+        전체 회원 관리
+        <template #button>
+            <VBtn
+                :kind="ButtonType.Sub"
+                @click="onAgencyListClick"
+            >
+                대리점 관리
+            </VBtn>
+            <VBtn
+                @click="onShowApplyJoinModal"
+                class="ml-14"
+            >
+                회원가입 신청 관리
+            </VBtn>
+        </template>
     </VTitle>
     <div class="contents">
         <form
-            class="flex mb-13"
-            @submit.prevent="onSearchList"
+            class="search-div mb-13"
+            @submit.prevent="onSearch"
         >
-            <VInput
-                v-model:value.trim="searchUsers.name"
-                placeholder="이름"
-                autofocus
-                class="lg mr-6"
-            />
             <VSelect
-                v-model:value="searchUsers.position"
-                :options="convertOptionsToPrependAll(positions)"
-                placeholder="직급"
-                class="mr-6"
-            />
-            <VSelect
-                v-model:value="searchUsers.partname"
-                :options="convertOptionsToPrependAll(partnames)"
-                placeholder="부서명"
-                class="mr-6"
-            />
-            <VSelect
-                v-model:value="searchUsers.team"
-                :options="convertOptionsToPrependAll(teams)"
-                placeholder="팀명"
-                class="mr-10"
-            />
-            <VSelect
-                v-model:value="searchUsers.isUsed"
-                :options="convertOptionsToPrependAll(uses)"
-                placeholder="사용 여부"
-                class="mr-10"
-            />
-            <VBtn
-                type="submit"
-                :kind="ButtonType.Sub1"
-                class="mr-20"
-                :disabled="isLoadingUsers"
-            >
-                조회
-            </VBtn>
-            <p class="search-text">
-                조회 결과 :
-                <strong>{{ comma(totalUsers) }} 건</strong>
-            </p>
-            <VBtn
-                :kind="ButtonType.Delete"
+                v-model:value="search.type"
+                :options="[
+                    {
+                        label: '성명',
+                        value: '성명',
+                    },
+                    {
+                        label: '직함',
+                        value: '직함',
+                    },
+                    {
+                        label: '소속',
+                        value: '소속',
+                    },
+                    {
+                        label: '부서',
+                        value: '부서',
+                    },
+                    {
+                        label: '이메일',
+                        value: '이메일',
+                    },
+                    {
+                        label: '개인 연락처',
+                        value: '개인 연락처',
+                    },
+                    {
+                        label: '회사 연락처',
+                        value: '회사 연락처',
+                    },
+                    {
+                        label: '권한',
+                        value: '권한',
+                    },
+                ]"
+                placeholder="검색 조건"
                 class="ml-auto"
-                :disabled="isLoadingDelete || !checks.length"
-                @click="onClickDelete"
-            >
-                일괄 미사용
-            </VBtn>
+            />
+            <VInput
+                v-model:value.trim="search.text"
+                leftUnit
+                search
+                class="xl ml-10"
+            />
             <VBtn
-                :kind="ButtonType.Sub1"
+                :kind="ButtonType.Cancel"
                 class="ml-10"
-                :disabled="isLoadingRestore || !checks.length"
-                @click="onClickRestore"
+                @click="onSearch()"
             >
-                일괄 사용
-            </VBtn>
-            <VBtn
-                class="ml-10"
-                @click="onClickRegist"
-            >
-                신규 계정 등록
+                검색
             </VBtn>
         </form>
-        <VTable class="mb-20">
+        <VTable class="mb-12">
             <template #col>
-                <col width="40px" />
-                <col width="60px" />
-                <col width="15%" />
-                <col width="19%" />
+                <col width="10%" />
+                <col width="7.5%" />
+                <col width="12%" />
+                <col width="12%" />
                 <col width="*" />
-                <col width="21%" />
-                <col width="80px" />
-                <col width="90px" />
+                <col width="9.5%" />
+                <col width="9.5%" />
+                <col width="9.5%" />
             </template>
             <template #head>
-                <th>
-                    <VCheck
-                        :checked="isAllCheck"
-                        @update:checked="onChangeAllCheck"
-                    />
-                </th>
-                <th>No.</th>
-                <th>이름</th>
-                <th>직급</th>
-                <th>부서명</th>
-                <th>팀명</th>
-                <th>사용 여부</th>
-                <th>관리</th>
+                <th>성명</th>
+                <th>직함</th>
+                <th>소속</th>
+                <th>부서</th>
+                <th>이메일</th>
+                <th>개인 연락처</th>
+                <th>회사 연락처</th>
+                <th>권한</th>
             </template>
-            <tr v-show="!totalUsers">
+            <tr v-show="!total">
                 <td colspan="8">
-                    {{ isLoadingUsers ? '데이터를 불러오는 중입니다.' : (responseUsers.message || '검색 결과가 없습니다.') }}
+                    {{ message }}
                 </td>
             </tr>
             <tr
-                v-for="({ idx, name, position, partname, team, isUsed }) in users"
-                :key="`users${idx}`"
-                :class="{ unuse: !isUsed }"
+                v-for="({ idx, name, position, dept, agencyName, email, personalTelNumber, companyTelNumber, addAuthorities }) in datas"
+                :key="`datas${idx}`"
+                @click="onClickModify(idx)"
+                class="cursor-p"
             >
-                <td>
-                    <VCheck
-                        :checked="checks.includes(idx)"
-                        @update:checked="onChangeCheck(idx, $event)"
-                    />
-                </td>
-                <td>{{ idx }}</td>
                 <td>{{ name || 'ㅡ' }}</td>
                 <td>{{ position || 'ㅡ' }}</td>
-                <td>{{ partname || 'ㅡ' }}</td>
-                <td>{{ team || 'ㅡ' }}</td>
-                <td>{{ getLabelByValue(uses, isUsed) }}</td>
-                <td>
-                    <VBtn
-                        :kind="ButtonType.Sub1"
-                        table
-                        @click="onClickModify(idx)"
-                    >
-                        수정
-                    </VBtn>
-                </td>
+                <td>{{ dept || 'ㅡ' }}</td>
+                <td>{{ agencyName || 'ㅡ' }}</td>
+                <td>{{ email || 'ㅡ' }}</td>
+                <td>{{ personalTelNumber || 'ㅡ' }}</td>
+                <td>{{ companyTelNumber || 'ㅡ' }}</td>
+                <td>{{ authorityText(addAuthorities) }}</td>
             </tr>
         </VTable>
         <VPagination
-            v-model:page="searchUsers.page"
-            :limit="searchUsers.size"
-            :total="totalUsers"
+            v-model:page="search.page"
+            limit="12"
+            :total="total"
         />
     </div>
+    <ModifyModal
+        v-if="isShowModifyModal"
+        @hide="onHideModifyModal"
+        :idx="propsData"
+        @submit="onHandover"
+    />
+    <ApplyJoinModal
+        v-if="isShowApplyJoinModal"
+        @hide="onHideApplyJoinModal"
+    />
+    <Handover
+        v-if="isShowHandoverModal"
+        @hide="onHideHandoverModal"
+    />
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import type { HistoryState } from 'vue-router';
 import { useAsyncState } from '@vueuse/core';
 
-import { requestCodeList } from '@/api/code';
-import { requestUserList, requestDeleteUser, requestRestoreUser } from '@/api/user';
+import { requestUserList } from '@/api/user';
 import type { UserInfo, RequestUserList } from '@/api/user/interface';
 
-import { convertOptionsToPrependAll } from '@/functions/convert';
-
 import useEvent from '@/global/useEvent';
-import useSelectOption from '@/global/useSelectOption';
+import useModal from '@/global/useModal';
 
-import { RouterName, ButtonType, Code } from '@/mappings/enum';
-import { uses } from '@/mappings/option';
-import type { SearchList } from '@/mappings/types/common';
+import { RouterName, ButtonType } from '@/mappings/enum';
 
-import useMessageStore from '@/stores/message';
+import ModifyModal from '@/views/user/modal/ModifyModal.vue';
+import ApplyJoinModal from '@/views/user/modal/ApplyJoinModal.vue';
+import Handover from '@/views/user/modal/Handover.vue';
 
-import comma from '@/utils/format/comma';
+// global
+const {
+    isShow: isShowModifyModal,
+    onShow: onShowModifyModal,
+    onHide: onHideModifyModal,
+} = useModal();
+const {
+    isShow: isShowApplyJoinModal,
+    onShow: onShowApplyJoinModal,
+    onHide: onHideApplyJoinModal,
+} = useModal();
+const {
+    isShow: isShowHandoverModal,
+    onShow: onShowHandoverModal,
+    onHide: onHideHandoverModal,
+} = useModal();
 
 // variable
-const historyStatePrefix = 'searchUsers.';
+/** 권한 */
+const authority = [
+    {
+        key: 'ROLE_MASTER',
+        text: 'Master',
+    },
+    {
+        key: 'ROLE_ADMIN',
+        text: 'Admin',
+    },
+    {
+        key: 'ROLE_MANAGER',
+        text: 'Manager',
+    },
+    {
+        key: 'ROLE_PARTNER_ADMIN',
+        text: 'Partner_Admin',
+    },
+    {
+        key: 'ROLE_PARTNER_MANAGER',
+        text: 'Partner_Manager',
+    },
+];
 
 // router
 const router = useRouter();
-const historyState: HistoryState = history.state;
+const { state } = history;
 
 // global
 const { onResponse } = useEvent();
-const { state: responsePartnames } = useAsyncState(() => requestCodeList({ parentCode: Code.Partname }), {}, { onSuccess: onResponse });
-const { state: responsePositions } = useAsyncState(() => requestCodeList({ parentCode: Code.Position }), {}, { onSuccess: onResponse });
-const { execute: requestTeams, state: responseTeams } = useAsyncState(requestCodeList, {}, {
+const { execute, isLoading, state: response } = useAsyncState(requestUserList, {}, {
     immediate: false,
     onSuccess: onResponse,
 });
-const { execute: requestUsers, isLoading: isLoadingUsers, state: responseUsers } = useAsyncState(requestUserList, {}, {
-    immediate: false,
-    onSuccess: (response) => onResponse(response, { isShowMessage: false }),
-});
-const { execute: requestDelete, isLoading: isLoadingDelete } = useAsyncState(requestDeleteUser, {}, {
-    immediate: false,
-    onSuccess: (response) => onResponse(response, { success: requestList }),
-});
-const { execute: requestRestore, isLoading: isLoadingRestore } = useAsyncState(requestRestoreUser, {}, {
-    immediate: false,
-    onSuccess: (response) => onResponse(response, { success: requestList }),
-});
-const { getLabelByValue } = useSelectOption();
-
-// store
-/** 메시지 */
-const messageStore = useMessageStore();
 
 // state
 /** 체크 목록 */
 const checks = ref<number[]>([]);
-/** 계정 목록 검색 조건 */
-const searchUsers: SearchList<RequestUserList> = reactive({
+/** 검색 조건 */
+const search: RequestUserList = reactive({
     /** 현재 페이지 번호 */
     page: 1,
 
-    /** 페이지당 표시할 항목 수 */
-    size: 10,
-
-    ...Object.fromEntries(
-        Object.entries(historyState)
-            .filter(([key]) => key.includes(historyStatePrefix))
-            .map(([key, value]) => [key.replace(historyStatePrefix, ''), value]),
-    ),
+    ...state.search,
 });
+const propsData = ref<number | undefined>();
 
 // computed
-/** 전체 체크 여부 */
-const isAllCheck = computed(() => Boolean(users.value.length && users.value.length === checks.value.length));
-/** 부서명 목록 */
-const partnames = computed(() => (responsePartnames.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
-/** 직급 목록 */
-const positions = computed(() => (responsePositions.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
-/** 팀명 목록 */
-const teams = computed(() => (responseTeams.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
-/** 계정 목록 총 항목 수 */
-const totalUsers = computed(() => (responseUsers.value.data?.totalCount ?? 0));
 /** 계정 목록 */
-const users = computed(() => (responseUsers.value.data?.results ?? []));
+const datas = computed(() => (response.value.data ?? []));
+/** 메시지 */
+const message = computed(() => isLoading.value ? '데이터를 불러오는 중입니다.' : (response.value.message || '검색 결과가 없습니다.'));
+/** 총 항목 수 */
+const total = computed(() => (response.value.totalCount ?? 0));
 
 // methods
 /**
- * 목록 검색 요청
+ * 계정 목록 조회 요청
  */
-const requestList = () => requestUsers(0, {
-    ...searchUsers,
-    page: (searchUsers.page - 1),
-});
+const requestList = async () => await execute(0, search);
 
 // event
 /**
- * 전체 체크 여부 변경 시
- * @param checked 전체 체크 여부
+ * 대리점 관리
  */
-const onChangeAllCheck = (checked: boolean) => {
-    checks.value = checked ? users.value.map(({ idx }) => idx) : [];
-};
-
-/**
- * 체크 여부 변경 시
- * @param value 값
- * @param checked 체크 여부
- */
-const onChangeCheck = (value: UserInfo['idx'], checked: boolean) => {
-    if (checked) {
-        checks.value.push(value);
-
-        return;
-    }
-
-    checks.value = checks.value.filter((checked) => (value !== checked));
-};
-
-/**
- * 일괄 미사용 클릭 시
- */
-const onClickDelete = () => messageStore.$patch({
-    isShow: true,
-    title: '일괄 미사용',
-    message: '선택한 계정을 모두 미사용 처리하시겠습니까?\n미사용 처리 시 해당 계정은 시스템 접속이 되지 않습니다.',
-    isConfirm: true,
-    buttonText: { ok: '미사용' },
-    callback: { ok: () => requestDelete(0, checks.value) },
-});
+const onAgencyListClick = () => router.push({ name: RouterName.AgencyList });
 
 /**
  * 수정 클릭 시
- * @param idx idx
+ * @param idx 번호
  */
-const onClickModify = (idx: UserInfo['idx']) => router.push({
-    name: RouterName.SetUser,
-    params: { idx },
-    state: Object.fromEntries(
-        Object.entries(searchUsers)
-            .map(([key, value]) => [`${historyStatePrefix}${key}`, value]),
-    ),
-});
+const onClickModify = (index: UserInfo['idx']) => {
+    // const item = response?.value?.data?.find(({ idx }) => idx === index);
+    propsData.value = index;
+    onShowModifyModal();
+};
 
 /**
- * 등록 클릭 시
+ * 검색
  */
-const onClickRegist = () => router.push({
-    name: RouterName.SetUser,
-    state: Object.fromEntries(
-        Object.entries(searchUsers)
-            .map(([key, value]) => [`${historyStatePrefix}${key}`, value]),
-    ),
-});
-
-/**
- * 일괄 사용 클릭 시
- */
-const onClickRestore = () => messageStore.$patch({
-    isShow: true,
-    title: '일괄 사용',
-    message: '선택한 계정을 모두 사용 처리하시겠습니까?\n사용 처리 시 해당 계정은 시스템 접속이 가능하게 됩니다.',
-    isConfirm: true,
-    buttonText: { ok: '사용' },
-    callback: { ok: () => requestRestore(0, checks.value) },
-});
-
-/**
- * 목록 검색
- */
-const onSearchList = () => {
-    if (searchUsers.page === 1) {
+const onSearch = () => {
+    if (search.page === 1) {
         requestList();
 
         return;
     }
 
-    searchUsers.page = 1;
+    search.page = 1;
+};
+
+/**
+ * 인수인계
+ */
+const onHandover = () => {
+    onShowHandoverModal();
+};
+
+const authorityText = (value: string) => {
+    let authorityText = '';
+    authority.forEach(({ key, text }) => {
+        if (value.indexOf(key) !== -1) {
+            authorityText = text;
+        }
+    });
+    return authorityText;
 };
 
 // watch
-watch(() => searchUsers.page, requestList, { immediate: true });
-watch(() => searchUsers.partname, (parentCode) => {
-    // 부서명 검색 조건 변경 시 기존 선택된 팀명 검색 조건 초기화
-    searchUsers.team = '';
-
-    // 팀명 목록 검색 요청
-    requestTeams(0, { parentCode });
-});
-watch(users, () => {
-    // 계정 목록 변경 시 체크 목록 초기화
+watch(() => search.page, requestList, { immediate: true });
+watch(datas, () => {
+    // 목록 변경 시 체크 목록 초기화
     checks.value = [];
 }, { deep: true });
 </script>

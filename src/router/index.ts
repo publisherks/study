@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import { RouterName, UserAuthority } from '@/mappings/enum';
+import { RouterName } from '@/mappings/enum';
 
 import { beforeEach as beforeEachCancelAxios } from '@/router/hook/cancelAxios';
 import { beforeEach as beforeEachLoading, afterEach as afterEachLoading } from '@/router/hook/loading';
@@ -17,21 +17,43 @@ const ComponentGuide = () => import('@/views/sample/guide/Component.vue');
 const StyleGuide = () => import('@/views/sample/guide/Style.vue');
 
 // 로그인
-const Login = () => import('@/views/login/Login.vue');
-const ResetPassword = () => import('@/views/login/ResetPassword.vue');
+// const Login = () => import('@/views/login/Login.vue');
+// const ResetPassword = () => import('@/views/login/ResetPassword.vue');
 const Login2 = () => import('@/views/login2/Login.vue');
-const ResetPassword2 = () => import('@/views/login2/ResetPassword.vue');
+const Join = () => import('@/views/login2/Join.vue');
+
+// 메인
+// const Main = () => import('@/views/Main.vue');
 
 // 대시보드
-const WidgetDashboard = () => import('@/views/dashboard/Widget.vue');
-const CustomDashboard = () => import('@/views/dashboard/Custom.vue');
+// const WidgetDashboard = () => import('@/views/dashboard/Widget.vue');
+// const CustomDashboard = () => import('@/views/dashboard/Custom.vue');
 
 // 기준 정보
-const UserList = () => import('@/views/user/List.vue');
-const SetUser = () => import('@/views/user/Setting.vue');
+// const SetUser = () => import('@/views/user/Setting.vue');
 
 // 프로필
 const Profile = () => import('@/views/user/Profile.vue');
+
+// 문의 현황
+const Inquiry = () => import('@/views/inquiry/Container.vue');
+
+// 영업 현황
+const SalesStatus = () => import('@/views/salesStatus/Container.vue');
+const SalesRegist = () => import('@/views/salesStatus/Regist.vue');
+const SalesDetails = () => import('@/views/salesStatus/Details.vue');
+const SalesModify = () => import('@/views/salesStatus/Modify.vue');
+
+// 회원관리
+const CustomerStatus = () => import('@/views/customerStatus/Container.vue');
+
+// 회원관리
+const UserList = () => import('@/views/user/List.vue');
+// 대리점 관리
+const AgencyList = () => import('@/views/user/agency/List.vue');
+
+// 문의하기
+const ContactUs = () => import('@/views/contactus/View.vue');
 
 // 존재하지 않는 경로 안내
 const NotFound = () => import('@/views/NotFound.vue');
@@ -48,34 +70,63 @@ const router = createRouter({
         // 메인
         {
             path: '/',
-            name: RouterName.Main,
             component: MainLayout,
             meta: { isRequireLogin: true },
             children: [
-                // 대시보드
+                // 문의 현황
                 {
-                    path: 'dashboard',
-                    children: [
-                        // 위젯
-                        {
-                            path: 'widget',
-                            name: RouterName.WidgetDashboard,
-                            component: WidgetDashboard,
-                            meta: {
-                                roles: [
-                                    UserAuthority.System,
-                                    UserAuthority.Master,
-                                    UserAuthority.Admin,
-                                ],
-                            },
-                        },
+                    path: 'inquiry',
+                    name: RouterName.Inquiry,
+                    component: Inquiry,
+                },
 
-                        // 커스텀
+                // 영업 현황
+                {
+                    path: 'salesStatus',
+                    children: [
                         {
-                            path: 'custom',
-                            name: RouterName.CustomDashboard,
-                            component: CustomDashboard,
-                            meta: { roles: [UserAuthority.System, UserAuthority.Master] },
+                            path: '',
+                            name: RouterName.SalesStatus,
+                            component: SalesStatus,
+                        },
+                        {
+                            path: 'regist',
+                            name: RouterName.SalesRegist,
+                            component: SalesRegist,
+                        },
+                        {
+                            path: ':idx',
+                            name: RouterName.SalesDetails,
+                            component: SalesDetails,
+                        },
+                        {
+                            path: ':idx/modify',
+                            name: RouterName.SalesModify,
+                            component: SalesModify,
+                        },
+                    ],
+                },
+
+                // 고객 현황
+                {
+                    path: 'customerStatus',
+                    name: RouterName.CustomerStatus,
+                    component: CustomerStatus,
+                },
+
+                // 회원 관리
+                {
+                    path: 'users',
+                    children: [
+                        {
+                            path: '',
+                            name: RouterName.UserList,
+                            component: UserList,
+                        },
+                        {
+                            path: 'agency',
+                            name: RouterName.AgencyList,
+                            component: AgencyList,
                         },
                     ],
                 },
@@ -83,7 +134,6 @@ const router = createRouter({
                 // 가이드
                 {
                     path: 'guide',
-                    meta: { roles: [UserAuthority.System] },
                     children: [
                         // 스타일
                         {
@@ -102,35 +152,35 @@ const router = createRouter({
                 },
 
                 // 기준 정보
-                {
-                    path: 'standard',
-                    children: [
-                        // 계정 관리
-                        {
-                            path: 'user',
-                            children: [
-                                // 목록
-                                {
-                                    path: '',
-                                    name: RouterName.UserList,
-                                    component: UserList,
-                                },
+                // {
+                //     path: 'standard',
+                //     children: [
+                //         // 계정 관리
+                //         {
+                //             path: 'user',
+                //             children: [
+                //                 // 목록
+                //                 {
+                //                     path: '',
+                //                     name: RouterName.UserList,
+                //                     component: UserList,
+                //                 },
 
-                                // 설정
-                                {
-                                    path: 'setting/:idx(\\d+)?',
-                                    name: RouterName.SetUser,
-                                    component: SetUser,
-                                },
-                            ],
-                        },
-                    ],
-                },
+                //                 // 설정
+                //                 {
+                //                     path: 'setting/:idx?',
+                //                     name: RouterName.SetUser,
+                //                     component: SetUser,
+                //                 },
+                //             ],
+                //         },
+                //     ],
+                // },
 
                 // 프로필
                 {
-                    path: 'profile',
-                    name: RouterName.Profile,
+                    path: 'mypage',
+                    name: RouterName.Mypage,
                     component: Profile,
                 },
 
@@ -143,45 +193,48 @@ const router = createRouter({
         },
 
         // 로그인
+        // {
+        //     path: '/login',
+        //     component: LoginLayout,
+        //     children: [
+        //         {
+        //             path: '',
+        //             name: RouterName.Login,
+        //             component: Login,
+        //         },
+
+        //         // 비밀번호 재설정
+        //         {
+        //             path: 'reset-password',
+        //             name: RouterName.ResetPassword,
+        //             component: ResetPassword,
+        //         },
+        //     ],
+        // },
+
+        // 로그인 2
         {
             path: '/login',
-            component: LoginLayout,
-            meta: { isRequireLogin: false },
+            component: Login2Layout,
             children: [
                 {
                     path: '',
                     name: RouterName.Login,
-                    component: Login,
+                    component: Login2,
                 },
-
-                // 비밀번호 재설정
                 {
-                    path: 'reset-password',
-                    name: RouterName.ResetPassword,
-                    component: ResetPassword,
+                    path: 'join',
+                    name: RouterName.Join,
+                    component: Join,
                 },
             ],
         },
 
-        // 로그인 2
+        // 문의하기
         {
-            path: '/login2',
-            component: Login2Layout,
-            meta: { isRequireLogin: false },
-            children: [
-                {
-                    path: '',
-                    name: RouterName.Login2,
-                    component: Login2,
-                },
-
-                // 비밀번호 재설정
-                {
-                    path: 'reset-password',
-                    name: RouterName.ResetPassword2,
-                    component: ResetPassword2,
-                },
-            ],
+            path: '/contactus',
+            name: RouterName.ContactUs,
+            component: ContactUs,
         },
 
         // 존재하지 않는 경로 안내

@@ -2,15 +2,15 @@
 <template>
     <Form
         v-model:value="value"
-        :id
-        :disabled
-        :invalid
-        :leftLabel
-        :leftUnit
-        :readonly
-        :required
-        :search
-        :invalidMessage
+        :id="id"
+        :disabled="disabled"
+        :invalid="invalid"
+        :leftLabel="isLeftLabel"
+        :leftUnit="isLeftUnit"
+        :readonly="readonly"
+        :required="required"
+        :search="isSearch"
+        :invalidMessage="invalidMessage"
         @search="emit('search', $event)"
     >
         <template
@@ -21,20 +21,22 @@
         </template>
         <template #default="slotProps">
             <input
-                :id
+                :id="id"
                 ref="inputElement"
                 :class="{ 'align-r': (hasUnit && !isLeftUnit) }"
                 :style="slotProps?.style"
                 type="text"
                 :value="input"
-                :placeholder
-                :autocomplete
-                :autofocus
-                :disabled
-                :readonly
-                :required
+                :min="min"
+                :max="max"
+                :placeholder="placeholder"
+                :autocomplete="autocomplete"
+                :autofocus="autofocus"
+                :disabled="disabled"
+                :readonly="readonly"
+                :required="required"
                 :tabindex="(disabled || readonly) ? -1 : 0"
-                @input="onInputValue"
+                @input="onInput"
                 @keyup.enter="onSearch"
             />
         </template>
@@ -65,14 +67,14 @@ import { convertInputValue } from '@/functions/convert';
 
 import useSlots from '@/global/useSlots';
 
-import type { InputValue, NullableHTMLElement, Numeric } from '@/mappings/types/common';
+import type { InputValue, Numeric } from '@/mappings/types/common';
 
 import isEmpty from '@/utils/isEmpty';
 import isNullish from '@/utils/isNullish';
 import numberFrom from '@/utils/number/from';
 
 // type
-type Props = Omit<InputProps, 'type' | 'maxlength'> & {
+type Props = Omit<InputProps, 'type' | 'maxlength' | 'lowercase' | 'uppercase'> & {
     /** 최소 값 */
     min?: Numeric;
 
@@ -91,21 +93,74 @@ const defaultMaximumFractionDigits = 3;
 
 // model
 /** 현재 입력 값 */
-const value = defineModel<InputValue>('value', {
-    set(value) {
+const value = defineModel<InputValue>('value');
+
+// props
+const {
+    id,
+    min,
+    max,
+    maximumFractionDigits = defaultMaximumFractionDigits,
+    placeholder = '입력해주세요.',
+    autocomplete,
+    autofocus,
+    disabled,
+    format: isFormat = true,
+    invalid,
+    leftLabel: isLeftLabel,
+    leftUnit: isLeftUnit,
+    readonly,
+    required,
+    search: isSearch,
+    invalidMessage,
+} = defineProps<Props>();
+
+// emits
+const emit = defineEmits<Emits>();
+
+// refs
+const inputElement = ref<HTMLInputElement | null>(null);
+
+// global
+const { hasSlots } = useSlots();
+
+// computed
+/** 정보 텍스트 존재 여부 */
+const hasInfo = useArrayIncludes(hasSlots, 'info');
+/** 라벨 존재 여부 */
+const hasLabel = useArrayIncludes(hasSlots, 'label');
+/** 단위 존재 여부 */
+const hasUnit = useArrayIncludes(hasSlots, 'unit');
+/** 현재 입력 값 */
+const input = computed(() => {
+    const input = convertValue(value.value);
+
+    return isFormat ? convertValueToLocaleString(input) : input;
+});
+/** 최대 소수점 자리 수 */
+const maxDecimalPointDigit = computed(() => numberFrom(maximumFractionDigits, defaultMaximumFractionDigits));
+
+// methods
+/**
+ * 값 변환
+ * @param value 변환 전 값
+ * @return 변환 후 값
+ */
+const convertValue = (value: InputValue) => {
+    if (!isEmpty(value)) {
+        const string = String(value);
+
         // 현재 입력 값이 '-'가 아닌 경우 (음수 값 입력이 가능해야 되므로)
-        if (!isEmpty(value) && value !== '-') {
-            const string = String(value);
+        if (value !== '-') {
             const values = string.split('.');
-            const lastValue = string.substr(-1);
 
             if (
-                (lastValue === '.' && values.length > (maxDecimalPointDigit.value ? 2 : 1)) // 소수점 유효성 확인
-                || (maxDecimalPointDigit.value < (values.at(1) ?? '').length) // 최대 소수점 자리 수 유효성 확인
-                || (lastValue !== '.' && isNaN(Number(value))) // 숫자 유효성 확인
+                (string.substr(-1) === '.' && values.length > (maxDecimalPointDigit.value ? 2 : 1)) // 소수점 유효성 확인
+                || (maxDecimalPointDigit.value < (values[1] ?? '').length) // 최대 소수점 자리 수 유효성 확인
+                || isNaN(Number(value)) // 숫자 유효성 확인
             ) {
                 // 마지막 입력 값 삭제
-                value = string.slice(0, -1);
+                value = string.substring(0, string.length - 1);
             }
 
             const number = Number(value);
@@ -122,87 +177,47 @@ const value = defineModel<InputValue>('value', {
                 return max;
             }
         }
-
-        return value;
-    },
-});
-
-// props
-const {
-    id,
-    min,
-    max,
-    maximumFractionDigits = defaultMaximumFractionDigits,
-    placeholder = '입력해주세요.',
-    autocomplete,
-    autofocus,
-    disabled,
-    format: isFormat = true,
-    invalid,
-    leftLabel,
-    leftUnit: isLeftUnit,
-    readonly,
-    required,
-    search: isSearch,
-    invalidMessage,
-} = defineProps<Props>();
-
-// emits
-const emit = defineEmits<Emits>();
-
-// refs
-const inputElement = ref<NullableHTMLElement<HTMLInputElement>>(null);
-
-// global
-const { hasSlots } = useSlots();
-
-// computed
-/** 정보 텍스트 존재 여부 */
-const hasInfo = useArrayIncludes(hasSlots, 'info');
-/** 라벨 존재 여부 */
-const hasLabel = useArrayIncludes(hasSlots, 'label');
-/** 단위 존재 여부 */
-const hasUnit = useArrayIncludes(hasSlots, 'unit');
-/** 현재 입력 값 */
-const input = computed(() => {
-    let { value: input } = value;
-
-    if (isFormat) {
-        if (typeof input === 'string') {
-            if (['', '-'].includes(input) || input.substr(-1) === '.') {
-                return input;
-            }
-
-            input = Number(input);
-        }
-
-        return (isNullish(input) || isNaN(input)) ? '' : input.toLocaleString('ko', { maximumFractionDigits: maxDecimalPointDigit.value });
     }
 
-    return input;
-});
-/** 최대 소수점 자리 수 */
-const maxDecimalPointDigit = computed(() => numberFrom(maximumFractionDigits, defaultMaximumFractionDigits));
+    return value;
+};
+
+/**
+ * 값을 숫자 형식이 적용된 값으로 변환
+ * @param value 값
+ * @return 숫자 형식이 적용된 값
+ */
+const convertValueToLocaleString = (value: InputValue) => {
+    if (typeof value === 'string') {
+        if (['', '-'].includes(value) || value.substr(-1) === '.') {
+            return value;
+        }
+
+        value = Number(value);
+    }
+
+    return (isNullish(value) || isNaN(value)) ? '' : value.toLocaleString('ko', { maximumFractionDigits: maxDecimalPointDigit.value });
+};
 
 // event
 /**
  * 값 입력 시
  * @param event 이벤트 정보
  */
-const onInputValue = (event: Event) => {
+const onInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
 
     let { value: newValue } = target;
 
-    const isNumber = (newValue.substr(-1) !== '.');
+    const isConvertNumber = (newValue.substr(-1) !== '.');
 
-    // 입력 값이 숫자 형식인 경우 (마지막 입력 값이 '.'이 아닌 경우)
-    if (isNumber) {
-        // number 타입으로 변환을 위해 쉼표 삭제
+    // `number` 타입 변환 시
+    if (isConvertNumber) {
+        // 쉼표 삭제
         newValue = newValue.replaceAll(',', '');
     }
 
-    value.value = convertInputValue(newValue, isNumber);
+    value.value = convertInputValue(convertValue(newValue), isConvertNumber);
     target.value = String(input.value);
 };
 

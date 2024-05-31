@@ -7,27 +7,27 @@
         <div class="paging-box">
             <a
                 class="first"
-                @click="onClickPage(1)"
+                @click="onClick(1)"
             />
             <a
                 class="prev"
-                @click="onClickPage(previousPage)"
+                @click="onClick(previousPage)"
             />
             <a
-                v-for="(pageNumber) in pages"
-                :key="`pages${pageNumber}`"
-                :class="{ on: (pageNumber === currentPage) }"
-                @click="onClickPage(pageNumber)"
+                v-for="(value) in pages"
+                :key="`pages${value}`"
+                :class="{ on: (value === currentPage) }"
+                @click="onClick(value)"
             >
-                {{ pageNumber }}
+                {{ value }}
             </a>
             <a
                 class="next"
-                @click="onClickPage(nextPage)"
+                @click="onClick(nextPage)"
             />
             <a
                 class="last"
-                @click="onClickPage(totalPage)"
+                @click="onClick(totalPage)"
             />
         </div>
     </div>
@@ -80,9 +80,9 @@ const previousPage = computed(() => (currentPage.value - 1));
 const nextPage = computed(() => (currentPage.value + 1));
 /** 페이지 번호 목록 */
 const pages = computed(
-    () => Array<number>(Math.min(lastPage.value - firstPage.value + 1, totalPage.value))
+    () => new Array<number>(Math.min(lastPage.value - firstPage.value + 1, totalPage.value))
         .fill(firstPage.value)
-        .map((firstPage, index) => (firstPage + index)),
+        .map((value, index) => (value + index)),
 );
 /** 총 페이지 수 */
 const totalPage = useCeil(() => (numberFrom(total, defaultTotal) / numberFrom(limit, defaultLimit)));
@@ -93,7 +93,7 @@ const firstAndLastPage = reactiveComputed(() => {
     let first = Math.max(1, currentPage.value - Math.floor(blockNumber / 2)),
         last = Math.min(totalPage.value, currentPage.value + Math.floor(blockNumber / 2));
 
-    if (blockNumber > (last - first + 1)) {
+    if (blockNumber > ((last - first) + 1)) {
         if (currentPage.value < (totalPage.value / 2)) {
             last = Math.min(totalPage.value, last + (blockNumber - (last - first)));
         } else {
@@ -120,20 +120,20 @@ const firstAndLastPage = reactiveComputed(() => {
  * 페이지 번호 클릭 시
  * @param newPage 페이지 번호
  */
-const onClickPage = (newPage: typeof currentPage.value) => {
+const onClick = (newPage: typeof currentPage.value) => {
     // 해당 페이지 번호가 현재 페이지 번호인 경우 현재 페이지 번호 값을 해당 페이지 번호 값으로 수정하지 않음
     if (!newPage || newPage === currentPage.value) {
         return;
     }
 
     // 해당 페이지 번호가 페이지 번호 목록에 있거나 처음/마지막 페이지 번호인 경우 현재 페이지 번호 값을 해당 페이지 번호로 수정함
-    const validPages = new Set([
+    const validPages = [
         ...pages.value,
         1,
         totalPage.value,
-    ]);
+    ];
 
-    if (validPages.has(newPage)) {
+    if (validPages.includes(newPage)) {
         page.value = newPage;
     }
 };

@@ -17,11 +17,9 @@ import { ref, onMounted, nextTick } from 'vue';
 import { isDefined } from '@vueuse/core';
 import L from 'leaflet';
 
-import type { NullableHTMLElement } from '@/mappings/types/common';
-
 // refs
-const mapElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
-const popupElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const mapElement = ref<HTMLDivElement | null>(null);
+const popupElement = ref<HTMLDivElement | null>(null);
 
 // state
 /** 팝업 초기 설정 여부 */

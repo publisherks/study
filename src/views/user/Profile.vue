@@ -1,25 +1,51 @@
 <!-- 프로필 -->
 <template>
-    <VTitle class="mb-12">
-        프로필
+    <VTitle>
+        {{ route.name }}
+        <template #button>
+            <VBtn
+                :kind="ButtonType.Sub"
+                @click="onShowResetPasswordModal"
+            >
+                비밀번호 변경
+            </VBtn>
+            <VBtn
+                :disabled="isSubmitting || isLoadingModify"
+                @click="onSubmit"
+                class="ml-14"
+            >
+                저장
+            </VBtn>
+        </template>
     </VTitle>
     <form @submit.prevent="onSubmit">
         <div class="contents">
-            <VTable
-                hori
-                class="mb-30"
-            >
+            <VTable hori>
                 <template #col>
                     <col width="10%" />
-                    <col width="40%" />
+                    <col width="23.3%" />
                     <col width="10%" />
-                    <col width="40%" />
+                    <col width="6.52%" />
+                    <col width="10%" />
+                    <col width="6.52%" />
+                    <col width="10%" />
+                    <col width="23.3%" />
                 </template>
                 <tr>
-                    <th class="required">
-                        이름
+                    <th>사용자 권한</th>
+                    <td>Manager</td>
+                    <th>이메일</th>
+                    <td colspan="3">
+                        {{ email }}
+                    </td>
+                    <th>소속</th>
+                    <td>{{ agencyName }}</td>
+                </tr>
+                <tr>
+                    <th>
+                        성명
                     </th>
-                    <td>
+                    <td colspan="3">
                         <VInput
                             v-model:value="name"
                             v-bind="nameProps"
@@ -27,60 +53,42 @@
                             class="pull"
                         />
                     </td>
-                    <th class="required">
-                        직급
+                    <th>
+                        직함
                     </th>
-                    <td>
-                        <VSelect
+                    <td colspan="3">
+                        <VInput
                             v-model:value="position"
                             v-bind="positionProps"
-                            :options="positions"
-                            placeholder="직급을 선택해주세요."
                             class="pull"
                         />
                     </td>
                 </tr>
                 <tr>
-                    <th class="required">
+                    <th>
                         부서명
                     </th>
                     <td>
-                        <VSelect
-                            v-model:value="partname"
-                            v-bind="partnameProps"
-                            :options="partnames"
-                            placeholder="부서명을 선택해주세요."
+                        <VInput
+                            v-model:value="dept"
+                            v-bind="deptProps"
                             class="pull"
                         />
                     </td>
-                    <th>팀명</th>
-                    <td>
-                        <VSelect
-                            v-model:value="team"
-                            v-bind="teamProps"
-                            :options="teams"
-                            placeholder="팀명을 선택해주세요."
-                            :disabled="!partname"
+                    <th>연락처(회사)</th>
+                    <td colspan="3">
+                        <VInput
+                            v-model:value="personalTelNumber"
+                            v-bind="personalTelProps"
+                            type="tel"
                             class="pull"
                         />
                     </td>
-                </tr>
-                <tr>
-                    <th class="required">
-                        이메일
-                    </th>
+                    <th>연락처(개인)</th>
                     <td>
                         <VInput
-                            v-model:value="email"
-                            v-bind="emailProps"
-                            class="pull"
-                        />
-                    </td>
-                    <th>연락처</th>
-                    <td>
-                        <VInput
-                            v-model:value="tel"
-                            v-bind="telProps"
+                            v-model:value="companyTelNumber"
+                            v-bind="companyTelProps"
                             type="tel"
                             class="pull"
                         />
@@ -88,108 +96,88 @@
                 </tr>
             </VTable>
         </div>
-        <div className="btn-wrap flex-c mt-40">
-            <VBtn
-                :kind="ButtonType.Sub1"
-                class="mr-10"
-                @click="onClickCancel"
-            >
-                취소
-            </VBtn>
-            <VBtn
-                type="submit"
-                :disabled="isLoadingModify || isSubmitting"
-            >
-                수정
-            </VBtn>
-        </div>
     </form>
+    <ResetPasswordModal
+        v-if="isShowResetPasswordModal"
+        @hide="onHideResetPasswordModal"
+        :id="email"
+    />
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { useAsyncState } from '@vueuse/core';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
 
-import { requestCodeList } from '@/api/code';
 import { requestProfileInfo, requestModifyProfile } from '@/api/user/profile';
 
 import useEvent from '@/global/useEvent';
+import useModal from '@/global/useModal';
 
-import { ButtonType, Code } from '@/mappings/enum';
+import { ButtonType } from '@/mappings/enum';
+
+import ResetPasswordModal from '@/views/user/modal/ResetPassword.vue';
 
 import useMessageStore from '@/stores/message';
 
+// router
+const route = useRoute();
+
 // global
 const { onResponse } = useEvent();
-const { state: responsePartnames } = useAsyncState(() => requestCodeList({ parentCode: Code.Partname }), {}, { onSuccess: onResponse });
-const { state: responsePositions } = useAsyncState(() => requestCodeList({ parentCode: Code.Position }), {}, { onSuccess: onResponse });
-const { execute: requestTeams, state: responseTeams } = useAsyncState(requestCodeList, {}, {
-    immediate: false,
-    onSuccess: onResponse,
-});
 const { execute: requestInfo } = useAsyncState(requestProfileInfo, {}, {
+    immediate: false,
     onSuccess: (response) => onResponse(response, {
-        isShowBackOnError: true,
-        success: () => setValues(response.data as NonNullable<typeof response.data>),
+        success() {
+            const { data } = response;
+
+            if (data) {
+                setValues(data);
+            }
+        },
     }),
 });
 const { execute: requestModify, isLoading: isLoadingModify } = useAsyncState(requestModifyProfile, {}, {
     immediate: false,
     onSuccess: onResponse,
 });
+const {
+    isShow: isShowResetPasswordModal,
+    onShow: onShowResetPasswordModal,
+    onHide: onHideResetPasswordModal,
+} = useModal();
 
 // store
 /** 메시지 */
 const messageStore = useMessageStore();
 
-// computed
-/** 부서명 목록 */
-const partnames = computed(() => (responsePartnames.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
-/** 직급 목록 */
-const positions = computed(() => (responsePositions.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
-/** 팀명 목록 */
-const teams = computed(() => (responseTeams.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
-
 // validate
 const validationSchema = yup.object({
     name: yup.string()
         .required('이름을 입력해주세요.'),
+    agencyName: yup.string(),
     position: yup.string()
-        .required('직급을 입력해주세요.'),
-    partname: yup.string()
+        .required('직책을 입력해주세요.'),
+    dept: yup.string()
         .required('부서명을 입력해주세요.'),
-    team: yup.string(),
     email: yup.string()
         .required('이메일을 입력해주세요.')
         .email('이메일은 이메일 형식으로 \'@\'를 포함하여 입력해주세요.'),
-    tel: yup.string(),
+    personalTelNumber: yup.string(),
+    companyTelNumber: yup.string(),
 });
 const { defineField, handleSubmit, isSubmitting, setValues, submitCount } = useForm({ validationSchema: toTypedSchema(validationSchema) });
 const [name, nameProps] = defineField('name', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
+const [agencyName] = defineField('agencyName', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
 const [position, positionProps] = defineField('position', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
-const [partname, partnameProps] = defineField('partname', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
-const [team, teamProps] = defineField('team', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
-const [email, emailProps] = defineField('email', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
-const [tel, telProps] = defineField('tel', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
+const [dept, deptProps] = defineField('dept', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
+const [email] = defineField('email', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
+const [personalTelNumber, personalTelProps] = defineField('personalTelNumber', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
+const [companyTelNumber, companyTelProps] = defineField('companyTelNumber', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
 
 // event
-/**
- * 취소 클릭 시
- */
-const onClickCancel = () => requestInfo();
-
 /**
  * 설정
  */
@@ -202,9 +190,5 @@ const onSubmit = handleSubmit((values) => messageStore.$patch({
     callback: { ok: () => requestModify(0, values) },
 }));
 
-// watch
-watch(partname, (parentCode) => {
-    // 팀명 목록 검색 요청
-    requestTeams(0, { parentCode });
-});
+requestInfo();
 </script>

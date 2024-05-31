@@ -4,9 +4,6 @@
     <VInput>
     1. model (* : 필수)
     1) v-model:value (InputValue : '@/mappings/types/common') : 현재 입력 값
-    1-1) v-model:value.lowerCase : 현재 입력 값을 소문자로 변환
-    1-2) v-model:value.upperCase : 현재 입력 값을 대문자로 변환
-    1-3) v-model:value.onlyNumber : 현재 입력 값을 숫자만 허용
 
     2. props (* : 필수)
     1) id (string) : 아이디
@@ -19,10 +16,12 @@
     8) invalid (boolean) : 유효성 여부 (default : false)
     9) leftLabel (boolean) : 좌측 라벨 여부 (default : false)
     10) leftUnit (boolean) : 좌측 단위 여부 (default : false)
-    11) readonly (boolean) : 읽기 전용 여부 (default : false)
-    12) required (boolean) : 필수 여부 (default : false)
-    13) search (boolean) : 검색 필드 여부 (default : false)
-    14) invalidMessage (string) : 유효하지 않는 경우 메시지
+    11) lowerCase (boolean) : 소문자 변환 여부 (default : false)
+    12) upperCase (boolean) : 대문자 변환 여부 (default : false)
+    13) readonly (boolean) : 읽기 전용 여부 (default : false)
+    14) required (boolean) : 필수 여부 (default : false)
+    15) search (boolean) : 검색 필드 여부 (default : false)
+    16) invalidMessage (string) : 유효하지 않는 경우 메시지
 
     3. emits
     1) emit('search', InputValue : '@/mappings/types/common') : 검색

@@ -1,19 +1,11 @@
-import type { Numeric } from '@/mappings/types/common';
-
-import numberFrom from '@/utils/number/from';
-
 /**
  * 숫자에 쉼표 추가
  * @param v 쉼표를 추가할 숫자
  * @return 쉼표가 추가된 숫자
  * @example
  * comma(123456.789); // '123,456.789'
- * comma('123456.789'); // '123,456.789'
- * comma('abc'); // ''
  */
-const comma = (v: Numeric) => {
-    v = numberFrom(v, NaN);
-
+const comma = (v: number) => {
     if (isNaN(v)) {
         return '';
     }

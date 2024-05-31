@@ -21,13 +21,13 @@
         value="radio1"
         :checkValue="value"
         class="mr-30"
-        @update:value="onUpdateValue"
+        @update:value="onUpdate"
     />
     <VRadio
         value="radio2"
         :checkValue="value"
         class="mr-30"
-        @update:value="onUpdateValue"
+        @update:value="onUpdate"
     >
         텍스트
     </VRadio>
@@ -36,7 +36,7 @@
         :checkValue="value"
         disabled
         class="mr-30"
-        @update:value="onUpdateValue"
+        @update:value="onUpdate"
     >
         disabled
     </VRadio>
@@ -44,7 +44,7 @@
         value="radio4"
         :checkValue="value"
         :invalid="value !== 'radio4'"
-        @update:value="onUpdateValue"
+        @update:value="onUpdate"
     >
         invalid
     </VRadio>
@@ -64,7 +64,7 @@ const value = ref<Primitive>('radio2');
  * 값 수정
  * @param updateValue 값
  */
-const onUpdateValue = (updateValue: Primitive) => {
+const onUpdate = (updateValue: Primitive) => {
     value.value = updateValue;
 };
 </script>

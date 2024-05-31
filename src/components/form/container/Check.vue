@@ -8,12 +8,12 @@
     >
         <label>
             <input
-                :id
-                :type
-                :value
-                :checked
-                :disabled
-                @change="onChangeCheck"
+                :id="id"
+                :type="type"
+                :value="value"
+                :checked="checked"
+                :disabled="disabled"
+                @change="onChange"
             />
             <i :class="{ 'mr-0': !hasLabel }" />
             <span v-if="hasLabel">
@@ -62,7 +62,7 @@ const hasLabel = useArrayIncludes(hasSlots, 'default');
  * 체크 여부 변경 시
  * @param event 이벤트 정보
  */
-const onChangeCheck = (event: Event) => {
+const onChange = (event: Event) => {
     const input = event.target as HTMLInputElement;
 
     switch (type) {

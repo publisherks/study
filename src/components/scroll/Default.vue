@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import type { NullableHTMLElement, Numeric } from '@/mappings/types/common';
+import type { Numeric } from '@/mappings/types/common';
 
 // type
 export type Props = {
@@ -27,7 +27,7 @@ import px from '@/utils/css/px';
 const { maxHeight = '' } = defineProps<Props>();
 
 // refs
-const scrollElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const scrollElement = ref<HTMLDivElement | null>(null);
 
 // expose
 defineExpose({ scrollElement });

@@ -2,59 +2,69 @@
 <template>
     <VModal>
         <template #top>
-            비밀번호 찾기 정보 입력
+            비밀번호 찾기
         </template>
+        <p class="text mb-20">
+            가입하신 이메일로 임시 비밀번호가 발송됩니다.
+        </p>
         <form @submit.prevent="onSubmit">
             <VInput
                 v-model:value="id"
                 v-bind="idProps"
-                placeholder="아이디를 입력해주세요."
+                placeholder="이메일을 입력해주세요."
                 autofocus
                 class="pull mb-20"
             >
                 <template #label>
-                    등록한 아이디(이메일)을 입력해주세요.
+                    이메일
                 </template>
                 <template #info>
                     아이디는 이메일 형식으로 '@'를 포함하여 입력해주세요.
                 </template>
             </VInput>
-            <VInput
-                v-model:value="name"
-                v-bind="nameProps"
-                placeholder="이름을 입력해주세요."
-                class="pull mb-20"
+            <VSelect
+                v-model:value="agencyName"
+                v-bind="agencyProps"
+                :options="[
+                    {
+                        label: '울랄라랩',
+                        value: '울랄라랩',
+                    },
+                ]"
+                placeholder="소속을 선택해주세요."
+                class="pull"
             >
                 <template #label>
-                    등록한 이름을 입력해주세요.
+                    소속
                 </template>
-            </VInput>
-            <div class="flex-c mt-40">
-                <VBtn
-                    :kind="ButtonType.Sub1"
-                    class="mr-10"
-                    @click="emit('hide')"
-                >
-                    취소
-                </VBtn>
-                <VBtn
-                    type="submit"
-                    :disabled="isLoadingFindPassword || isSubmitting"
-                >
-                    비밀번호 찾기
-                </VBtn>
-            </div>
+            </VSelect>
         </form>
+        <template #bottom>
+            <VBtn
+                :kind="ButtonType.Cancel"
+                class="mr-10"
+                @click="emit('hide')"
+            >
+                취소
+            </VBtn>
+            <VBtn
+                :disabled="isSubmitting"
+                @click="onSubmit"
+            >
+                임시 비밀번호 전송
+            </VBtn>
+        </template>
     </VModal>
 </template>
 
 <script lang="ts">
 import type { RequestModifyUserPassword } from '@/api/user/interface';
 
-import type { ModalEmits } from '@/mappings/types/common';
-
 // type
-export type Emits = ModalEmits & {
+export type Emits = {
+    /** 모달 숨김 */
+    hide: [];
+
     /** 비밀번호 찾기 */
     submit: [id: RequestModifyUserPassword['id']];
 };
@@ -76,14 +86,11 @@ const emit = defineEmits<Emits>();
 
 // global
 const { onResponse } = useEvent();
-const { execute: requestFindPassword, isLoading: isLoadingFindPassword } = useAsyncState(requestFindUserPassword, {}, {
+const { execute } = useAsyncState(requestFindUserPassword, {}, {
     immediate: false,
     onSuccess: (response) => onResponse(response, {
         success() {
-            // 모달 숨김
             emit('hide');
-
-            // 상위 컴포넌트에 아이디 전달
             emit('submit', id.value!);
         },
     }),
@@ -94,26 +101,23 @@ const validationSchema = yup.object({
     id: yup.string()
         .required('아이디를 입력해주세요.')
         .email('아이디는 이메일 형식으로 \'@\'를 포함하여 입력해주세요.'),
-    name: yup.string()
-        .required('이름을 입력해주세요.'),
+    agencyName: yup.string()
+        .required('소속을 선택해주세요.'),
 });
 const { defineField, handleSubmit, isSubmitting, submitCount } = useForm({ validationSchema: toTypedSchema(validationSchema) });
 const [id, idProps] = defineField('id', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
-const [name, nameProps] = defineField('name', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
+const [agencyName, agencyProps] = defineField('agencyName', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
 
 // event
 /**
  * 비밀번호 찾기
  */
-const onSubmit = handleSubmit((values) => requestFindPassword(0, values));
+const onSubmit = handleSubmit(async (values) => await execute(0, values));
 
 /**
  * Esc 키 입력 시
  */
-onKeyStroke('Escape', () => {
-    // 모달 숨김
-    emit('hide');
-});
+onKeyStroke('Escape', () => emit('hide'));
 </script>
 
 <style lang="scss" scoped>

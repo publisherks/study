@@ -1,21 +1,21 @@
 @charset "UTF-8";
 
 #container {
-    display: flex;
-    flex-direction: column;
     flex: 1;
-    background-color: var(--bg-color);
+    background-color: var(--bg-back);
     transition: all .25s;
 
     .container {
-        padding: rem(20px) rem(24px);
-        height: calc(100% - rem(60px));
+        display: flex;
+        flex-direction: column;
+        padding: 0 rem(30px) rem(25px);
+        height: calc(100% - $layoutTop);
         @include overflow(auto, y);
 
         .contents {
-            padding: rem(14px) rem(24px) rem(22px);
-            background-color: var(--content-bg);
-            border-radius: rem(10px);
+            padding: rem(18px) rem(20px);
+            background-color: var(--bg-default);
+            border-radius: rem(6px);
         }
     }
 }
@@ -23,6 +23,19 @@
 .search-div {
     display: flex;
     align-items: center;
+}
+
+.link-text {
+    font-size: rem(14px);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--main);
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:active {
+        color: var(--main-line);
+    }
 }
 
 .search-text {
@@ -44,14 +57,14 @@
 
 .required-text {
     font-size: rem(12px);
-    color: var(--delete-color);
-    line-height: 1.2;
+    color: var(--negative);
+    line-height: 1;
 }
 
 .label-text {
     font-size: rem(13px);
     font-weight: 700;
-    color: var(--text-color4);
+    color: var(--text-sub);
     line-height: normal;
 
     i {
@@ -91,15 +104,22 @@
 }
 
 .info-color {
-    color: var(--text-color3) !important;
+    color: var(--text-sub) !important;
+}
+
+.required-color {
+    color: var(--negative) !important;
 }
 
 .empty-text {
+    font-size: rem(14px);
+    font-weight: 400;
+    color: var(--text-guide);
+}
+
+.empty-box {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    font-size: rem(16px);
-    font-weight: 700;
-    color: var(--text-color3);
 }

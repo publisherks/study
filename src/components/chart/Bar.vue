@@ -2,8 +2,8 @@
 <template>
     <VChart
         type="bar"
-        :datasets
-        :labels
+        :datasets="datasets"
+        :labels="labels"
         :options="{
             layout: { padding: 0 },
             plugins: {
@@ -38,25 +38,22 @@
                 },
             },
         }"
-        :width
-        :height
-        :legend
-        :legendOptions
+        :width="width"
+        :height="height"
+        :legend="legend"
+        :legendOptions="legendOptions"
     />
 </template>
 
 <script setup lang="ts">
 import type { GridLineOptions, TickOptions } from 'chart.js';
-
 import type { Props as ChartProps } from '@/components/Chart.vue';
-
-import type { Nullable } from '@/mappings/types/common';
 
 // type
 type Props = {
     /** 데이터 목록 */
     datasets: ({
-        data: Nullable<number>[];
+        data: (number | null)[];
         backgroundColor: string[];
     })[];
 

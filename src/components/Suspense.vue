@@ -2,7 +2,7 @@
 <template>
     <Suspense>
         <component
-            :is
+            :is="is"
             v-if="is"
         />
         <slot v-else />

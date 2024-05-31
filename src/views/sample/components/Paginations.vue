@@ -26,9 +26,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import type { Numeric } from '@/mappings/types/common';
-
 // state
 /** 현재 페이지 번호 */
-const page = ref<Numeric>(1);
+const page = ref<number>(1);
 </script>

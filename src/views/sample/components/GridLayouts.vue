@@ -4,11 +4,8 @@
     1. props (* : 필수)
     1) cols (Numeric: '@/mappings/types/common') : cell 1 ~ 12 (default : 12)
     2) rows (boolean) : 여러 줄 여부 (default : false)
-    3) colsWidth (Numeric[]) : grid-template-columns 픽셀 목록 (해당 값 전달 시 <VCell> 컴포넌트에서 col(grid-column) 값 전달 불가)
-    4) rowsWidth (Numeric[]) : grid-template-rows 픽셀 목록 (해당 값 전달 시 <VCell> 컴포넌트에서 row(grid-row) 값 전달 불가)
-    5) colGap (Numeric: '@/mappings/types/common') : column-gap 픽셀
-    6) rowGap (Numeric: '@/mappings/types/common') : row-gap 픽셀
-    7) align ('start' | 'end') : 정렬
+    3) colsWidth (number[]) : grid-template-columns 픽셀 목록 (해당 값 전달 시 <VCell> 컴포넌트에서 col(grid-column) 값 전달 불가)
+    4) rowsWidth (number[]) : grid-template-rows 픽셀 목록 (해당 값 전달 시 <VCell> 컴포넌트에서 row(grid-row) 값 전달 불가)
 
     2. slots
     1) default : <VCell>
@@ -25,7 +22,7 @@
     <VGrid
         v-for="(cols) in 12"
         :key="`grid${cols}`"
-        :cols
+        :cols="cols"
         class="bg"
     >
         <VCell

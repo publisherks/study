@@ -1,12 +1,12 @@
 <!-- Input 컴포넌트 -->
 <template>
     <Form
-        :id
-        :disabled
-        :invalid
-        :leftLabel
-        :required
-        :invalidMessage
+        :id="id"
+        :disabled="disabled"
+        :invalid="invalid"
+        :leftLabel="isLeftLabel"
+        :required="required"
+        :invalidMessage="invalidMessage"
         class="input-wrap"
     >
         <template
@@ -15,14 +15,20 @@
         >
             <slot name="label" />
         </template>
-        <div :class="['input-box', { 'al-left': isLeftUnit }]">
-            <slot :style />
+        <div
+            :class="[
+                'input-box',
+                { 'al-left': isLeftUnit },
+                hasUnit && 'unit',
+            ]"
+        >
+            <slot :style="style" />
 
             <!-- 현재 입력 값 초기화 -->
             <i
                 v-show="!disabled && !readonly && !isSearch && !hasUnit && !isEmpty(value)"
                 class="del"
-                @click="onRemoveValue"
+                @click="onRemove"
             />
 
             <!-- 검색 -->
@@ -52,8 +58,7 @@
 
 <script lang="ts">
 import type { Props as FormProps } from '@/components/form/container/Default.vue';
-
-import type { InputValue, NullableHTMLElement } from '@/mappings/types/common';
+import type { InputValue } from '@/mappings/types/common';
 
 // type
 export type Props = FormProps & {
@@ -92,7 +97,7 @@ const {
     id,
     disabled,
     invalid,
-    leftLabel,
+    leftLabel: isLeftLabel,
     leftUnit: isLeftUnit,
     readonly,
     required,
@@ -104,7 +109,7 @@ const {
 const emit = defineEmits<Emits>();
 
 // refs
-const unitElement = ref<NullableHTMLElement<HTMLSpanElement>>(null);
+const unitElement = ref<HTMLSpanElement | null>(null);
 
 // global
 const { width: unitWidth } = useElementBounding(unitElement);
@@ -121,7 +126,7 @@ const hasUnit = useArrayIncludes(hasSlots, 'unit');
 const style = computed(() => {
     const style: CSSProperties = {};
 
-    if (unitWidth.value > (isLeftUnit ? 38 : 34)) {
+    if (unitWidth.value > 28) {
         style[`padding${isLeftUnit ? 'Left' : 'Right'}`] = rem(unitWidth.value);
     }
 
@@ -132,7 +137,7 @@ const style = computed(() => {
 /**
  * 현재 입력 값 초기화 시
  */
-const onRemoveValue = () => {
+const onRemove = () => {
     value.value = undefined;
 };
 </script>

@@ -78,7 +78,7 @@ const globalComponent = {
  * 전역 컴포넌트 초기 설정
  * @param app Vue 인스턴스
  */
-const init = (app: App) => Object.entries(globalComponent)
+const init = (app: App<Element>) => Object.entries(globalComponent)
     .forEach(([name, component]) => app.component(name, component));
 
 type GlobalComponent = typeof globalComponent;

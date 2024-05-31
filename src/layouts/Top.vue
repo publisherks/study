@@ -1,25 +1,18 @@
 <!-- Top 레이아웃 -->
 <template>
     <div class="top-container">
-        <p class="cate-nav">
-            {{ currentMenu.name }}
-            <template v-if="currentMenu.children">
-                <i class="fas fa-chevron-right" />
-                {{ currentMenu.children }}
-            </template>
-        </p>
         <div
             ref="userMenuElement"
             :class="['user', { open: isShowUserMenu }]"
             @click="onClickUserMenu"
         >
             <div class="icon">
-                <i class="fa-solid fa-user" />
+                <i class="fa-sharp fa-solid fa-user" />
             </div>
             <div class="user-menu">
                 <ul>
                     <li @click="onClickProfile">
-                        프로필
+                        마이페이지
                     </li>
                     <li @click="onClickLogout">
                         로그아웃
@@ -32,45 +25,27 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { onClickOutside, reactiveComputed, useToggle } from '@vueuse/core';
+import { useRouter } from 'vue-router';
+import { onClickOutside, useToggle } from '@vueuse/core';
 
 import { RouterName } from '@/mappings/enum';
-import menus from '@/mappings/menus';
-import type { NullableHTMLElement } from '@/mappings/types/common';
 
 import useLoginStore from '@/stores/login';
 import useMessageStore from '@/stores/message';
 
 // router
-const route = useRoute();
 const router = useRouter();
 
 // refs
-const userMenuElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const userMenuElement = ref<HTMLDivElement | null>(null);
 
 // global
-const [isShowUserMenu, setIsShowUserMenu] = useToggle();
+const [isShowUserMenu, toggleUserMenu] = useToggle();
 
 // store
 const { logout } = useLoginStore();
 /** 메시지 */
 const messageStore = useMessageStore();
-
-// computed
-/** 현재 메뉴 */
-const currentMenu = reactiveComputed(() => {
-    const { name, childrens = [] } = (menus.find(({ name, childrens = [], links = [] }) => (
-        name === route.name
-        || childrens.some(({ name, links = [] }) => (name === route.name || links.some((value) => (value === route.name))))
-        || links.some((value) => (value === route.name))
-    )) ?? {});
-
-    return {
-        name: (name ?? route.name),
-        children: childrens.length ? route.name : null,
-    };
-});
 
 // event
 /**
@@ -84,10 +59,7 @@ const onClickLogout = () => messageStore.$patch({
     buttonText: { ok: '로그아웃' },
     callback: {
         ok() {
-            // 로그아웃
             logout();
-
-            // 로그인 화면 표시
             router.push({ name: RouterName.Login });
         },
     },
@@ -96,15 +68,15 @@ const onClickLogout = () => messageStore.$patch({
 /**
  * 프로필 클릭 시
  */
-const onClickProfile = () => router.push({ name: RouterName.Profile });
+const onClickProfile = () => router.push({ name: RouterName.Mypage });
 
 /**
  * 계정 메뉴 클릭 시
  */
-const onClickUserMenu = () => setIsShowUserMenu();
+const onClickUserMenu = () => toggleUserMenu();
 
 /**
  * 계정 메뉴 외부 클릭 시
  */
-onClickOutside(userMenuElement, () => setIsShowUserMenu(false));
+onClickOutside(userMenuElement, () => toggleUserMenu(false));
 </script>

@@ -1,14 +1,16 @@
 @charset "UTF-8";
 @use "sass:math";
 
+$gapSize: rem(20px);
+
 .grid-container {
     display: grid;
-    grid-column-gap: rem(24px);
+    grid-column-gap: $gapSize;
 
     $columns: 12;
 
     @for $i from 1 through $columns {
-        $gap : calc((rem(24px) * $i) - rem(24px));
+        $gap : calc(($gapSize * $i) - $gapSize);
 
         &.cell-#{$i} {
             grid-template-columns: repeat(#{$i}, minmax(calc((100% - $gap) / $i), auto));
@@ -17,13 +19,5 @@
 
     &.row {
         grid-row-gap: rem(24px);
-    }
-
-    &.align-start {
-        align-items: start;
-    }
-
-    &.align-end {
-        align-items: end;
     }
 }

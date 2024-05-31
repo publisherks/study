@@ -1,4 +1,3 @@
-<!-- Input 컴포넌트 (검색 필드) -->
 <template>
     <VTitle sub>
         - Search Inputs
@@ -20,7 +19,7 @@
     <div class="flex mb-30">
         <VSelect
             v-model:value="select"
-            :options
+            :options="options"
             placeholder="검색 조건"
             class="sm"
         />
@@ -31,7 +30,7 @@
             class="ml-10"
         />
         <VBtn
-            :kind="ButtonType.Sub1"
+            :kind="ButtonType.Cancel"
             class="ml-10"
             @click="onSearch(inputs[1])"
         >

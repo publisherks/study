@@ -9,12 +9,12 @@
         </template>
         <p
             class="message-text"
-            v-html="nl2br(message)"
+            v-html="nl2br(message ?? '')"
         />
         <template #bottom>
             <VBtn
                 v-if="isConfirm"
-                :kind="ButtonType.Sub1"
+                :kind="ButtonType.Cancel"
                 class="mr-10"
                 @click="onClickButton('cancel')"
             >
@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import { onKeyStroke } from '@vueuse/core';
 
 import { ButtonType } from '@/mappings/enum';
 
@@ -41,4 +42,14 @@ import nl2br from '@/utils/format/nl2br';
 const messageStore = useMessageStore();
 const { isShow, title, message, isConfirm, buttonText } = storeToRefs(messageStore);
 const { onClickButton } = messageStore;
+
+/**
+ * Esc 키 입력 시
+ */
+onKeyStroke('Escape', () => onClickButton('cancel'));
+
+/**
+ * Enter 키 입력 시
+ */
+onKeyStroke('Enter', () => onClickButton('ok'));
 </script>

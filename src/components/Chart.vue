@@ -2,7 +2,7 @@
 <template>
     <div
         class="chart-box"
-        :style
+        :style="style"
     >
         <div
             v-show="typeof legend === 'boolean' && legend"
@@ -14,9 +14,7 @@
 
 <script lang="ts">
 import type { ChartConfiguration } from 'chart.js/auto';
-
-import type { Nullable, NullableHTMLElement, Numeric } from '@/mappings/types/common';
-
+import type { Numeric } from '@/mappings/types/common';
 import type { Options as LegendOptions } from '@/plugins/chart/legend';
 
 // type
@@ -28,7 +26,7 @@ export type Props = Pick<ChartConfiguration, 'type'> & Pick<ChartConfiguration['
     height?: Numeric;
 
     /** 범례 */
-    legend?: NullableHTMLElement | boolean;
+    legend?: HTMLElement | null | boolean;
 
     /** 범례 옵션 */
     legendOptions?: LegendOptions;
@@ -45,21 +43,21 @@ import legendPlugin from '@/plugins/chart/legend';
 import px from '@/utils/css/px';
 
 // variable
-let chart: Nullable<Chart> = null;
+let chart: Chart | null = null;
 
 // props
 const { type, datasets, labels, options, width, height = 200, legend, legendOptions } = defineProps<Props>();
 
 // refs
-const chartElement = ref<NullableHTMLElement<HTMLCanvasElement>>(null);
-const legendElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const chartElement = ref<HTMLCanvasElement | null>(null);
+const legendElement = ref<HTMLDivElement | null>(null);
 
 // computed
 /** 스타일 */
 const style = computed(() => {
     const style: CSSProperties = { height: px(height) };
 
-    if (typeof width !== 'undefined') {
+    if (width || width === 0) {
         style.width = px(width);
     }
 
@@ -84,7 +82,7 @@ const initChart = () => {
         type,
     };
 
-    let legendEl: NullableHTMLElement = null;
+    let legendEl: HTMLElement | null = null;
 
     if (legend) {
         switch (typeof legend) {

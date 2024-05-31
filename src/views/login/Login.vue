@@ -35,7 +35,7 @@
         </VCheck>
         <VBtn
             type="submit"
-            :disabled="isLoading || isSubmitting"
+            :disabled="isSubmitting"
         >
             로그인
         </VBtn>
@@ -64,8 +64,6 @@ import { toTypedSchema } from '@vee-validate/yup';
 
 import { requestLogin } from '@/api/login';
 
-import { getMainRouterName } from '@/functions/get';
-
 import useEvent from '@/global/useEvent';
 import useModal from '@/global/useModal';
 
@@ -86,23 +84,28 @@ const router = useRouter();
 
 // global
 const { onResponse } = useEvent();
-const { execute: request, isLoading } = useAsyncState(requestLogin, {}, {
+const { execute } = useAsyncState(requestLogin, {}, {
     immediate: false,
     onSuccess: (response) => onResponse(response, {
         success() {
-            // 로그인 계정 정보 설정
-            loginStore.$patch(response.data as NonNullable<typeof response.data>);
+            const { data } = response;
+
+            // 로그인 계정 정보가 있는 경우
+            if (data) {
+                // 로그인 계정 정보 설정
+                loginStore.$patch(data);
+            }
 
             if (isSaveUserId.value) {
-                // 아이디 저장 시 쿠키에 아이디 저장
+                // 아이디 저장 시
                 Cookies.set(StorageKey.SaveUserId, id.value!, { expires: 30 });
             } else {
-                // 아이디를 저장하지 않는 경우 쿠키에서 아이디 삭제
+                // 아이디를 저장하지 않는 경우
                 Cookies.remove(StorageKey.SaveUserId);
             }
 
-            // 로그인 계정 권한의 메인 화면 표시
-            router.push({ name: getMainRouterName() });
+            // 메인 화면 표시
+            router.push({ name: RouterName.Main });
         },
     }),
 });
@@ -138,16 +141,13 @@ const [password, passwordProps] = defineField('password', { props: ({ errors }) 
 /**
  * 로그인
  */
-const onSubmit = handleSubmit((values) => request(0, values));
+const onSubmit = handleSubmit(async (values) => await execute(0, values));
 
 /**
  * 비밀번호 찾기
  */
-const onSubmitFindPassword: Emits<FindPasswordModalEmits['submit']> = (id) => {
-    // 비밀번호 재설정 화면 표시
-    router.push({
-        name: RouterName.ResetPassword,
-        query: { id },
-    });
-};
+const onSubmitFindPassword: Emits<FindPasswordModalEmits['submit']> = (id) => router.push({
+    name: RouterName.ResetPassword,
+    query: { id },
+});
 </script>

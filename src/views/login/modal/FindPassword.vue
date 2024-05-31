@@ -39,7 +39,7 @@
                 </VBtn>
                 <VBtn
                     type="submit"
-                    :disabled="isLoadingFindPassword || isSubmitting"
+                    :disabled="isSubmitting"
                 >
                     비밀번호 찾기
                 </VBtn>
@@ -51,10 +51,11 @@
 <script lang="ts">
 import type { RequestModifyUserPassword } from '@/api/user/interface';
 
-import type { ModalEmits } from '@/mappings/types/common';
-
 // type
-export type Emits = ModalEmits & {
+export type Emits = {
+    /** 모달 숨김 */
+    hide: [];
+
     /** 비밀번호 찾기 */
     submit: [id: RequestModifyUserPassword['id']];
 };
@@ -76,14 +77,11 @@ const emit = defineEmits<Emits>();
 
 // global
 const { onResponse } = useEvent();
-const { execute: requestFindPassword, isLoading: isLoadingFindPassword } = useAsyncState(requestFindUserPassword, {}, {
+const { execute } = useAsyncState(requestFindUserPassword, {}, {
     immediate: false,
     onSuccess: (response) => onResponse(response, {
         success() {
-            // 모달 숨김
             emit('hide');
-
-            // 상위 컴포넌트에 아이디 전달
             emit('submit', id.value!);
         },
     }),
@@ -105,15 +103,12 @@ const [name, nameProps] = defineField('name', { props: ({ errors }) => ({ invali
 /**
  * 비밀번호 찾기
  */
-const onSubmit = handleSubmit((values) => requestFindPassword(0, values));
+const onSubmit = handleSubmit(async (values) => await execute(0, values));
 
 /**
  * Esc 키 입력 시
  */
-onKeyStroke('Escape', () => {
-    // 모달 숨김
-    emit('hide');
-});
+onKeyStroke('Escape', () => emit('hide'));
 </script>
 
 <style lang="scss" scoped>

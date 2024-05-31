@@ -36,53 +36,53 @@
                                     ...currentOptions.attrs,
                                     ...currentOptions.props,
                                 }"
-                                v-on="options.events?.reduce((result, name) => ({
+                                v-on="options.events?.reduce((result, value) => ({
                                     ...result,
-                                    [name]: (event?: unknown) => handleEvent(name, event),
+                                    [value]: (event?: unknown) => handle(value, event),
                                 }), {})"
                             >
                                 <template
-                                    v-for="(slot, key) in Object.fromEntries(Object.entries(currentOptions.slots).filter(([, slot]) => slot))"
+                                    v-for="(value, key) in Object.fromEntries(Object.entries(currentOptions.slots).filter(([, value]) => value))"
                                     :key="`${currentComponent}.${key}`"
                                     #[key]
                                 >
-                                    {{ slot }}
+                                    {{ value }}
                                 </template>
                             </component>
                         </div>
                     </td>
                 </tr>
                 <template
-                    v-for="(option, key) in Object.fromEntries(Object.entries(options).filter(([key]) => (key !== 'events')))"
+                    v-for="(value, key) in Object.fromEntries(Object.entries(options).filter(([key]) => (key !== 'events')))"
                     :key="`options.${key}`"
                 >
-                    <tr v-if="!isEmpty(option)">
+                    <tr v-if="!isEmpty(value)">
                         <th colspan="2">
                             {{ key }}
                         </th>
                     </tr>
                     <template v-if="key === 'slots'">
                         <tr
-                            v-for="(slotName) in options[key]"
-                            :key="`options.${key}-slots.${slotName}`"
+                            v-for="(slots) in (value as string[])"
+                            :key="`options.${key}-slots.${slots}`"
                         >
-                            <th>{{ slotName }}</th>
+                            <th>{{ slots }}</th>
                             <td>
                                 <VInput
-                                    v-model:value="currentOptions.slots[slotName]"
+                                    v-model:value="currentOptions.slots[slots]"
                                     class="pull"
                                 />
                             </td>
                         </tr>
                     </template>
-                    <template v-else-if="key === 'attrs' || key === 'props'">
+                    <template v-else>
                         <tr
-                            v-for="(optionValue, optionKey) in options[key]"
+                            v-for="(optionValue, optionKey) in (value as KeyValuePair<KeyValuePair<any>>)"
                             :key="`options.${key}-${optionKey}`"
                         >
                             <th>{{ optionKey }}</th>
                             <td>
-                                <template v-if="optionValue?.type === 'checkbox'">
+                                <template v-if="optionValue.type === 'checkbox'">
                                     <VCheck
                                         v-model:checked="currentOptions[key][optionKey]"
                                         v-bind="optionValue.props"
@@ -90,33 +90,32 @@
                                         {{ optionKey }}
                                     </VCheck>
                                 </template>
-                                <template v-if="optionValue?.type === 'datePicker'">
+                                <template v-if="optionValue.type === 'datePicker'">
                                     <VDatePicker
                                         v-model:value="currentOptions[key][optionKey]"
                                         v-bind="optionValue.props"
                                         class="pull"
                                     />
                                 </template>
-                                <template v-else-if="optionValue?.type === 'input'">
+                                <template v-else-if="optionValue.type === 'input'">
                                     <component
-                                        :is="(optionValue.props as Record<string, any>).type === 'number' ? 'VInputNumber' : 'VInput'"
+                                        :is="optionValue.props.type === 'number' ? 'VInputNumber' : 'VInput'"
                                         v-model:value="currentOptions[key][optionKey]"
                                         v-bind="optionValue.props"
                                         class="pull"
                                     />
                                 </template>
-                                <template v-else-if="optionValue?.type === 'select'">
+                                <template v-else-if="optionValue.type === 'select'">
                                     <VSelect
                                         v-model:value="currentOptions[key][optionKey]"
                                         v-bind="optionValue.props"
-                                        :options="(optionValue.props as Record<string, any>).options"
                                         class="pull"
                                     />
                                 </template>
-                                <template v-else-if="optionValue?.type === 'text'">
+                                <template v-else-if="optionValue.type === 'text'">
                                     {{ currentOptions[key][optionKey] }}
                                 </template>
-                                <template v-else-if="optionValue?.type === 'textarea'">
+                                <template v-else-if="optionValue.type === 'textarea'">
                                     <VTextarea
                                         v-model:value="currentOptions[key][optionKey]"
                                         v-bind="optionValue.props"
@@ -152,13 +151,13 @@
 <script setup lang="ts">
 import { defineAsyncComponent, ref, computed, watch } from 'vue';
 import type { Component } from 'vue';
-import { useAsyncState, reactiveComputed } from '@vueuse/core';
+import { reactiveComputed } from '@vueuse/core';
 import dayjs from 'dayjs';
 
-import { requestCodeList } from '@/api/code';
-
-import { ButtonType, Code } from '@/mappings/enum';
+import { ButtonType } from '@/mappings/enum';
 import components from '@/mappings/json/components.json';
+import platformDevelops from '@/mappings/json/team/platformDevelops.json';
+import type { KeyValuePair } from '@/mappings/types/common';
 
 import isEmpty from '@/utils/isEmpty';
 import isFile from '@/utils/isFile';
@@ -170,14 +169,11 @@ import randomInt from '@/utils/number/randomInt';
 // components
 const InfiniteScroll = defineAsyncComponent(() => import('@/views/sample/usage/InfiniteScroll.vue'));
 
-// global
-const { state: responsePartnames } = useAsyncState(() => requestCodeList({ parentCode: Code.Partname }), {});
-
 // state
 /** 현재 컴포넌트 */
 const currentComponent = ref<string>('');
 /** 현재 컴포넌트 옵션 */
-const currentOptions = ref<Record<Exclude<keyof typeof options, 'events'>, Record<string, any>>>({
+const currentOptions = ref<KeyValuePair<KeyValuePair<any>>>({
     attrs: {},
     props: {},
     slots: {},
@@ -187,18 +183,18 @@ const eventLog = ref<string>('');
 
 // computed
 /** 컴포넌트 */
-const component = computed<Record<typeof components[number]['value'], Component | typeof components[number]['value']>>(() => {
-    const component: Record<typeof components[number]['value'], Component> = { InfiniteScroll };
+const component = computed<KeyValuePair<Component | typeof currentComponent.value>>(() => {
+    const component: KeyValuePair<Component> = { InfiniteScroll };
 
     return pluck(components, 'value')
-        .reduce((result, name) => ({
+        .reduce((result, value) => ({
             ...result,
-            [name]: (component[name] ?? name),
+            [value]: (component[value] ?? value),
         }), {});
 });
 /** 컴포넌트 표시 영역 높이 */
 const height = computed(() => {
-    const height: Record<typeof currentComponent.value, number> = {
+    const height: KeyValuePair<number> = {
         VDatePicker: 600,
         VSelect: 250,
         InfiniteScroll: (currentOptions.value.props.maxHeight + 60),
@@ -220,11 +216,6 @@ const options = reactiveComputed(() => {
         slots,
     };
 });
-/** 부서명 목록 */
-const partnames = computed(() => (responsePartnames.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
 
 // methods
 /**
@@ -252,7 +243,7 @@ const addEventLog = (name: string, event?: unknown) => {
  * @param name 이벤트명
  * @param event 이벤트 정보
  */
-const handleEvent = (name: string, event?: unknown) => {
+const handle = (name: string, event?: unknown) => {
     if (name.startsWith('update:')) {
         currentOptions.value.props[name.replaceAll('update:', '')] = event;
     }
@@ -261,14 +252,14 @@ const handleEvent = (name: string, event?: unknown) => {
 };
 
 // watch
-watch(currentComponent, async (currentComponent) => {
+watch(currentComponent, async (value) => {
     currentOptions.value = {
         attrs: {},
         props: {},
         slots: {},
     };
 
-    switch (currentComponent) {
+    switch (value) {
         case 'VBtn':
             Object.assign(currentOptions.value.props, {
                 type: 'button',
@@ -289,7 +280,6 @@ watch(currentComponent, async (currentComponent) => {
                 locale: 'ko-KR',
                 position: 'left',
                 format: 'YYYY.MM.DD',
-                valueFormat: 'yyyy-MM-dd',
             });
 
             break;
@@ -312,13 +302,13 @@ watch(currentComponent, async (currentComponent) => {
             break;
 
         case 'VRadioGroup':
-            currentOptions.value.props.radios = partnames.value;
+            currentOptions.value.props.radios = structuredClone(platformDevelops);
 
             break;
 
         case 'VSelect':
             Object.assign(currentOptions.value.props, {
-                options: partnames.value,
+                options: structuredClone(platformDevelops),
                 placeholder: '선택해주세요.',
             });
 
@@ -343,7 +333,7 @@ watch(currentComponent, async (currentComponent) => {
         case 'VBarChart':
         case 'VLineChart':
             Object.assign(currentOptions.value.props, {
-                datasets: new Array((currentComponent === 'VBarChart') ? 2 : 10)
+                datasets: new Array((value === 'VBarChart') ? 2 : 10)
                     .fill(1)
                     .map((start, index) => {
                         const dataset = {
@@ -355,7 +345,7 @@ watch(currentComponent, async (currentComponent) => {
                             .toString(16)
                             .padStart(6, '0')}`;
 
-                        switch (currentComponent) {
+                        switch (value) {
                             case 'VBarChart':
                                 Object.assign(dataset, { backgroundColor: color });
 

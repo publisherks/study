@@ -1,4 +1,3 @@
-<!-- Input 컴포넌트 (단위 슬롯) -->
 <template>
     <VTitle sub>
         - Input Units

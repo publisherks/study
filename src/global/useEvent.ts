@@ -1,6 +1,8 @@
 import { useRouter } from 'vue-router';
 
-import type { CommonResponseInfo } from '@/api/interface';
+import type { CommonResponse } from '@/api/interface';
+
+import { Response } from '@/mappings/enum';
 
 import useMessageStore from '@/stores/message';
 
@@ -36,7 +38,7 @@ const setup = () => {
      * API 응답 시
      * @param response 응답 데이터
      * @param options 옵션
-     * @param options.isShowMessage 실패 여부와 관계없이 메시지 표시 여부
+     * @param options.isShowMessage 메시지 표시 여부
      * @param options.isShowMessageOnError 실패 시 메시지 표시 여부
      * @param options.isShowBackOnError 실패 시 이전 화면 표시 여부
      * @param options.success 성공 시 콜백 함수
@@ -44,7 +46,7 @@ const setup = () => {
      * @param options.complete 완료 시 콜백 함수
      */
     const onResponse = (
-        { success: isSuccess, message }: CommonResponseInfo,
+        { code, message }: CommonResponse,
         { isShowMessage = true, isShowMessageOnError, isShowBackOnError, success, error, complete }: {
             isShowMessage?: boolean;
             isShowMessageOnError?: boolean;
@@ -54,28 +56,33 @@ const setup = () => {
             complete?: () => void;
         } = {},
     ) => {
-        // 실패 시 메시지를 표시하는 경우
         if (isShowMessageOnError) {
-            // 실패한 경우만 메시지 표시
+            // 실패 시 메시지를 표시하는 경우 실패한 경우만 메시지 표시
             isShowMessage = false;
+        } else if (isShowMessage) {
+            isShowMessageOnError = false;
         }
 
-        // 메시지가 있을 때 실패 여부와 관계없이 메시지를 표시하는 경우
-        if (message && isShowMessage) {
-            // 메시지 표시
+        // 메시지가 없는 경우 메시지를 표시하지 않음
+        if (!message) {
+            isShowMessage = false;
+            isShowMessageOnError = false;
+        }
+
+        // 메시지 표시
+        if (isShowMessage) {
             messageStore.$patch({
                 isShow: true,
                 message,
             });
         }
 
-        if (isSuccess) {
+        if (code === Response.Success) {
             // 성공 시 콜백 함수 실행
             success?.();
         } else {
-            // 메시지가 있을 때 실패 시 메시지를 표시하는 경우
-            if (message && isShowMessageOnError) {
-                // 메시지 표시
+            // 실패 시 메시지 표시
+            if (isShowMessageOnError) {
                 messageStore.$patch({
                     isShow: true,
                     message,
@@ -85,9 +92,8 @@ const setup = () => {
             // 실패 시 콜백 함수 실행
             error?.();
 
-            // 실패 시 이전 화면을 표시하는 경우
+            // 이전 화면 표시
             if (isShowBackOnError) {
-                // 이전 화면 표시
                 router.back();
             }
         }

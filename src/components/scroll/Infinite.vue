@@ -15,7 +15,7 @@ import { useInfiniteScroll } from '@vueuse/core';
 
 import type { Props as ScrollProps } from '@/components/scroll/Default.vue';
 
-import type { NullableHTMLElement, Numeric } from '@/mappings/types/common';
+import type { Numeric } from '@/mappings/types/common';
 
 import px from '@/utils/css/px';
 import numberFrom from '@/utils/number/from';
@@ -40,7 +40,7 @@ const { distance = defaultDistance, maxHeight = '' } = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 // refs
-const scrollElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const scrollElement = ref<HTMLDivElement | null>(null);
 
 // global
 useInfiniteScroll(scrollElement, () => emit('scroll:bottom'), { distance: numberFrom(distance, defaultDistance) });

@@ -2,11 +2,11 @@
 <template>
     <Form
         v-model:value="value"
-        :id
+        :id="id"
         type="radio"
         :checked="value === checkValue"
-        :disabled
-        :invalid
+        :disabled="disabled"
+        :invalid="invalid"
         class="radio-box"
     >
         <slot />
@@ -15,7 +15,6 @@
 
 <script lang="ts">
 import type { Props as FormProps } from '@/components/form/container/Check.vue';
-
 import type { Primitive } from '@/mappings/types/common';
 
 // type

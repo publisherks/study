@@ -28,14 +28,14 @@
                         />
                     </td>
                     <th class="required">
-                        직급
+                        직책
                     </th>
                     <td>
                         <VSelect
                             v-model:value="position"
                             v-bind="positionProps"
                             :options="positions"
-                            placeholder="직급을 선택해주세요."
+                            placeholder="직책을 선택해주세요."
                             class="pull"
                         />
                     </td>
@@ -93,7 +93,6 @@
                     <td>
                         <VRadioGroup
                             v-model:value="isUsed"
-                            v-bind="isUsedProps"
                             :radios="uses"
                         />
                     </td>
@@ -110,7 +109,7 @@
             </VBtn>
             <VBtn
                 type="submit"
-                :disabled="isLoadingRegist || isLoadingModify || isSubmitting"
+                :disabled="isSubmitting || isLoadingRegist || isLoadingModify"
             >
                 {{ type }}
             </VBtn>
@@ -121,51 +120,50 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import type { HistoryState } from 'vue-router';
 import { useAsyncState } from '@vueuse/core';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
 
-import { requestCodeList } from '@/api/code';
 import { requestUserInfo, requestRegistUser, requestModifyUser } from '@/api/user';
 
 import useEvent from '@/global/useEvent';
 
-import { RouterName, ButtonType, Code } from '@/mappings/enum';
+import { RouterName, ButtonType } from '@/mappings/enum';
+import partnames from '@/mappings/json/partnames.json';
+import positions from '@/mappings/json/positions.json';
+import dataLakeTeams from '@/mappings/json/team/dataLakes.json';
+import platformDevelopTeams from '@/mappings/json/team/platformDevelops.json';
 import { uses } from '@/mappings/option';
+import type { Option } from '@/mappings/types/common';
 
 import useMessageStore from '@/stores/message';
 
 // router
 const route = useRoute();
 const router = useRouter();
-const historyState: HistoryState = history.state;
-
-// variable
-/** idx */
-const idx = route.params.idx ? Number(route.params.idx) : 0;
+const { state } = history;
 
 // global
 const { onResponse } = useEvent();
-const { state: responsePartnames } = useAsyncState(() => requestCodeList({ parentCode: Code.Partname }), {}, { onSuccess: onResponse });
-const { state: responsePositions } = useAsyncState(() => requestCodeList({ parentCode: Code.Position }), {}, { onSuccess: onResponse });
-const { execute: requestTeams, state: responseTeams } = useAsyncState(requestCodeList, {}, {
-    immediate: false,
-    onSuccess: onResponse,
-});
-const { execute: requestInfo } = useAsyncState(() => requestUserInfo(idx), {}, {
+const { execute: requestInfo } = useAsyncState(async () => await requestUserInfo(Number(route.params.idx)), {}, {
     immediate: false,
     onSuccess: (response) => onResponse(response, {
         isShowBackOnError: true,
-        success: () => setValues(response.data as NonNullable<typeof response.data>),
+        success() {
+            const { data } = response;
+
+            if (data) {
+                setValues(data);
+            }
+        },
     }),
 });
 const { execute: requestRegist, isLoading: isLoadingRegist } = useAsyncState(requestRegistUser, {}, {
     immediate: false,
     onSuccess: (response) => onResponse(response, { success: showList }),
 });
-const { execute: requestModify, isLoading: isLoadingModify } = useAsyncState((data) => requestModifyUser(idx, data), {}, {
+const { execute: requestModify, isLoading: isLoadingModify } = useAsyncState(async (data) => await requestModifyUser(Number(route.params.idx), data), {}, {
     immediate: false,
     onSuccess: (response) => onResponse(response, { success: showList }),
 });
@@ -176,22 +174,25 @@ const messageStore = useMessageStore();
 
 // computed
 /** 수정 여부 */
-const isModify = computed(() => Boolean(idx));
-/** 부서명 목록 */
-const partnames = computed(() => (responsePartnames.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
-/** 직급 목록 */
-const positions = computed(() => (responsePositions.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
+const isModify = computed(() => Boolean(route.params.idx));
 /** 팀명 목록 */
-const teams = computed(() => (responseTeams.value.data?.results ?? []).map(({ code, name }) => ({
-    label: name,
-    value: code,
-})));
+const teams = computed(() => {
+    let teams: Option<string>[] = [];
+
+    switch (partname.value) {
+        case '데이터레이크사업부':
+            teams = dataLakeTeams;
+
+            break;
+
+        case '플랫폼개발사업부':
+            teams = platformDevelopTeams;
+
+            break;
+    }
+
+    return teams.sort(({ label: a }, { label: b }) => (a > b) ? 1 : (a < b) ? -1 : 0);
+});
 /** 등록/수정 구분 */
 const type = computed(() => isModify.value ? '수정' : '등록');
 
@@ -200,7 +201,7 @@ const validationSchema = yup.object({
     name: yup.string()
         .required('이름을 입력해주세요.'),
     position: yup.string()
-        .required('직급을 입력해주세요.'),
+        .required('직책을 입력해주세요.'),
     partname: yup.string()
         .required('부서명을 입력해주세요.'),
     team: yup.string(),
@@ -221,7 +222,7 @@ const [partname, partnameProps] = defineField('partname', { props: ({ errors }) 
 const [team, teamProps] = defineField('team', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
 const [email, emailProps] = defineField('email', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
 const [tel, telProps] = defineField('tel', { props: ({ errors }) => ({ invalidMessage: submitCount.value ? errors[0] : '' }) });
-const [isUsed, isUsedProps] = defineField('isUsed', { props: ({ errors }) => ({ invalid: Boolean(submitCount.value && errors.length) }) });
+const [isUsed] = defineField('isUsed');
 
 // methods
 /**
@@ -229,7 +230,7 @@ const [isUsed, isUsedProps] = defineField('isUsed', { props: ({ errors }) => ({ 
  */
 const showList = () => router.push({
     name: RouterName.UserList,
-    state: historyState,
+    state,
 });
 
 // event
@@ -263,15 +264,11 @@ const onSubmit = handleSubmit((values) => messageStore.$patch({
 }));
 
 // watch
-watch(isModify, (isModify) => {
+watch(() => route.params.idx, (value) => {
     // 수정 시
-    if (isModify) {
+    if (value) {
         // 정보 조회 요청
         requestInfo();
     }
 }, { immediate: true });
-watch(partname, (parentCode) => {
-    // 팀명 목록 검색 요청
-    requestTeams(0, { parentCode });
-});
 </script>

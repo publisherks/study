@@ -37,6 +37,12 @@ $z-index: (
 );
 
 /**
+    Layout Size
+*/
+$layoutLeft: rem(200px);
+$layoutTop: rem(50px);
+
+/**
     Breakpoints
 */
 $breakpoint-1024: 1024px;

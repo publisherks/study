@@ -9,7 +9,7 @@
         :disabled="disabled || radio.disabled"
         :invalid="invalid || radio.invalid"
         :class="{ 'ml-30': index }"
-        @update:value="onUpdateValue"
+        @update:value="onUpdate"
     >
         {{ radio.label }}
     </VRadio>
@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import type { Props as RadioProps } from '@/components/form/Radio.vue';
-
 import type { Option } from '@/mappings/types/common';
 
 // type
@@ -38,7 +37,7 @@ const { radios, disabled, invalid } = defineProps<Props>();
  * 값 수정 시
  * @param updateValue 값
  */
-const onUpdateValue = (updateValue: typeof value.value) => {
+const onUpdate = (updateValue: typeof value.value) => {
     value.value = updateValue;
 };
 </script>

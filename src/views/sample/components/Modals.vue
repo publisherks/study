@@ -27,6 +27,7 @@ const messageStore = useMessageStore();
  */
 const onClickShowMessage = () => messageStore.$patch({
     isShow: true,
+    isConfirm: true,
     message: '메시지입니다.',
 });
 </script>

@@ -8,7 +8,7 @@
         align-items: center;
         font-size: rem(14px);
         font-weight: 500;
-        color: var(--text-color1);
+        color: var(--text-default);
         line-height: 1;
         cursor: pointer;
         transition: all .25s;
@@ -21,10 +21,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: rem(12px);
-            height: rem(12px);
-            margin-right: rem(10px);
-            border: 1px solid var(--main-color2);
+            width: rem(14px);
+            height: rem(14px);
+            margin-right: rem(8px);
+            border: 1px solid var(--main);
             background-color: transparent;
             border-radius: 50%;
             transition: all .25s;
@@ -40,26 +40,18 @@
             }
         }
 
-        &:hover i {
-            background-color: rgba(var(--RGB-main-color2), .2);
-        }
-
         input[type=radio]:checked+i:after {
-            background-color: var(--main-color2);
-
-            &:after {
-                background-color: var(--text-color2);
-            }
+            background-color: var(--main);
         }
     }
 
     &.disabled>label {
-        color: rgba(var(--RGB-main-color2), .6);
+        color: var(--text-guide);
         cursor: not-allowed;
 
         i {
-            border-color: rgba(var(--RGB-main-color2), .2);
-            background-color: rgba(var(--RGB-main-color2), .2);
+            border-color: var(--cancel-disabled);
+            background-color: var(--cancel-disabled);
 
             &:after {
                 background-color: transparent;
@@ -68,18 +60,14 @@
     }
 
     &.invalid>label {
-        color: var(--delete-color);
+        color: var(--negative);
 
         i {
-            border-color: var(--delete-color);
+            border-color: var(--negative);
         }
 
-        input[type=radio]:checked+i {
-            background-color: transparent;
-
-            &:after {
-                background-color: var(--delete-color);
-            }
+        input[type=radio]:checked+i:after {
+            background-color: var(--negative);
         }
     }
 }

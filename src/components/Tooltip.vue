@@ -6,7 +6,7 @@
     >
         <i
             class="fa-solid fa-circle-info"
-            @click="onClickIcon"
+            @click="onClick"
         />
         <div :class="['tooltip-box', { show: isShow }]">
             <div class="tooltip-con">
@@ -28,13 +28,11 @@ import { onClickOutside, useArrayIncludes, useToggle } from '@vueuse/core';
 
 import useSlots from '@/global/useSlots';
 
-import type { NullableHTMLElement } from '@/mappings/types/common';
-
 // refs
-const tooltipElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const tooltipElement = ref<HTMLDivElement | null>(null);
 
 // global
-const [isShow, setIsShow] = useToggle();
+const [isShow, toggle] = useToggle();
 const { hasSlots } = useSlots();
 
 // computed
@@ -43,12 +41,12 @@ const hasTitle = useArrayIncludes(hasSlots, 'title');
 
 // event
 /**
- * 아이콘 클릭 시
+ * 클릭 시
  */
-const onClickIcon = () => setIsShow();
+const onClick = () => toggle();
 
 /**
  * 외부 클릭 시
  */
-onClickOutside(tooltipElement, () => setIsShow(false));
+onClickOutside(tooltipElement, () => toggle(false));
 </script>

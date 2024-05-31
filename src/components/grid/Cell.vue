@@ -2,7 +2,7 @@
 <template>
     <div
         class="cell"
-        :style
+        :style="style"
     >
         <slot />
     </div>
@@ -14,29 +14,27 @@ import type { CSSProperties } from 'vue';
 
 // type
 type Props = {
-    /** [`grid-column-start`, `grid-column-end`] */
-    col?: number[];
-
     /** [`grid-row-start`, `grid-row-end`] */
     row?: number[];
+
+    /** [`grid-column-start`, `grid-column-end`] */
+    col?: number[];
 };
 
 // props
-const { col: cols = [], row: rows = [] } = defineProps<Props>();
+const { row: rows = [], col: cols = [] } = defineProps<Props>();
 
 // computed
 /** 스타일 */
 const style = computed(() => {
     const style: CSSProperties = {};
-    const [colStart, colEnd] = cols;
-    const [rowStart, rowEnd] = rows;
 
-    if (typeof colStart === 'number' && typeof colEnd === 'number') {
-        style.gridColumn = `${colStart} / ${colEnd}`;
+    if (rows.length === 2) {
+        style['grid-row'] = `${rows[0]} / ${rows[1]}`;
     }
 
-    if (typeof rowStart === 'number' && typeof rowEnd === 'number') {
-        style.gridRow = `${rowStart} / ${rowEnd}`;
+    if (cols.length === 2) {
+        style['grid-column'] = `${cols[0]} / ${cols[1]}`;
     }
 
     return style;

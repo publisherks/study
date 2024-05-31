@@ -3,12 +3,12 @@
     <div
         v-show="isAlways || isShow"
         class="loading-box"
-        :style
+        :style="style"
     >
         <div class="loading">
             <div
-                v-for="(number) in 4"
-                :key="`loading${number}`"
+                v-for="(value) in 4"
+                :key="`loading${value}`"
             />
         </div>
     </div>

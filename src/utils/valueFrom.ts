@@ -1,4 +1,4 @@
-import type { Nullish } from '@/mappings/types/common';
+import type { KeyValuePair, Nullish } from '@/mappings/types/common';
 
 import isEmpty from '@/utils/isEmpty';
 
@@ -9,10 +9,6 @@ import isEmpty from '@/utils/isEmpty';
  * @param isAllowBlank `''`(빈 문자열) 허용 여부
  * @return `value` 값이 `null`, `undefined`, `[]`(빈 배열), `{}`(빈 객체), `''`(빈 문자열)이 아닌 경우 `value` 값, 그렇지 않은 경우 `defaultValue` 값
  */
-const valueFrom = <T, U>(value: T, defaultValue: U, isAllowBlank?: boolean) => (
-    isEmpty(value, isAllowBlank)
-        ? defaultValue
-        : value
-) as T extends Nullish | '' | [] | Record<string, never> ? U : T;
+const valueFrom = <T, U>(value: T, defaultValue: U, isAllowBlank?: boolean) => (isEmpty(value, isAllowBlank) ? defaultValue : value) as T extends Nullish | '' | [] | KeyValuePair<never> ? U : T;
 
 export default valueFrom;

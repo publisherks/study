@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-import convertURL from '@/utils/url';
-
-const { VITE_API_HOST: host, VITE_API_PORT: port, VITE_API_URL: url, VITE_API_PROXY: proxy } = import.meta.env;
+import url from '@/utils/url';
 
 /**
  * Axios 인스턴스
@@ -10,11 +8,11 @@ const { VITE_API_HOST: host, VITE_API_PORT: port, VITE_API_URL: url, VITE_API_PR
  */
 const api = axios.create({
     baseURL: (
-        proxy
-        || url
-        || convertURL({
-            host,
-            port,
+        import.meta.env.VITE_API_PROXY
+        || import.meta.env.VITE_API_URL
+        || url({
+            host: import.meta.env.VITE_API_HOST,
+            port: import.meta.env.VITE_API_PORT,
         })
     ),
 });

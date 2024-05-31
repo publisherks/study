@@ -12,34 +12,34 @@
     &-thumb {
         width: 6px;
         border-radius: 6px;
-        background-color: var(--table-border);
+        background-color: var(--bg-table-head);
         background-clip: padding-box;
         border: 2px solid transparent;
 
         div.select-items & {
-            background-color: var(--table-border);
+            background-color: var(--bg-table-head);
         }
     }
 
     &-track {
         width: 12px;
-        background-color: var(--bg-color);
+        background-color: transparent;
 
         div.select-items & {
-            background-color: var(--bg-color);
+            background-color: var(--bg-back);
         }
 
         &-piece {
-            background-color: var(--bg-color);
+            background-color: transparent;
 
             div.select-items & {
-                background-color: var(--bg-color);
+                background-color: var(--bg-back);
             }
         }
     }
 
     &-corner {
-        background-color: var(--bg-color);
+        background-color: var(--bg-back);
     }
 
     &-button {
@@ -56,8 +56,7 @@ body,
 
 #wrap {
     display: grid;
-    grid-template-columns: min-content minmax(auto, calc(100% - rem(264px)));
+    grid-template-columns: min-content minmax(auto, calc(100% - $layoutLeft));
     width: 100%;
     height: 100%;
-    background-color: var(--bg-color);
 }

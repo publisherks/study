@@ -1,7 +1,7 @@
 import isObject from '@/utils/isObject';
 
 // type
-type NestedObject<T> = { [key: string]: NestedObject<T> | T | undefined };
+type NestedObject<T = any> = { [key: string]: NestedObject<T> | T };
 
 /**
  * `nestedObject`(중첩된 객체) 값에서 `partialObject`(일부 객체) 값의 프로퍼티만 수정
@@ -14,9 +14,9 @@ const assignNestedProperty = <T>(nestedObject: NestedObject<T>, partialObject: P
         if (isObject(value)) {
             result[key] ??= {};
 
-            assignNestedProperty(result[key] as NestedObject<T>, value);
+            assignNestedProperty(result[key] as NestedObject<T>, value as Partial<NestedObject<T>>);
         } else {
-            result[key] = value;
+            result[key] = value as T;
         }
 
         return result;

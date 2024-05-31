@@ -2,8 +2,8 @@
 <template>
     <Form
         :invalid="invalid || !isValid"
-        :leftLabel
-        :required
+        :leftLabel="isLeftLabel"
+        :required="required"
         class="upload-wrap"
     >
         <template
@@ -28,7 +28,7 @@
                     class="file-input"
                     type="text"
                     :value="info"
-                    :placeholder
+                    :placeholder="placeholder"
                     readonly
                 />
             </div>
@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useDropZone, useFileDialog, useArrayIncludes, isDefined } from '@vueuse/core';
+import { useDropZone, useFileDialog, useArrayIncludes } from '@vueuse/core';
 
 import type { Props as ButtonProps } from '@/components/form/Button.vue';
 import Form from '@/components/form/container/Default.vue';
@@ -54,11 +54,11 @@ import type { Props as InputProps } from '@/components/form/input/Default.vue';
 import useSlots from '@/global/useSlots';
 
 import { ButtonType } from '@/mappings/enum';
-import type { Nullable, NullableHTMLElement, UploadFile } from '@/mappings/types/common';
+import type { UploadFile } from '@/mappings/types/common';
 
 import useMessageStore from '@/stores/message';
 
-import isValidFile from '@/utils/file/isValid';
+import isValidFile from '@/utils/isValidFile';
 import comma from '@/utils/format/comma';
 import fileSize from '@/utils/format/fileSize';
 
@@ -87,10 +87,10 @@ const {
     accept,
     directory,
     invalid,
-    leftLabel,
+    leftLabel: isLeftLabel,
     multiple,
     required,
-    buttonType = ButtonType.Sub1,
+    buttonType = ButtonType.Sub,
     invalidMessage = '유효한 파일이 아닙니다.',
 } = defineProps<Props>();
 
@@ -98,12 +98,12 @@ const {
 const emit = defineEmits<Emits>();
 
 // refs
-const uploadFileElement = ref<NullableHTMLElement<HTMLDivElement>>(null);
+const uploadFileElement = ref<HTMLDivElement | null>(null);
 
 // global
 const { files: dropFiles } = useDropZone(uploadFileElement, {
     dataTypes: [accept ?? ''],
-    onDrop(drops, event) {
+    onDrop(_, event) {
         const files = (event.dataTransfer?.files ?? null);
 
         if (multiple || !files || files.length <= 1) {
@@ -128,7 +128,7 @@ const messageStore = useMessageStore();
 
 // computed
 /** 현재 파일 목록 */
-const currentFiles = computed(() => (dropFiles.value ?? (isDefined(files) ? Array.from(files.value) : [])));
+const currentFiles = computed(() => (dropFiles.value ?? (files.value ? Array.from(files.value) : [])));
 /** 라벨 존재 여부 */
 const hasLabel = useArrayIncludes(hasSlots, 'label');
 /** 정보 */
@@ -144,7 +144,7 @@ const isValid = computed(() => (!accept || currentFiles.value.every((file) => is
  * 파일 업로드
  * @param files 파일 목록
  */
-const upload = (files: Nullable<FileList>) => {
+const upload = (files: FileList | null) => {
     // 유효한 파일인 경우
     if (isValid.value) {
         // 파일 업로드

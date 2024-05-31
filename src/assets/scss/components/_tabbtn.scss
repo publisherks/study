@@ -5,14 +5,18 @@
     align-items: center;
     justify-content: center;
 
+    &.inline {
+        display: inline-flex;
+        width: auto;
+    }
+
     button { 
-        min-width: rem(128px);
-        height: rem(36px);
-        padding: 0 rem(24px);
+        height: rem(34px);
+        padding: 0 rem(30px);
         font-size: rem(14px);
         font-weight: 700;
-        color: var(--main-color1);
-        border: 1px solid var(--main-color1);
+        color: var(--main);
+        border: 1px solid var(--main);
         background-color: transparent;
         transition: all .25s ease;
 
@@ -21,23 +25,22 @@
         }
 
         &:first-child {
-            border-radius: rem(8px) 0 0 rem(8px);
+            border-radius: rem(3px) 0 0 rem(3px);
         }
 
         &:last-child {
-            border-radius: 0 rem(8px) rem(8px) 0;
+            border-radius: 0 rem(3px) rem(3px) 0;
         }
 
-        &:hover {
-            color: var(--text-color2);
-            border-color: rgba(var(--RGB-main-color1), .8);
-            background: rgba(var(--RGB-main-color1), .8);
+        &:active {
+            color: rgba(var(--RGB-text-btn), .5);
+            border-color: var(--main-line);
+            background: var(--main-line);
         }
 
-        &:active,
         &.active {
-            color: var(--text-color2);
-            background: var(--main-color1);
+            color: var(--text-btn);
+            background: var(--main);
         }
     }
 }

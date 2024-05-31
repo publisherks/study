@@ -3,18 +3,18 @@
 
     1. model (* : 필수)
     1) v-model:value (Primitive : '@/mappings/types/common') : 현재 값
-    1-1) v-model:value.input : 입력 값도 현재 값으로 설정
 
     2. props (* : 필수)
     1) * options (Option[] : '@/mappings/types/common') : 목록
     2) placeholder (string) : 힌트 (default : '선택해주세요.')
     3) disabled (boolean) : 비활성화 여부 (default : false)
-    4) invalid (boolean) : 유효성 여부 (default : false)
-    5) leftLabel (boolean) : 좌측 라벨 여부 (default : false)
-    6) moveToBody (boolean) : <Option> 컴포넌트를 <body> 하위로 이동 여부 (default : false)
-    7) required (boolean) : 필수 여부 (default : false)
-    8) search (boolean) : options(목록) 검색 여부 (default : false)
-    9) invalidMessage (string) : 유효하지 않는 경우 메시지
+    4) input (boolean): 입력 값도 현재 값으로 설정 여부 (default : false)
+    5) invalid (boolean) : 유효성 여부 (default : false)
+    6) leftLabel (boolean) : 좌측 라벨 여부 (default : false)
+    7) moveToBody (boolean) : <Option> 컴포넌트를 <body> 하위로 이동 여부 (default : false)
+    8) required (boolean) : 필수 여부 (default : false)
+    9) search (boolean) : options(목록) 검색 여부 (default : false)
+    10) invalidMessage (string) : 유효하지 않는 경우 메시지
 
     3. emits
     1) emit('scroll:bottom') : 최하단으로 스크롤 시
@@ -29,18 +29,18 @@
     </VTitle>
     <VSelect
         v-model:value="selects[0]"
-        :options
+        :options="options"
         class="xs mb-10"
     />
     <VSelect
         v-model:value="selects[1]"
-        :options
+        :options="options"
         disabled
         class="sm mb-10"
     />
     <VSelect
         v-model:value="selects[2]"
-        :options
+        :options="options"
         placeholder="invalid"
         :invalid="!selects[2]"
         required
@@ -48,7 +48,7 @@
     />
     <VSelect
         v-model:value="selects[3]"
-        :options
+        :options="options"
         moveToBody
         class="xl mb-30"
     />
@@ -58,7 +58,7 @@
     </VTitle>
     <VSelect
         v-model:value="selects[4]"
-        :options
+        :options="options"
         class="pull mb-10"
     >
         <template #label>
@@ -67,7 +67,7 @@
     </VSelect>
     <VSelect
         v-model:value="selects[5]"
-        :options
+        :options="options"
         leftLabel
         class="pull mb-10"
     >
@@ -77,7 +77,7 @@
     </VSelect>
     <VSelect
         v-model:value="selects[6]"
-        :options
+        :options="options"
         class="pull mb-10"
     >
         <template #label>
@@ -89,7 +89,7 @@
     </VSelect>
     <VSelect
         v-model:value="selects[7]"
-        :options
+        :options="options"
         :invalid="!selects[7]"
         leftLabel
         required

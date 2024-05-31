@@ -1,5 +1,3 @@
-import type { Nullish } from '@/mappings/types/common';
-
 import isEmpty from '@/utils/isEmpty';
 
 /**
@@ -9,6 +7,6 @@ import isEmpty from '@/utils/isEmpty';
  * @example
  * clean([null, 0, '', 1, [], {}]); // [0, 1]
  */
-const clean = <T>(array: T[]) => array.filter((value) => !isEmpty(value)) as Exclude<T, Nullish | '' | [] | Record<string, never>>[];
+const clean = <T>(array: T[]) => array.filter((value) => !isEmpty(value));
 
 export default clean;

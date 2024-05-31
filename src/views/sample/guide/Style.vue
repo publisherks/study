@@ -10,17 +10,17 @@
         <VTitle>- Tab Buttons</VTitle>
         <Tabs class="mb-30" />
 
-        <VTitle class="mb-30">
+        <VTitle>
             - Flex Layout
         </VTitle>
         <FlexLayouts />
 
-        <VTitle class="mb-30">
+        <VTitle>
             - Grid Layout
         </VTitle>
         <GridLayouts />
 
-        <VTitle class="mb-30 mt-30">
+        <VTitle class="mt-30">
             - Tables & Pagination
         </VTitle>
         <Tables />
