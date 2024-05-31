@@ -1,6 +1,5 @@
 const jsRules = require('./js.cjs');
 const tsRules = require('./ts.cjs');
-const stylisticRules = require('./stylistic.cjs');
 
 /**
  * Vue ESLint Rules
@@ -41,7 +40,7 @@ const vueRules = {
     ],
 
     /**
-     * 템플릿 안에서 사용되지 않는 등록된 컴포넌트 확인
+     * 템플릿 내부에서 사용되지 않는 등록된 컴포넌트 확인
      * @see {@link https://eslint.vuejs.org/rules/no-unused-components}
      */
     'vue/no-unused-components': [
@@ -508,7 +507,7 @@ module.exports = {
     ...vueRules,
     ...syncRules.reduce((result, rule) => {
         const rules = structuredClone(result);
-        const syncRule = (jsRules[rule] ?? tsRules[`@typescript-eslint/${rule}`] ?? stylisticRules[`@stylistic/${rule}`]);
+        const syncRule = (jsRules[rule] ?? tsRules[`@typescript-eslint/${rule}`]);
 
         if (syncRule) {
             rules[`vue/${rule}`] = syncRule;

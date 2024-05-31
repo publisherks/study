@@ -6,7 +6,6 @@ require('@rushstack/eslint-patch/modern-module-resolution');
  */
 module.exports = {
     root: true,
-    plugins: ['@stylistic'],
     extends: [
         'eslint:recommended',
         '@vue/eslint-config-typescript/recommended',
@@ -21,6 +20,5 @@ module.exports = {
         ...require('./eslint/js.cjs'),
         ...require('./eslint/ts.cjs'),
         ...require('./eslint/vue.cjs'),
-        ...require('./eslint/stylistic.cjs'),
     },
 };

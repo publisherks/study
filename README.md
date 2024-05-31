@@ -26,12 +26,7 @@
 - [ESLint](https://eslint.org)
 - [SCSS](https://sass-lang.com/dart-sass)
 - [Axios](https://axios-http.com/kr) : API 통신
-- [Sentry](https://ulalalab.sentry.io) : 오류 모니터링
-
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com)
-- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (Vetur 비활성화)
+- [Sentry](https://ulalalab.sentry.io/projects/vue-standard) : 오류 모니터링
 
 ## NPM Script
 

@@ -1,4 +1,4 @@
-import request from '@/api';
+// import request from '@/api';
 import type {
     RequestUserList,
     ResponseUserList,
@@ -13,35 +13,145 @@ import type {
     ResponseRestoreUser,
     RequestFindUserPassword,
     ResponseFindUserPassword,
-    ResponseRefreshUserToken,
 } from '@/api/user/interface';
 
-import { getLoginUser } from '@/functions/get';
+import { Response } from '@/mappings/enum';
+import users from '@/mappings/json/users.json';
 
-import { HeaderName } from '@/mappings/enum';
+// const baseURL = '/api/user';
 
-const baseURL = '/api/user';
+// ***************** 임시 코드 시작 ***************** //
+// ********** (실제 개발 시 임시 코드 삭제) ********** //
+const datas = users.map((value, index) => ({
+    ...value,
+    idx: (index + 1),
+}))
+    .reverse()
+    .map((value, index) => ({
+        ...value,
+        rowNbr: (index + 1),
+    }));
+// ***************** 임시 코드 끝 ***************** //
 
 /**
- * 계정 목록 검색
+ * 계정 목록 조회
  * @param params 요청 데이터
  * @return 응답 데이터
  */
-const requestUserList = (params: RequestUserList) => request.get<ResponseUserList>(baseURL, params);
+const requestUserList = async (params: RequestUserList) => { // eslint-disable-line require-await
+    // FIXME: 실제 계정 목록 조회 API 요청 로직 구현 필요
+    // const url = baseURL;
+
+    // return await request.get<ResponseUserList>(url, params);
+
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const lists = datas.filter(
+        (value) => Object.entries(value)
+            .every(([key, value]) => {
+                const { [key as keyof RequestUserList]: param } = params;
+                const likeSearchs = [
+                    'name',
+                    'email',
+                    'tel',
+                ];
+
+                return (
+                    key === 'id'
+                    || typeof param === 'undefined'
+                    || (
+                        likeSearchs.includes(key)
+                        && typeof value === 'string'
+                        && typeof param === 'string'
+                        && value.toLowerCase()
+                            .includes(param.toLowerCase())
+                    )
+                    || (value === param)
+                );
+            }),
+    );
+    const { size = 12 } = params;
+    const response: ResponseUserList = {
+        code: Response.Success,
+        messageKo: '',
+        messageEn: '',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: lists.length,
+        data: lists.slice(size * (params.page - 1), size * params.page),
+    };
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
+};
 
 /**
- * 계정 정보 검색
+ * 계정 정보 조회
  * @param idx idx
  * @return 응답 데이터
  */
-const requestUserInfo = (idx: number) => request.get<ResponseUserInfo>(`${baseURL}/${idx}`);
+const requestUserInfo = async (idx: number) => { // eslint-disable-line require-await
+    // FIXME: 실제 계정 정보 조회 API 요청 로직 구현 필요
+    // const url = `${baseURL}/${idx}`;
+
+    // return await request.get<ResponseUserInfo>(url);
+
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const response: ResponseUserInfo = {
+        code: Response.Success,
+        messageKo: '',
+        messageEn: '',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: 1,
+        data: datas.find((value) => (idx === value.idx)),
+    };
+
+    // 데이터가 없는 경우 (비정상 접근 시)
+    if (!response.data) {
+        Object.assign(response, {
+            code: Response.Error,
+            messageKo: '해당 데이터가 존재하지 않습니다.',
+            messageEn: 'The result does not exist.',
+        });
+    }
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
+};
 
 /**
  * 계정 등록
  * @param data 요청 데이터
  * @return 응답 데이터
  */
-const requestRegistUser = (data: RequestRegistUser) => request.post<ResponseRegistUser>(baseURL, data);
+const requestRegistUser = async (data: RequestRegistUser) => { // eslint-disable-line
+    // FIXME: 실제 계정 등록 API 요청 로직 구현 필요
+    // const url = baseURL;
+
+    // return await request.post<ResponseRegistUser>(url, data);
+
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const response: ResponseRegistUser = {
+        code: Response.Success,
+        messageKo: '등록이 완료되었습니다.',
+        messageEn: 'Registration is complete.',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: 0,
+    };
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
+};
 
 /**
  * 계정 수정
@@ -49,50 +159,138 @@ const requestRegistUser = (data: RequestRegistUser) => request.post<ResponseRegi
  * @param data 요청 데이터
  * @return 응답 데이터
  */
-const requestModifyUser = (idx: number, data: RequestModifyUser) => request.put<ResponseModifyUser>(`${baseURL}/${idx}`, data);
+const requestModifyUser = async (idx: number, data: RequestModifyUser) => { // eslint-disable-line
+    // FIXME: 실제 계정 수정 API 요청 로직 구현 필요
+    // const url = `${baseURL}/${idx}`;
+
+    // return await request.put<ResponseModifyUser>(url, data);
+
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const response: ResponseModifyUser = {
+        code: Response.Success,
+        messageKo: '수정이 완료되었습니다.',
+        messageEn: 'Modification is complete.',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: 0,
+    };
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
+};
 
 /**
  * 계정 비밀번호 수정
  * @param data 요청 데이터
  * @return 응답 데이터
  */
-const requestModifyUserPassword = (data: RequestModifyUserPassword) => request.put<ResponseModifyUserPassword>(`${baseURL}/password`, data);
+const requestModifyUserPassword = async (data: RequestModifyUserPassword) => { // eslint-disable-line
+    // FIXME: 실제 계정 비밀번호 수정 API 요청 로직 구현 필요
+    // const url = `${baseURL}/password`;
+
+    // return await request.put<ResponseModifyUserPassword>(url, data);
+
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const response: ResponseModifyUserPassword = {
+        code: Response.Success,
+        messageKo: '수정이 완료되었습니다.',
+        messageEn: 'Modification is complete.',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: 0,
+    };
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
+};
 
 /**
  * 계정 일괄 미사용
  * @param idxes idx 목록
  * @return 응답 데이터
  */
-const requestDeleteUser = (idxes: number[]) => request.delete<ResponseDeleteUser>(`${baseURL}/${idxes.join()}`);
+const requestDeleteUser = async (idxes: number[]) => { // eslint-disable-line
+    // FIXME: 실제 계정 일괄 미사용 API 요청 로직 구현 필요
+    // const url = `${baseURL}/${idxes.join()}`;
+
+    // return await request.delete<ResponseDeleteUser>(url);
+
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const response: ResponseDeleteUser = {
+        code: Response.Success,
+        messageKo: '삭제가 완료되었습니다.',
+        messageEn: 'Deletion is complete.',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: 0,
+    };
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
+};
 
 /**
  * 계정 일괄 사용
  * @param idxes idx 목록
  * @return 응답 데이터
  */
-const requestRestoreUser = (idxes: number[]) => request.put<ResponseRestoreUser>(`${baseURL}/${idxes.join()}`);
+const requestRestoreUser = async (idxes: number[]) => { // eslint-disable-line
+    // FIXME: 실제 계정 일괄 사용 API 요청 로직 구현 필요
+    // const url = `${baseURL}/${idxes.join()}`;
+
+    // return await request.put<ResponseRestoreUser>(url);
+
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const response: ResponseRestoreUser = {
+        code: Response.Success,
+        messageKo: '수정이 완료되었습니다.',
+        messageEn: 'Modification is complete.',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: 0,
+    };
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
+};
 
 /**
  * 계정 비밀번호 찾기
  * @param params 요청 데이터
  * @return 응답 데이터
  */
-const requestFindUserPassword = (params: RequestFindUserPassword) => request.get<ResponseFindUserPassword>(`${baseURL}/find`, params);
+const requestFindUserPassword = async (params: RequestFindUserPassword) => { // eslint-disable-line
+    // const url = `${baseURL}/find`;
 
-/**
- * 계정 토큰 재발행
- * @return 응답 데이터
- */
-const requestRefreshUserToken = () => {
-    const { accessToken, refreshToken } = getLoginUser();
+    // return await request.get<ResponseFindUserPassword>(url, params);
 
-    return request.get<ResponseRefreshUserToken>(`${baseURL}/refresh`, undefined, {
-        headers: {
-            [HeaderName.AccessToken]: accessToken,
-            [HeaderName.RefreshToken]: refreshToken,
-        },
-        isValidAuth: false,
-    });
+    // ***************** 임시 코드 시작 ***************** //
+    // ********** (실제 개발 시 임시 코드 삭제) ********** //
+    const response: ResponseFindUserPassword = {
+        code: Response.Success,
+        messageKo: '요청이 완료되었습니다.',
+        messageEn: 'Request completed.',
+        error: '',
+        timestamp: Number(new Date()),
+        totalCount: 0,
+    };
+
+    response.message = response.messageKo;
+    // ***************** 임시 코드 끝 ***************** //
+
+    return response;
 };
 
 export {
@@ -104,5 +302,4 @@ export {
     requestDeleteUser,
     requestRestoreUser,
     requestFindUserPassword,
-    requestRefreshUserToken,
 };

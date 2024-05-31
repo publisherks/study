@@ -1,5 +1,4 @@
 import type { CommonResponseInfo } from '@/api/interface';
-
 import type { Login } from '@/mappings/types/store';
 
 /**
