@@ -1,0 +1,452 @@
+[
+    {
+        "name": "강명훈",
+        "position": "주임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "hoon94@ulalalab.com",
+        "personalTelNumber": "010-5434-9231",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "강학주",
+        "position": "대표",
+        "dept": "총괄",
+        "agencyName": "울랄라랩",
+        "email": "ceo@ulalalab.com",
+        "personalTelNumber": "010-7533-9012",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_MASTER]"
+    },
+    {
+        "name": "김규태",
+        "position": "주임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "rbxo9085@ulalalab.com",
+        "personalTelNumber": "010-6262-7030",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김기운",
+        "position": "연구원",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "powerkim365@ulalalab.com",
+        "personalTelNumber": "010-6300-6714",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김민지",
+        "position": "연구원",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "kmj@ulalalab.com",
+        "personalTelNumber": "010-2552-2736",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김백호",
+        "position": "대리",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "baekho@ulalalab.com",
+        "personalTelNumber": "010-4175-5285",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김선애",
+        "position": "팀장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "sunny@ulalalab.com",
+        "personalTelNumber": "010-4219-2405",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김선희",
+        "position": "본부장",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "sh.kim@ulalalab.com",
+        "personalTelNumber": "010-3732-5806",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김응석",
+        "position": "상무",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "eungseok@ulalalab.com",
+        "personalTelNumber": "010-7518-7086",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김재근",
+        "position": "주임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "jaegeun@ulalalab.com",
+        "personalTelNumber": "010-4222-8469",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김재현",
+        "position": "연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "jhyun@ulalalab.com",
+        "personalTelNumber": "010-2535-6283",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김정훈",
+        "position": "대리",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "jeonghoon@ulalalab.com",
+        "personalTelNumber": "010-2067-1673",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "김진용",
+        "position": "선임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "jykim@ulalalab.com",
+        "personalTelNumber": "010-9401-3276",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "남기환",
+        "position": "차장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "ghnam@ulalalab.com",
+        "personalTelNumber": "010-3499-3738",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "노경석",
+        "position": "선임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "nks@ulalalab.com",
+        "personalTelNumber": "010-9567-1113",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "도현수",
+        "position": "책임연구원",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "hsdo@ulalalab.com",
+        "personalTelNumber": "010-4243-1590",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "모영호",
+        "position": "주임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "myh@ulalalab.com",
+        "personalTelNumber": "010-9462-8912",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "문호성",
+        "position": "주임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "havi@ulalalab.com",
+        "personalTelNumber": "010-7131-2258",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "박건희",
+        "position": "연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "gunhee5161@ulalalab.com",
+        "personalTelNumber": "010-9377-5161",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "박소연",
+        "position": "매니저",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "psy@ulalalab.com",
+        "personalTelNumber": "010-8667-8614",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "박현철",
+        "position": "팀장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "hcpark@ulalalab.com",
+        "personalTelNumber": "010-3889-5625",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "배유빈",
+        "position": "과장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "byb@ulalalab.com",
+        "personalTelNumber": "010-5646-9519",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "배준효",
+        "position": "주임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "jhbae@ulalalab.com",
+        "personalTelNumber": "010-7624-4081",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "백창현",
+        "position": "팀장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "bch2000@ulalalab.com",
+        "personalTelNumber": "010-3194-3841",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "서명환",
+        "position": "팀장",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "mhseo@ulalalab.com",
+        "personalTelNumber": "010-8634-1851",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "송준민",
+        "position": "매니저",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "jjun@ulalalab.com",
+        "personalTelNumber": "010-5398-7120",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "신지희",
+        "position": "매니저",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "sjh0325@ulalalab.com",
+        "personalTelNumber": "010-9603-9716",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "안성근",
+        "position": "선임연구원",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "sg.an@ulalalab.com",
+        "personalTelNumber": "010-8517-1242",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "오능균",
+        "position": "연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "ong@ulalalab.com",
+        "personalTelNumber": "010-6810-2078",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "오하영",
+        "position": "인턴",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "hy@ulalalab.com",
+        "personalTelNumber": "010-2806-2301",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "유상영",
+        "position": "매니저",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "showyu@ulalalab.com",
+        "personalTelNumber": "010-3598-0527",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "유태규",
+        "position": "매니저",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "brain@ulalalab.com",
+        "personalTelNumber": "010-6609-7495",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "윤여찬",
+        "position": "연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "ducks1077@ulalalab.com",
+        "personalTelNumber": "010-2614-3390",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "이동철",
+        "position": "선임연구원",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "dclee@ulalalab.com",
+        "personalTelNumber": "010-9393-1804",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "이상훈",
+        "position": "부사장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "kidd.le@ulalalab.com",
+        "personalTelNumber": "010-9409-7935",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "이유선",
+        "position": "연구원",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "lys324@ulalalab.com",
+        "personalTelNumber": "010-2685-3030",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "이진범",
+        "position": "주임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "jeff@ulalalab.com",
+        "personalTelNumber": "010-9999-6672",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "이진성",
+        "position": "선임연구원",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "jinslee@ulalalab.com",
+        "personalTelNumber": "010-8835-9837",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "이혁호",
+        "position": "팀장",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "lhh@ulalalab.com",
+        "personalTelNumber": "010-8625-1591",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "장지동",
+        "position": "팀장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "jdjang@ulalalab.com",
+        "personalTelNumber": "010-3295-0279",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "전민재",
+        "position": "인턴",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "twinminjae@ulalalab.com",
+        "personalTelNumber": "010-7706-8311",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "정선미",
+        "position": "팀장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "sun@ulalalab.com",
+        "personalTelNumber": "010-7534-9012",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "정환일",
+        "position": "팀장",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "hijung@ulalalab.com",
+        "personalTelNumber": "010-3693-7903",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "최연웅",
+        "position": "매니저",
+        "dept": "데이터레이크사업부",
+        "agencyName": "울랄라랩",
+        "email": "ung@ulalalab.com",
+        "personalTelNumber": "010-7106-2782",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    },
+    {
+        "name": "한동구",
+        "position": "팀장",
+        "dept": "플랫폼개발사업부",
+        "agencyName": "울랄라랩",
+        "email": "donggu@ulalalab.com",
+        "personalTelNumber": "010-8926-5400",
+        "companyTelNumber": "010-123-4561",
+        "addAuthorities": "[ROLE_NONE, ROLE_ADMIN]"
+    }
+]

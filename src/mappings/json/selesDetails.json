@@ -1,0 +1,392 @@
+[
+    {
+        "seq": 1,
+        "salesName": "새로운영업",
+        "salesServiceType": "SmartHACCP",
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homepage": "www.naver.com",
+        "bizNo": "119-86-45625",
+        "address": "경기도 안양시 동안구 엘에스로 112 4층 울랄라랩",
+        "startDate": "2024-02-14",
+        "salesStatus": "CONSULTATION",
+        "mainSalesMangerName": "테스터1",
+        "mainSalesMangerPosition": "직책1",
+        "mainSalesMangerAgencyName": "울랄라랩",
+        "subSalesMangerName": "테스터2",
+        "subSalesMangerPosition": "직책2",
+        "subSalesMangerAgencyName": "울랄라랩",
+        "clientName": "삼송",
+        "mainClientContactName": "삼송 김대리1",
+        "position": "대리",
+        "email": "ss@sss.com",
+        "companyTelNumber": "070-000-0000",
+        "personalTelNumber": "010-000-0000",
+        "salesClientSimpleDtoList": [
+            {
+                "seq": 1,
+                "clientContactName": "삼송 김대리1",
+                "position": "대리"
+            }
+        ],
+        "estimatedAmount": null,
+        "contractTargetDate": null,
+        "contractPossibility": null,
+        "estimatedAmountThisYear": null,
+        "contractAmount": null,
+        "contractStartDate": null,
+        "contractEndDate": null,
+        "salesAmountThisYear": null,
+        "reflectedAmount": null,
+        "salesStatusHistoryDtoList": [
+            {
+                "seq": 1,
+                "salesStatus": "CONSULTATION",
+                "createDate": "2024-02-14",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "salesName": "설비 전력 모니터링",
+                "salesServiceType": "Show My Panel",
+                "fileDtoList": [
+                    {
+                        "seq": 1,
+                        "oriFileName": "원본이름1",
+                        "fileSize": 123,
+                        "type": "png"
+                    }
+                ],
+                "childseq": [2, 3]
+            },
+            {
+                "seq": 2,
+                "salesStatus": "CONSULTATION",
+                "createDate": "2024-02-14",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "salesName": "온습도 관리",
+                "salesServiceType": "Show My LoRa",
+                "fileDtoList": [
+                    {
+                        "seq": 1,
+                        "oriFileName": "원본이름1",
+                        "fileSize": 123,
+                        "type": "hwp"
+                    },
+                    {
+                        "seq": 2,
+                        "oriFileName": "원본이름2",
+                        "fileSize": 123,
+                        "type": "docx"
+                    }
+                ]
+            },
+            {
+                "seq": 3,
+                "salesStatus": "CONSULTATION",
+                "createDate": "2024-02-14",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "salesName": "화재감지 시스템 구축",
+                "salesServiceType": "Show My Panel",
+                "fileDtoList": [
+                    [
+                        {
+                            "seq": 1,
+                            "oriFileName": "원본이름1",
+                            "fileSize": 123,
+                            "type": "zip"
+                        },
+                        {
+                            "seq": 2,
+                            "oriFileName": "원본이름2",
+                            "fileSize": 123,
+                            "type": "mp4"
+                        },
+                        {
+                            "seq": 3,
+                            "oriFileName": "원본이름3",
+                            "fileSize": 123,
+                            "type": "txt"
+                        }
+                    ]
+                ]
+            },
+            {
+                "seq": 4,
+                "salesStatus": "CONTRACT",
+                "createDate": "2024-02-14",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "salesName": "설비 전력 모니터링",
+                "salesServiceType": "Show My Works",
+                "fileDtoList": []
+            },
+            {
+                "seq": 5,
+                "salesStatus": "COMPLETION",
+                "createDate": "2024-02-14",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "salesName": "온습도 관리",
+                "salesServiceType": "Show My Tool",
+                "fileDtoList": []
+            },
+            {
+                "seq": 6,
+                "salesStatus": "PARTNER",
+                "createDate": "2024-02-14",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "salesName": "화재감지 시스템 구축",
+                "salesServiceType": "생산량관리 솔루션",
+                "fileDtoList": []
+            }
+        ]
+    },
+    {
+        "seq": 2,
+        "salesName": "새로운영업",
+        "salesServiceType": "SmartHACCP",
+        "clientType": "제조업",
+        "product": "설탕 및 유제품 생산",
+        "homepage": "www.naver.com",
+        "bizNo": "119-86-45625",
+        "address": "경기도 안양시 동안구 엘에스로 112 4층 울랄라랩",
+        "startDate": "2024-02-14",
+        "salesStatus": "CONSULTATION",
+        "mainSalesMangerName": "테스터1",
+        "mainSalesMangerPosition": "직책1",
+        "mainSalesMangerAgencyName": "울랄라랩",
+        "subSalesMangerName": "테스터2",
+        "subSalesMangerPosition": "직책2",
+        "subSalesMangerAgencyName": "울랄라랩",
+        "clientName": "삼송",
+        "mainClientContactName": "삼송 김대리1",
+        "position": "대리",
+        "email": "ss@sss.com",
+        "companyTelNumber": "070-000-0000",
+        "personalTelNumber": "010-000-0000",
+        "salesClientSimpleDtoList": [
+            {
+                "seq": 2,
+                "clientContactName": "삼송 김대리1",
+                "position": "대리"
+            }
+        ],
+        "estimatedAmount": null,
+        "contractTargetDate": null,
+        "contractPossibility": null,
+        "estimatedAmountThisYear": null,
+        "contractAmount": null,
+        "contractStartDate": null,
+        "contractEndDate": null,
+        "salesAmountThisYear": null,
+        "reflectedAmount": null,
+        "salesStatusHistoryDtoList": [
+            {
+                "seq": 1,
+                "salesStatus": "CONSULTATION",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 4,
+                "salesStatus": "PROPOSAL",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "PROPOSAL",
+                "fileDtoList": [
+                    {
+                        "seq": 1,
+                        "oriFileName": "원본이름1",
+                        "fileSize": 123,
+                        "type": "hwp"
+                    },
+                    {
+                        "seq": 2,
+                        "oriFileName": "원본이름2",
+                        "fileSize": 123,
+                        "type": "docx"
+                    }
+                ],
+                "statusSeqGroup": [
+                    5,
+                    6
+                ]
+            },
+            {
+                "seq": 5,
+                "salesStatus": "PROPOSAL",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "PROPOSAL",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 6,
+                "salesStatus": "PROPOSAL",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "PROPOSAL",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 7,
+                "salesStatus": "QUOTATION",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "QUOTATION",
+                "fileDtoList": [],
+                "statusSeqGroup": [
+                    8
+                ]
+            },
+            {
+                "seq": 8,
+                "salesStatus": "QUOTATION",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "QUOTATION",
+                "fileDtoList": [
+                    {
+                        "seq": 1,
+                        "oriFileName": "원본이름1",
+                        "fileSize": 123,
+                        "type": "jpg"
+                    },
+                    {
+                        "seq": 2,
+                        "oriFileName": "원본이름2",
+                        "fileSize": 123,
+                        "type": "mp4"
+                    }
+                ],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 9,
+                "salesStatus": "CONTRACT",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "CONTRACT",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 10,
+                "salesStatus": "COMPLETION",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "COMPLETION",
+                "fileDtoList": [],
+                "statusSeqGroup": [
+                    11,
+                    12,
+                    13
+                ]
+            },
+            {
+                "seq": 11,
+                "salesStatus": "COMPLETION",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "COMPLETION",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 12,
+                "salesStatus": "COMPLETION",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "COMPLETION",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 13,
+                "salesStatus": "COMPLETION",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "COMPLETION",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            },
+            {
+                "seq": 14,
+                "salesStatus": "PARTNER",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "PARTNER",
+                "fileDtoList": [],
+                "statusSeqGroup": [
+                    15
+                ]
+            },
+            {
+                "seq": 15,
+                "salesStatus": "PARTNER",
+                "createDate": "2024-03-18",
+                "createdUserName": "테스터1",
+                "msg": "PARTNER",
+                "fileDtoList": [],
+                "statusSeqGroup": null
+            }
+        ]
+    },
+    {
+        "seq": 3,
+        "salesName": "새로운영업",
+        "salesServiceType": "SmartHACCP",
+        "clientType": "제조업",
+        "product": "",
+        "homepage": "",
+        "bizNo": "119-86-45625",
+        "address": "경기도 안양시 동안구 엘에스로 112 4층 울랄라랩",
+        "startDate": "2024-02-14",
+        "salesStatus": "CONSULTATION",
+        "mainSalesMangerName": "테스터1",
+        "mainSalesMangerPosition": "직책1",
+        "mainSalesMangerAgencyName": "울랄라랩",
+        "subSalesMangerName": "테스터2",
+        "subSalesMangerPosition": "직책2",
+        "subSalesMangerAgencyName": "울랄라랩",
+        "clientName": "삼송",
+        "mainClientContactName": "삼송 김대리1",
+        "position": "대리",
+        "email": "ss@sss.com",
+        "companyTelNumber": "070-000-0000",
+        "personalTelNumber": "010-000-0000",
+        "salesClientSimpleDtoList": [
+            {
+                "seq": 3,
+                "clientContactName": "삼송 김대리1",
+                "position": "대리"
+            }
+        ],
+        "estimatedAmount": null,
+        "contractTargetDate": null,
+        "contractPossibility": null,
+        "estimatedAmountThisYear": null,
+        "contractAmount": null,
+        "contractStartDate": null,
+        "contractEndDate": null,
+        "salesAmountThisYear": null,
+        "reflectedAmount": null,
+        "salesStatusHistoryDtoList": [
+            {
+                "seq": 3,
+                "salesStatus": "CONSULTATION",
+                "createDate": "2024-02-14",
+                "createdUserName": "테스트",
+                "msg": "테스트 님이 영업을 등록하였습니다.",
+                "fileDtoList": []
+            }
+        ]
+    }
+]

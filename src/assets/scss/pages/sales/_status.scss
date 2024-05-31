@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+.grid-container {
+    flex: 1 0 auto;
+}
+
+.contents {
+    height: 100%;
+
+    .inquiry-total {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: rem(20px);
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: rem(105px);
+            padding: rem(14px) 0;
+            border-radius: rem(3px);
+            border: 1px solid var(--inquiry-line);
+            background: var(--inquiry);
+            cursor: pointer;
+            transition: all .25s ease;
+
+            &:active {
+                border-color: var(--inquiry-line);
+                background: var(--inquiry-line);
+            }
+
+            p {
+                margin-bottom: rem(10px);
+                font-size: rem(14px);
+                font-weight: 700;
+                line-height: 1;
+                color: var(--text-default);
+            }
+
+            strong {
+                font-size: rem(20px);
+                font-weight: 700;
+                line-height: 1;
+                color: var(--text-default);
+            }
+        }
+    }
+
+    :deep(.alarm-list) {
+        .alarm-box {
+            display: flex;
+            flex-direction: column;
+            height: rem(111px);
+            padding: rem(14px) rem(16px);
+            border-radius: rem(3px);
+            border: 1px solid var(--bg-dividline);
+            cursor: pointer;
+            transition: all .25s ease;
+
+            &:hover {
+                border-color: var(--main);
+            }
+
+            &:active {
+                background-color: var(--bg-back);
+            }
+
+            &:not(:last-child) {
+                margin-bottom: rem(10px);
+            }
+
+            .con {
+                font-size: rem(14px);
+                line-height: rem(20px);
+                color: var(--text-default);
+                @include textOverflow(3);
+            }
+
+            .time {
+                align-self: flex-end;
+                margin-top: auto;
+                font-size: rem(13px);
+                font-weight: 500;
+                line-height: 1;
+                color: var(--text-sub);
+            }
+        }
+    }
+
+    $statusClass: (
+        'counsel',
+        'offer',
+        'estimate',
+        'contract',
+        'complete',
+        'partner',
+        'cancel',
+        'hold',
+    );
+
+    .sorting-list {
+        display: flex;
+        align-items: center;
+
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: rem(134px);
+            height: rem(52px);
+            padding: 0 rem(20px);
+            border-radius: rem(3px);
+            cursor: pointer;
+            transition: all .25s ease;
+
+            @each $clsNm in $statusClass {
+                &.#{$clsNm} {
+                    border: 1px solid var(--#{$clsNm}-line);
+                    background-color: var(--#{$clsNm});
+    
+                    &:active {
+                        background-color: var(--#{$clsNm}-line);
+                    }
+                }
+            }
+
+            &.all {
+                width: rem(148px);
+                border: 1px solid var(--primary-pressed);
+                background-color: var(--primary);
+
+                &:active {
+                    background-color: var(--primary-line);
+
+                }
+            }
+
+            &:not(:last-child) {
+                margin-right: rem(10px);
+            }
+
+            &:nth-child(6) {
+                margin-right: rem(30px);
+            }
+            
+            p,
+            strong {
+                font-weight: 700;
+                line-height: 1;
+                color: var(--text-btn);
+            }
+
+            p {
+                font-size: rem(14px);
+            }
+
+            strong {
+                font-size: rem(20px);
+            }
+        }
+    }
+
+    :deep(.tb-container) {
+        @each $clsNm in $statusClass {
+            td.#{$clsNm} {
+                color: var(--text-btn);
+                background-color: var(--#{$clsNm});
+            }
+        }
+    }
+}

@@ -1,0 +1,130 @@
+[
+    {
+        "seq": 1,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 2,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 10,
+        "currentManagerAccountCount": 10
+    },
+    {
+        "seq": 3,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 4,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 5,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 6,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 7,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 8,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 5,
+        "currentManagerAccountCount": 5
+    },
+    {
+        "seq": 9,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 10,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 11,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 12,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 13,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 14,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 15,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    },
+    {
+        "seq": 16,
+        "agencyName": "울랄라랩",
+        "adminAccountCount": 10,
+        "managerAccountCount": 10,
+        "currentAdminAccountCount": 0,
+        "currentManagerAccountCount": 0
+    }
+]

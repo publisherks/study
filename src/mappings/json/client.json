@@ -1,0 +1,1404 @@
+[
+    {
+        "seq": 1,
+        "clientName": "테일 레이트 테크놀로지",
+        "address": "경기도 안양시",
+        "salesCount": 5,
+        "clientContactCount": 3,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "김대리",
+                "position": "대리",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "설비 전력 모니터링"
+                    }
+                ]
+            },
+            {
+                "contactName": "김과장",
+                "position": "과장",
+                "dept": "사업부",
+                "personalTelNumber": "010-1111-2222",
+                "companyTelNumber": "070-123-4567",
+                "email": "sss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 7,
+                        "salesName": "온습도 관리"
+                    },
+                    {
+                        "salesSeq": 8,
+                        "salesName": "화재감지 시스템 구축"
+                    }
+                ]
+            },
+            {
+                "contactName": "김부장",
+                "position": "부장",
+                "dept": "사업부",
+                "personalTelNumber": "010-1234-5678",
+                "companyTelNumber": "070-123-4567",
+                "email": "ssss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 7,
+                        "salesName": "온습도 관리"
+                    },
+                    {
+                        "salesSeq": 8,
+                        "salesName": "화재감지 시스템 구축"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 2,
+        "clientName": "웨일즈 인터네셔널",
+        "address": "경기도 남양주시",
+        "salesCount": 2,
+        "clientContactCount": 2,
+        "clientType": "제조업2",
+        "product": "소프트웨어2",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 3,
+        "clientName": "만인정보시스템",
+        "address": "서울시 관악구",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "삼송 김대리1",
+                "position": "대리",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 4,
+        "clientName": "NFWA System",
+        "address": "WAG NSW AU",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 5,
+        "clientName": "NFWA System",
+        "address": "WAG NSW AU",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 6,
+        "clientName": "Til-GA",
+        "address": "Houston Texas USA",
+        "salesCount": 6,
+        "clientContactCount": 2,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 7,
+        "clientName": "IGL 전자",
+        "address": "경상남도 김해시",
+        "salesCount": 3,
+        "clientContactCount": 4,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라2",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라3",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업4"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 8,
+        "clientName": "문얼 엔지니어링",
+        "address": "강원도 평창시",
+        "salesCount": 3,
+        "clientContactCount": 11,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라2",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라3",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업4"
+                    }
+                ]
+            },
+            {
+                "contactName": "울랄라5",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라6",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라7",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라8",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업4"
+                    }
+                ]
+            },
+            {
+                "contactName": "울랄라9",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라10",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라11",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 9,
+        "clientName": "KCFG 인터네셔널",
+        "address": "부산시 해운대구",
+        "salesCount": 9,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 10,
+        "clientName": "Dlkn 공업",
+        "address": "경기도 관주시",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 11,
+        "clientName": "테일 레이트 테크놀로지",
+        "address": "경기도 안양시",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 12,
+        "clientName": "테일 레이트 테크놀로지",
+        "address": "서울시 강동구",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 13,
+        "clientName": "삼송",
+        "address": "대한민국_서울_청계천 전자상가",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "삼송 김대리1",
+                "position": "대리",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 14,
+        "clientName": "테일 레이트 테크놀로지",
+        "address": "경기도 안양시",
+        "salesCount": 5,
+        "clientContactCount": 3,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "김대리",
+                "position": "대리",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "설비 전력 모니터링"
+                    }
+                ]
+            },
+            {
+                "contactName": "김과장",
+                "position": "과장",
+                "dept": "사업부",
+                "personalTelNumber": "010-1111-2222",
+                "companyTelNumber": "070-123-4567",
+                "email": "sss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 7,
+                        "salesName": "온습도 관리"
+                    },
+                    {
+                        "salesSeq": 8,
+                        "salesName": "화재감지 시스템 구축"
+                    }
+                ]
+            },
+            {
+                "contactName": "김부장",
+                "position": "부장",
+                "dept": "사업부",
+                "personalTelNumber": "010-1234-5678",
+                "companyTelNumber": "070-123-4567",
+                "email": "ssss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 7,
+                        "salesName": "온습도 관리"
+                    },
+                    {
+                        "salesSeq": 8,
+                        "salesName": "화재감지 시스템 구축"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 15,
+        "clientName": "웨일즈 인터네셔널",
+        "address": "경기도 남양주시",
+        "salesCount": 2,
+        "clientContactCount": 2,
+        "clientType": "제조업2",
+        "product": "소프트웨어2",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 16,
+        "clientName": "만인정보시스템",
+        "address": "서울시 관악구",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "삼송 김대리1",
+                "position": "대리",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 17,
+        "clientName": "NFWA System",
+        "address": "WAG NSW AU",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 18,
+        "clientName": "NFWA System",
+        "address": "WAG NSW AU",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 19,
+        "clientName": "Til-GA",
+        "address": "Houston Texas USA",
+        "salesCount": 6,
+        "clientContactCount": 2,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 20,
+        "clientName": "IGL 전자",
+        "address": "경상남도 김해시",
+        "salesCount": 3,
+        "clientContactCount": 4,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라2",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라3",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업4"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 21,
+        "clientName": "문얼 엔지니어링",
+        "address": "강원도 평창시",
+        "salesCount": 3,
+        "clientContactCount": 11,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라2",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라3",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업4"
+                    }
+                ]
+            },
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라2",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라3",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업4"
+                    }
+                ]
+            },
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업22"
+                    }
+                ]
+            },
+            {
+                "contactName": "김울랄라2",
+                "position": "책임매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업33"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 22,
+        "clientName": "KCFG 인터네셔널",
+        "address": "부산시 해운대구",
+        "salesCount": 9,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 23,
+        "clientName": "Dlkn 공업",
+        "address": "경기도 관주시",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 24,
+        "clientName": "테일 레이트 테크놀로지",
+        "address": "경기도 안양시",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 25,
+        "clientName": "테일 레이트 테크놀로지",
+        "address": "서울시 강동구",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "울랄라",
+                "position": "매니저",
+                "dept": "사업부",
+                "personalTelNumber": "010-111-4444",
+                "companyTelNumber": "070-222-3333",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "seq": 26,
+        "clientName": "삼송",
+        "address": "대한민국_서울_청계천 전자상가",
+        "salesCount": 1,
+        "clientContactCount": 1,
+        "clientType": "제조업",
+        "product": "소프트웨어",
+        "homePage": "www.ssss.com",
+        "clientSalesSimpleDtoList": [
+            {
+                "salesSeq": 7,
+                "salesName": "새로운영업",
+                "salesStatus": "CONSULTATION",
+                "salesServiceType": "SmartHACCP",
+                "startDate": "2024-02-14"
+            }
+        ],
+        "clientContact": [
+            {
+                "contactName": "삼송 김대리1",
+                "position": "대리",
+                "dept": "사업부",
+                "personalTelNumber": "010-000-0000",
+                "companyTelNumber": "070-000-0000",
+                "email": "ss@sss.com",
+                "clientContactSalesSimpleDtoList": [
+                    {
+                        "salesSeq": 6,
+                        "salesName": "새로운영업"
+                    }
+                ]
+            }
+        ]
+    }
+]

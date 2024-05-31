@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+:deep(.modal-container) {
+    height: rem(400px);
+    // .manager-area {
+    //     height: rem(170px);
+    // }
+
+    // .manager-box {
+    //     height: rem(170px);
+    //     border-radius: rem(3px);
+    //     border: 1px solid var(--main);
+    //     box-shadow: rem(1.3px) rem(1.5px) rem(4px) 0 rgba(0, 0, 0, 0.25);
+        
+    //     li {
+    //         display: flex;
+    //         align-items: center;
+    //         height: rem(34px);
+    //         padding: 0 rem(10px);
+    //         font-size: rem(14px);
+    //         font-weight: 500;
+    //         line-height: 1;
+    //         color: var(--text-default);
+    //         background: var(--bg-default);
+    //         transition: all .25s ease;
+    //         cursor: pointer;
+
+    //         span {
+    //             margin-left: rem(6px);
+    //             font-size: rem(12px);
+    //             font-weight: 400;
+    //             color: var(--text-sub);
+    //         }
+
+    //         &:hover {
+    //             background: var(--main-disabled);
+    //         }
+
+    //         &:active {
+    //             background: var(--main);
+    //         }
+    //     }
+
+    // }
+}

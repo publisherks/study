@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+:deep(.modal-container) {
+    width: rem(400px);
+
+    .handover-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:  calc((100% - rem(10px)) / 2);
+        height: rem(50px);
+        border: 2px solid var(--primary);
+
+        strong {
+            font-size: rem(16px);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text-default);
+
+            span {
+                color: var(--primary);
+            }
+        }
+    }
+
+}
